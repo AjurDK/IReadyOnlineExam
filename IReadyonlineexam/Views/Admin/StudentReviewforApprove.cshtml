@@ -1,0 +1,90 @@
+﻿@model IEnumerable<IReadyonlineexam.Models.StudentReview>
+
+@{
+    ViewBag.Title = "StudentReviewforApprove";
+    Layout = "~/Views/Admin/Shared/_AdminLayoutPage.cshtml";
+}
+@if (TempData["result"] != null)
+{
+    <script>
+        alert("@TempData["result"]");
+    </script>
+}
+<h4>Student Review for Approve/Disapprove</h4>
+
+<div id="rootwizard" class="wizard wizard-full-width">
+
+    <form action="#" method="POST" name="wizard_form">
+
+        <div class="wizard-content tab-content">
+
+            <div class="tab-pane active" id="tab1">
+                <div class="panel-body">
+                    @if (ViewBag.reviewaord != null)
+                    {
+                        <center>
+                            <table class="table table-striped m-b-0">
+                                <tr>
+
+                                    <th>
+                                        Student Name
+                                    </th>
+                                    <th>
+                                        Course
+                                    </th>
+                                    <th>
+                                        Review Description
+                                    </th>
+                                    <th>
+                                        Review Date
+                                    </th>
+                                    <th>
+                                        Edit | Delete
+                                    </th>
+
+                                </tr>
+
+                                @foreach (var item in ViewBag.reviewaord)
+                                {
+                                    <tr>
+
+                                        <td>
+                                            @item.Name
+                                        </td>
+                                        <td>@item.CourseName</td>
+                                        <td>
+                                            @item.ReviewDescription
+                                        </td>
+
+                                        <td>
+                                            @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.ReviewDate))
+
+                                        </td>
+                                        <td>
+                                            @if (item.Status)
+                                            {
+                                                @Html.ActionLink("Deactivate", "ReviewActive", new { ID = item.SrID })
+                                            }
+                                            else
+                                            {
+                                                @Html.ActionLink("Activate", "ReviewActive", new { ID = item.SrID })
+                                            }
+
+
+
+                                            @Html.ActionLink("Delete", "DeleteReview", new { id = item.SrID })
+                                        </td>
+
+
+                                    </tr>
+                                }
+
+                            </table>
+                        </center>
+                    }
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+

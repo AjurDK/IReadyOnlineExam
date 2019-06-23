@@ -1,0 +1,92 @@
+﻿@model IReadyonlineexam.Models.Semester_master
+
+@{
+    ViewBag.Title = "SemesterAdd";
+    Layout = "~/Views/Admin/Shared/_AdminLayoutPage.cshtml";
+}
+
+@if (TempData["result"] != null)
+{
+    <script>
+        alert("@TempData["result"]");
+    </script>
+}
+
+<div id="rootwizard" class="wizard wizard-full-width">
+
+    <form action="#" method="POST" name="wizard_form">
+
+        <div class="wizard-content tab-content">
+
+            <div class="tab-pane active" id="tab1">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="row">
+
+                        <div class="col-md-6 offset-md-3">
+                            <p class="desc m-b-20"></p>
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            <div class="form-group">
+                                <label class="control-label">Semester<span class="text-danger">*</span></label>
+                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Create" class="btn btn-primary" />
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                }
+
+                <div class="panel-body">
+                    @if (ViewBag.list1 != null)
+                    {
+                        <center>
+                            <table class="table table-striped m-b-0">
+                                <tr>
+                                    <th>
+                                        Semester
+                                    </th>
+                                    <th>
+                                        Created Date
+                                    </th>
+
+                                    <th>Edit | Delete</th>
+                                </tr>
+
+                                @foreach (var item in ViewBag.list1)
+                                {
+                                    <tr>
+                                        <td>
+                                            @item.Name
+                                        </td>
+
+                                        <td>
+                                            @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.CraetedDate))
+
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Edit", "EditSemester", new { id = item.SemID }) |
+                                            @Html.ActionLink("Delete", "Deletesem", new { id = item.SemID })
+                                        </td>
+                                    </tr>
+                                }
+
+                            </table>
+                        </center>
+                    }
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+</div>

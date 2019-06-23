@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "StudentList";
+    Layout = "~/Views/Admin/Shared/_AdminLayoutPage.cshtml";
+}
+
+<h4>Student List</h4>
+<!-- BEGIN wizard-form -->
+<form action="#" method="POST" name="wizard_form">
+    <!-- BEGIN wizard-content -->
+    <div class="wizard-content tab-content">
+        <!-- BEGIN tab-pane -->
+        <div class="tab-pane active" id="tab1">
+            <!-- BEGIN row -->
+            <div class="row">
+                <!-- BEGIN col-6 -->
+                <div class="col-md-6 offset-md-3">
+                    <p class="desc m-b-20"></p>
+                    <div class="form-group">
+                        <label class="control-label">Year <span class="text-danger">*</span></label>
+                        <select class="form-control">
+                            <option value="-12">2018</option>
+                            <option value="-11">2017</option>
+                            <option value="-10">2016</option>
+                            <option value="-9">2015</option>
+
+
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Student Name <span class="text-danger"></span></label>
+                        <input type="text" class="form-control" placeholder="name@example.com" />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">District Name <span class="text-danger"></span></label>
+                        <select class="form-control">
+                            <option value="-12">Bangalore</option>
+                            <option value="-11">Mysore</option>
+                            <option value="-10">Mandya</option>
+                            <option value="-9">Hassan</option>
+
+
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">From Date <span class="text-danger"></span></label>
+                        <input type="text" class="form-control m-b-5" placeholder="dd/mm/yyyy" />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">To Date <span class="text-danger"></span></label>
+                        <input type="text" class="form-control m-b-5" placeholder="dd/mm/yyyy" />
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Display" class="btn btn-primary wizard-next-btn btn-rounded" />
+                        </div>
+                    </div>
+                </div>
+                <!-- END col-6 -->
+
+            </div>
+            <!-- END row -->
+        </div>
+       
+     
+        <!-- END wizard-footer -->
+    </div>
+    <!-- END wizard-content -->
+</form>
+
+
+
+
+<!-- END #page-container -->

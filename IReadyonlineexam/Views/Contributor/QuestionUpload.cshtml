@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "QuestionUpload";
+    Layout = "~/Views/Contributor/Shared/_ContributorLayoutPage.cshtml";
+}
+
+<div class="panel panel-default">
+    <h2 style="font-weight:700;">Question Upload</h2>
+    <div class="col-md-12">
+
+        <div class="panel-body">
+            @using (Html.BeginForm("QuestionUpload", "Contributor", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="form-group">
+                    <label class="control-label">Select File</label>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <input type="file" name="postedFile" class="form-control" />
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Import" class="btn btn-primary" />
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4 style="font-weight:700;">Existing Questions</h4>
+    </div>
+    @{Html.RenderAction("CategoryDetails");}
+
+</div>

@@ -1,0 +1,186 @@
+﻿@model IReadyonlineexam.Models.MergeLoginRegister
+﻿
+@{
+    ViewBag.Title = "Aboutus";
+    Layout = "~/Views/Home/Shared/_HomeLayoutPage.cshtml";
+}
+
+<!-- contain main informative part of the site -->
+<main id="main">
+    <!-- heading banner -->
+    <header class="heading-banner text-white bgCover" style="background-image: url(../../HomeTemplate/images/img23.jpg);">
+        <div class="container holder">
+            <div class="align">
+                <h1>About</h1>
+            </div>
+        </div>
+    </header>
+
+
+    <article class="container text-info-block">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6">
+                <h1>IReadyToday</h1>
+                <p style="text-align:justify">iReady Today is probably one of the best things about it is that it’s actually a system. There is national system for education at any level. There are some rules that apply nationally, especially if schools receive federal money, but most schools are either completely independent or belong to a local system of some kind. This allows for a large variety of schools to exist which can accept a large variety of students and provide a large variety of programs and areas of study all without overwhelming national mandates or control. This gives the “system” flexibility and makes it fairly dynamic. It’s certainly not a perfect system, and it’s not completely immune from some forms of centralized influence, but it has produced a situation in which there is pretty good access to education, in which schools are able to change to meet the times (at least to a degree) and in which students have almost unlimited opportunities to attend school at any age after any number of attempts and in any area. </p>
+
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                <img src="~/HomeTemplate/images/img56.jpg" class="element-block image" alt="image description">
+            </div>
+        </div>
+    </article>
+
+    <aside class="bg-cover counter-aside" style="background-image: url(../../HomeTemplate/images/img10.jpg);">
+        <div class="container align-wrap">
+            <div class="align">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                        <h2 class="counter-aside-heading">
+                            <strong class="countdown element-block">@ViewBag.Coursecount</strong>
+                            <strong class="text element-block">COURSES</strong>
+                        </h2>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                        <h2 class="counter-aside-heading">
+                            <strong class="countdown element-block">@ViewBag.Studentcount</strong>
+                            <strong class="text element-block">NUMBER OF STUDENTS</strong>
+                        </h2>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                        <h2 class="counter-aside-heading">
+                            <strong class="countdown element-block">@ViewBag.Contributorcount</strong>
+                            <strong class="text element-block">QUALIFIED CONTRIBUTOR</strong>
+                        </h2>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <article class="why-lms-block container">
+        <div class="row">
+            <div class="col-xs-12 col-md-6 col">
+                <h2 class="sep-heading text-capitalize">Happy Students Say</h2>
+
+                <div class="slider why-say-slider">
+                    <div>
+                        @{
+                            if (ViewBag.test != null)
+                            {
+                                foreach (var items in ViewBag.test)
+                                {
+                                    <blockquote class="say-quote">
+                                        <q class="element-block"> “ @items.RDescription ”</q>
+                                        <cite>
+                                            @*<span class="alignleft rounded-circle no-shrink">
+                                            <img class="rounded-circle" src="http://placehold.it/67x67" alt="Gregory Benford Developer">
+                                        </span>*@
+                                            <span class="description-wrap">
+                                                <strong class="element-block author-title text-capitalize font-roboto fw-normal">@items.StudentName </strong>
+                                                @*<strong class="element-block author-subtitle font-lato fw-normal text-capitalize">Developer</strong>*@
+                                            </span>
+                                        </cite>
+                                    </blockquote>
+                                }
+                            }
+                        }
+
+                    </div>
+                    <div>
+
+                        @* <blockquote class="say-quote">
+                            <q class="element-block">&ldquo; The labour movement had the best opportunity in 50 years to transform not merely an industrial situation and win an impor tant battle for workers in struggle, but an opportunity to change the government of the day. &rdquo;</q>
+                            <cite>
+                                <span class="alignleft rounded-circle no-shrink">
+                                    <img class="rounded-circle" src="http://placehold.it/67x67" alt="Gregory Benford Developer">
+                                </span>
+                                <span class="description-wrap">
+                                    <strong class="element-block author-title text-capitalize font-roboto fw-normal">Gregory Benford</strong>
+                                    <strong class="element-block author-subtitle font-lato fw-normal text-capitalize">Developer</strong>
+                                </span>
+                            </cite>
+                        </blockquote>
+                    </div>
+                    <div>
+
+                        <blockquote class="say-quote">
+                            <q class="element-block">&ldquo; The labour movement had the best opportunity in 50 years to transform not merely an industrial situation and win an impor tant battle for workers in struggle, but an opportunity to change the government of the day. &rdquo;</q>
+                            <cite>
+                                <span class="alignleft rounded-circle no-shrink">
+                                    <img class="rounded-circle" src="http://placehold.it/67x67" alt="Gregory Benford Developer">
+                                </span>
+                                <span class="description-wrap">
+                                    <strong class="element-block author-title text-capitalize font-roboto fw-normal">Gregory Benford</strong>
+                                    <strong class="element-block author-subtitle font-lato fw-normal text-capitalize">Developer</strong>
+                                </span>
+                            </cite>
+                        </blockquote>
+                    </div>
+                    <div>
+
+                        <blockquote class="say-quote">
+                            <q class="element-block">&ldquo; The labour movement had the best opportunity in 50 years to transform not merely an industrial situation and win an impor tant battle for workers in struggle, but an opportunity to change the government of the day. &rdquo;</q>
+                            <cite>
+                                <span class="alignleft rounded-circle no-shrink">
+                                    <img class="rounded-circle" src="http://placehold.it/67x67" alt="Gregory Benford Developer">
+                                </span>
+                                <span class="description-wrap">
+                                    <strong class="element-block author-title text-capitalize font-roboto fw-normal">Gregory Benford</strong>
+                                    <strong class="element-block author-subtitle font-lato fw-normal text-capitalize">Developer</strong>
+                                </span>
+                            </cite>
+                        </blockquote>*@
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-6 col">
+                <h2 class="sep-heading">Why IreadyToday Best?</h2>
+
+                <div class="panel-group why-panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingOne">
+                            <h4 class="panel-title fw-normal">
+                                <a class="accOpener element-block" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">Learn anything online</a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="panel-body">
+                                <p>Areas tackled the most fundamental parts of medical research include cellular way and molecular biology medical genetics immunology neu science and psychology</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- panel -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingTwo">
+                            <h4 class="panel-title fw-normal">
+                                <a class="accOpener element-block" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">Basic to advance course</a>
+                            </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
+                            <div class="panel-body">
+                                <p>Areas tackled the most fundamental parts of medical research include cellular way and molecular biology medical genetics immunology neu science and psychology</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- panel -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingThree">
+                            <h4 class="panel-title fw-normal">
+                                <a class="accOpener element-block" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Learn anything online</a>
+                            </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                            <div class="panel-body">
+                                <p>Areas tackled the most fundamental parts of medical research include cellular way and molecular biology medical genetics immunology neu science and psychology</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          
+        </div>
+    </article>
+
+</main>

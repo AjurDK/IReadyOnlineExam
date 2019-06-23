@@ -1,0 +1,356 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+
+    <!-- ================== BEGIN BASE CSS STYLE ================== -->
+
+    <link href="~/Template/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+    <link href="~/Template/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+    <link href="~/Template/plugins/bootstrap/bootstrap4/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Template/plugins/icon/themify-icons/themify-icons.css" rel="stylesheet" />
+    <link href="~/Template/css/animate.min.css" rel="stylesheet" />
+    <link href="~/Template/css/style.min.css" rel="stylesheet" />
+    <link href="~/Template/css/theme/default.css" rel="stylesheet" id="theme" />
+    <!-- ================== END BASE CSS STYLE ================== -->
+    <!-- ================== BEGIN BASE JS ================== -->
+    <script src="~/Template/plugins/loader/pace/pace.min.js"></script>
+    @RenderSection("style", required: false)
+    @Scripts.Render("~/bundles/jquery")
+</head>
+<body>
+    <!-- BEGIN #page-container -->
+    <div id="page-container" class="page-header-fixed page-sidebar-fixed fade">
+        <!-- BEGIN #header -->
+        <div id="header" class="header navbar navbar-default navbar-fixed-top">
+            <!-- BEGIN container-fluid -->
+            <div class="container-fluid">
+                <!-- BEGIN mobile sidebar expand / collapse button -->
+                <div class="navbar-header">
+                    <a href="index.html" class="navbar-brand">
+                        <i class="ti-infinite navbar-logo text-gradient bg-gradient-blue-purple"></i>
+                        <b>IReadyToday</b> Student Dashboard
+                    </a>
+                    <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <!-- END mobile sidebar expand / collapse button -->
+                <!-- BEGIN header navigation right -->
+                <div class="navbar-xs-justified">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="javascript:;" data-toggle="search-bar" class="navbar-icon">
+                                <i class="ti-search"></i>
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle navbar-icon with-label">
+                                <i class="ti-bell"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-lg no-padding">
+                                <li class="dropdown-header"><a href="#" class="dropdown-close">&times;</a>Today</li>
+                                <li class="notification">
+                                    <a href="#">
+                                        <div class="notification-icon bg-primary">
+                                            <i class="ti-apple"></i>
+                                        </div>
+                                        <div class="notification-info">
+                                            <h4 class="notification-title">App Store <span class="notification-time">Just now</span></h4>
+                                            <p class="notification-desc">
+                                                Your iOS application has been approved
+                                            </p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="notification">
+                                    <a href="#">
+                                        <div class="notification-icon bg-success">
+                                            <i class="ti-android"></i>
+                                        </div>
+                                        <div class="notification-info">
+                                            <h4 class="notification-title">Google Play <span class="notification-time">5 min ago</span></h4>
+                                            <p class="notification-desc">
+                                                Your android application has been approved
+                                            </p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="notification">
+                                    <a href="#">
+                                        <div class="notification-icon bg-muted">
+                                            <i class="ti-github"></i>
+                                        </div>
+                                        <div class="notification-info">
+                                            <h4 class="notification-title">Github  <span class="notification-time">12 min ago</span></h4>
+                                            <p class="notification-desc">
+                                                Error with notifications from Private Repos
+                                            </p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="dropdown-header"><a href="#" class="dropdown-close">&times;</a>Yesterday</li>
+                                <li class="notification">
+                                    <a href="#">
+                                        <div class="notification-icon bg-purple">
+                                            <i class="ti-email"></i>
+                                        </div>
+                                        <div class="notification-info">
+                                            <h4 class="notification-title">Gmail  <span class="notification-time">12:50pm</span></h4>
+                                            <p class="notification-desc">
+                                                You have 2 unread email
+                                            </p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="notification">
+                                    <a href="#">
+                                        <div class="notification-icon">
+                                            <img src="~/Template/img/user-2.jpg" alt="" />
+                                        </div>
+                                        <div class="notification-info">
+                                            <h4 class="notification-title">Corey  <span class="notification-time">10:20am</span></h4>
+                                            <p class="notification-desc">
+                                                There's so much room for activities!
+                                            </p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="notification">
+                                    <a href="#">
+                                        <div class="notification-icon bg-gradient-aqua">
+                                            <i class="ti-twitter"></i>
+                                        </div>
+                                        <div class="notification-info">
+                                            <h4 class="notification-title">Twitter  <span class="notification-time">12:50pm</span></h4>
+                                            <p class="notification-desc">
+                                                sergiolucas: Most rain in the last two days: 85mm Gabo Island (Mar
+                                            </p>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="javascript:;" data-toggle="dropdown" class="navbar-icon">
+                                <i class="ti-settings"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-md no-padding" data-dropdown-close="false">
+                                <li class="dropdown-header">Notifications Settings</li>
+                                <li class="setting">
+                                    <div class="setting-icon bg-grey"><i class="ti-email"></i></div>
+                                    <div class="setting-info">
+                                        <div class="switcher">
+                                            <input type="checkbox" name="setting_1" id="setting_1" checked />
+                                            <label for="setting_1"></label>
+                                        </div>
+                                        Email
+                                    </div>
+                                </li>
+                                <li class="setting">
+                                    <div class="setting-icon bg-grey"><i class="ti-desktop"></i></div>
+                                    <div class="setting-info">
+                                        <div class="switcher">
+                                            <input type="checkbox" name="setting_2" id="setting_2" checked />
+                                            <label for="setting_2"></label>
+                                        </div>
+                                        Desktop and Mobile
+                                    </div>
+                                </li>
+                                <li class="setting">
+                                    <div class="setting-icon bg-grey"><i class="ti-mobile"></i></div>
+                                    <div class="setting-info">
+                                        <div class="switcher">
+                                            <input type="checkbox" name="setting_3" id="setting_3" />
+                                            <label for="setting_3"></label>
+                                        </div>
+                                        Text message
+                                    </div>
+                                </li>
+                                <li class="dropdown-header">Privacy Settings</li>
+                                <li class="setting">
+                                    <div class="setting-icon bg-grey"><i class="ti-user"></i></div>
+                                    <div class="setting-info">
+                                        <div class="switcher">
+                                            <input type="checkbox" name="setting_4" id="setting_4" />
+                                            <label for="setting_4"></label>
+                                        </div>
+                                        Public friends list
+                                    </div>
+                                </li>
+                                <li class="setting">
+                                    <div class="setting-icon bg-grey"><i class="ti-search"></i></div>
+                                    <div class="setting-info">
+                                        <div class="switcher">
+                                            <input type="checkbox" name="setting_5" id="setting_5" checked />
+                                            <label for="setting_5"></label>
+                                        </div>
+                                        Public profile page
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="javascript:;" data-toggle="dropdown">
+                                <span class="navbar-user-img online pull-left">
+                                    <img src="~/Template/img/user.jpg" alt="" />
+                                </span>
+                                <span class="hidden-xs ">Sean Ngu <b class="caret"></b></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="javascript:;">Edit Profile</a></li>
+                                <li><a href="javascript:;">Inbox</a></li>
+                                <li><a href="javascript:;">Calendar</a></li>
+                                <li><a href="javascript:;">Setting</a></li>
+                                <li>
+
+                                    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">
+                                            <i class="fa fa-lock"></i>
+                                            <span class="">Log off </span>
+                                        </a>
+                                    }
+
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END header navigation right -->
+            </div>
+            <!-- END container-fluid -->
+            <!-- BEGIN header-search-bar -->
+            <div class="header-search-bar">
+                <form action="#" method="POST" name="search_bar_form">
+                    <div class="form-group">
+                        <div class="left-icon"><i class="ti-search"></i></div>
+                        <input type="text" class="form-control" id="header-search" placeholder="Search infinite admin..." />
+                        <a href="javascript:;" data-dismiss="search-bar" class="right-icon"><i class="ti-close"></i></a>
+                    </div>
+                </form>
+            </div>
+            <!-- END header-search-bar -->
+        </div>
+        <!-- END #header -->
+        <!-- BEGIN #sidebar -->
+        <!-- END #sidebar -->
+
+
+        @RenderBody()
+
+        <!-- BEGIN btn-scroll-top -->
+        <a href="#" data-click="scroll-top" class="btn-scroll-top fade"><i class="ti-arrow-up"></i></a>
+        <!-- END btn-scroll-top -->
+    </div>
+    <!-- END #page-container -->
+    <!-- BEGIN theme-panel -->
+    @*<div class="theme-panel">
+            <a href="javascript:;" data-click="theme-panel-expand" class="theme-collapse-btn"><i class="ti-settings"></i></a>
+            <div class="theme-panel-content">
+                <div class="form-group">
+                    <label class="control-label">Color Theme</label>
+                    <ul class="theme-list clearfix">
+                        <li class="active"><a href="javascript:;" class="bg-gradient-blue-purple" data-theme="default" data-theme-file="~/Template/css/theme/default.css" data-click="theme-selector" data-toggle="tooltip" data-trigger="hover" data-container="body" data-title="Default"></a></li>
+                        <li><a href="javascript:;" class="bg-gradient-red" data-theme="red" data-theme-file="~/Template/css/theme/red.css" data-click="theme-selector" data-toggle="tooltip" data-trigger="hover" data-container="body" data-title="Red"></a></li>
+                        <li><a href="javascript:;" class="bg-gradient-orange" data-theme="orange" data-theme-file="~/Template/css/theme/orange.css" data-click="theme-selector" data-toggle="tooltip" data-trigger="hover" data-container="body" data-title="Orange"></a></li>
+                        <li><a href="javascript:;" class="bg-gradient-yellow" data-theme="yellow" data-theme-file="~/Template/css/theme/yellow.css" data-click="theme-selector" data-toggle="tooltip" data-trigger="hover" data-container="body" data-title="Yellow"></a></li>
+                        <li><a href="javascript:;" class="bg-gradient-green" data-theme="green" data-theme-file="~/Template/css/theme/green.css" data-click="theme-selector" data-toggle="tooltip" data-trigger="hover" data-container="body" data-title="Green"></a></li>
+                        <li><a href="javascript:;" class="bg-gradient-aqua" data-theme="aqua" data-theme-file="~/Template/css/theme/aqua.css" data-click="theme-selector" data-toggle="tooltip" data-trigger="hover" data-container="body" data-title="Aqua"></a></li>
+                        <li><a href="javascript:;" class="bg-gradient-blue" data-theme="blue" data-theme-file="~/Template/css/theme/blue.css" data-click="theme-selector" data-toggle="tooltip" data-trigger="hover" data-container="body" data-title="Blue"></a></li>
+                        <li><a href="javascript:;" class="bg-gradient-purple" data-theme="purple" data-theme-file="~/Template/css/theme/purple.css" data-click="theme-selector" data-toggle="tooltip" data-trigger="hover" data-container="body" data-title="Purple"></a></li>
+                        <li><a href="javascript:;" class="bg-gradient-black" data-theme="black" data-theme-file="~/Template/css/theme/black.css" data-click="theme-selector" data-toggle="tooltip" data-trigger="hover" data-container="body" data-title="Black"></a></li>
+                    </ul>
+                </div>
+                <ul class="widget widget-list">
+                    <li>
+                        <div class="widget-list-container">
+                            <div class="widget-list-content">
+                                Fixed Sidebar
+                            </div>
+                            <div class="widget-list-action">
+                                <div class="switcher switcher-success pull-left">
+                                    <input type="checkbox" name="sidebar_fixed" id="sidebar_fixed" value="1" checked />
+                                    <label for="sidebar_fixed"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="widget-list-container">
+                            <div class="widget-list-content">
+                                Light Sidebar
+                            </div>
+                            <div class="widget-list-action">
+                                <div class="switcher switcher-success pull-left">
+                                    <input type="checkbox" name="sidebar_light" id="sidebar_light" value="1" />
+                                    <label for="sidebar_light"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#" class="widget-list-container">
+                            <div class="widget-list-content">
+                                Fixed Header
+                            </div>
+                            <div class="widget-list-action">
+                                <div class="switcher switcher-success pull-left">
+                                    <input type="checkbox" name="header_fixed" id="header_fixed" value="1" checked />
+                                    <label for="header_fixed"></label>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <div class="widget-list-container">
+                            <div class="widget-list-content">
+                                Dark Header
+                            </div>
+                            <div class="widget-list-action">
+                                <div class="switcher switcher-success pull-left">
+                                    <input type="checkbox" name="header_dark" id="header_dark" value="1" />
+                                    <label for="header_dark"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="row m-t-10">
+                    <div class="col-md-12">
+                        <a href="javascript:;" class="btn btn-inverse btn-block btn-rounded btn-sm" data-click="reset-theme-setting"><b>Reset Setting</b></a>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+    <!-- END theme-panel -->
+    <!-- ================== BEGIN BASE JS ================== -->
+    <script src="~/Template/plugins/jquery/jquery-3.2.1.min.js"></script>
+    <script src="~/Template/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script src="~/Template/plugins/cookie/js/js.cookie.js"></script>
+    <script src="~/Template/plugins/tooltip/popper/popper.min.js"></script>
+    <script src="~/Template/plugins/bootstrap/bootstrap4/js/bootstrap.min.js"></script>
+    <script src="~/Template/plugins/scrollbar/slimscroll/jquery.slimscroll.min.js"></script>
+    <!-- ================== END BASE JS ================== -->
+    <!-- ================== BEGIN PAGE LEVEL JS ================== -->
+    <script src="~/Template/plugins/chart/chart-js/Chart.min.js"></script>
+    <script src="~/Template/js/page/dashboard.demo.min.js"></script>
+    <script src="~/Template/js/apps.min.js"></script>
+    <!-- ================== END PAGE LEVEL JS ================== -->
+
+    <script>
+        $(document).ready(function () {
+            App.init();
+            Dashboard.init();
+        });
+    </script>
+</body>
+</html>

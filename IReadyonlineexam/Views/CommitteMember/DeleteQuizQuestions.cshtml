@@ -1,0 +1,51 @@
+﻿@model IReadyonlineexam.Models.Question
+
+@{
+    ViewBag.Title = "DeleteQuizQuestions";
+    Layout = "~/Views/CommitteMember/Shared/_CommitteLayoutPage.cshtml";
+}
+
+<h2>Delete Quiz Questions</h2>
+<div id="rootwizard" class="wizard wizard-full-width">
+
+    <form action="#" method="POST" name="wizard_form">
+
+        <div class="wizard-content tab-content">
+
+            <div class="tab-pane active" id="tab1">
+
+                @using (Html.BeginForm("DeleteQuizQuestions", "CommitteMember", FormMethod.Post, new { interviewdate = "interviewdate", enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="row">
+
+
+                        <div class="col-md-6 offset-md-3">
+                            <p class="desc m-b-20"></p>
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.QuestionID)
+
+                            <div class="form-group">
+                                <label class="control-label">Quiz Question<span class="text-danger">*</span></label>
+                                @Html.EditorFor(model => model.QuestionText, new { htmlAttributes = new { @class = "form-control", @rows = 5 } })
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Create" class="btn btn-primary" />
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                }
+
+
+            </div>
+        </div>
+
+    </form>
+</div>

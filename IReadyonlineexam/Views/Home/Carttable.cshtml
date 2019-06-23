@@ -1,0 +1,363 @@
+﻿@using IReadyonlineexam.Models;
+@model IReadyonlineexam.Models.MergeLoginRegister﻿
+@{
+    ViewBag.Title = "Cart";
+    Layout = "~/Views/Home/Shared/_HomeLayoutPage.cshtml";
+}
+
+@*<h2>Cart Table</h2>*@
+
+    <section class="cart-content-block container">
+
+
+        <br />
+        <div class="table-wrap">
+            <table class="table tab-full-responsive cart-data-table font-lato" id="table">
+                <thead class="hidden-xs">
+                    <tr>
+                        <th>Sl.No</th>
+                        @*
+                        <th>
+                            Course
+                        </th>*@
+                        <th>
+                            Course Name
+                        </th>
+                        <th>
+                            Description
+                        </th>
+                        <th>
+                            Price
+                        </th>
+                        <th>
+
+                        </th>
+
+                    </tr>
+
+
+                </thead>
+                <tbody>
+                    @{int? Count2 = 0, Totale = 0;}
+                    @foreach (var item in ViewBag.pid)
+                    {
+                        Count2++;
+                        <tr>
+
+                            @if (item != null)
+                            {
+
+                                if (item != "undefined")
+                                {
+
+
+                                    int pid = Convert.ToInt32(item);
+                                    ireadytodayEntities2 dbcontext = new ireadytodayEntities2();
+                                    var prop = dbcontext.Course_master.Where(x => x.Course_ID == pid).FirstOrDefault();
+
+                                    Totale = Totale + prop.Price;
+
+                                    <td>@Count2</td>
+                                    @*
+                                    <td>
+                                        <img src="~/Content/themes/base/images/@prop.Imageurl" alt="iready" style="width:35%;height:30%;" />
+                                    </td>*@
+                                    <td>
+                                        @prop.Name
+                                    </td>
+                                    <td>
+                                        @prop.Name
+                                    </td>
+                                    <td>
+                                        &#8377  @prop.Price
+                                    </td>
+
+                                    <td>
+                                        @*@Html.Label("Remove", new { @class="cses btn-link", reid = @pid })*@
+                                        <lable id="lblid" class="cses btn-link" data-id="@pid">Remove</lable>
+
+                                    </td>
+                                    @*
+                                    <td style="visibility:hidden;">
+                                        @pid
+                                    </td>*@
+                                }
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <table class="table table-cart-total">
+                <tbody>
+                    <tr>
+                        <td class="font-lato fw-bold">Subtotal</td>
+                        <td></td>
+                        <td><strong class="price">&#8377  <label>@Totale</label> </strong></td>
+                        @*
+                        <td><input type="text" id="pri" /></td>*@
+
+                    </tr>
+            </table>
+        </div>
+
+        @if (Request.IsAuthenticated)
+        {
+            <a  class="btn btn-warning btn-theme font-lato fw-bold text-uppercase element-block cse" style="width: 15%;margin-left: 85%;"><b>Proceed to Checkout</b></a>
+
+        }
+        else
+        {
+    <a href="#" id="openpopupCart" class="btn btn-warning btn-theme font-lato fw-bold text-uppercase element-block cse1" style="width: 15%;margin-left: 85%;">Proceed to Checkout</a>
+
+        }
+        @*<button id="openpopupCart" formaction="false" class="btn btn-warning btn-theme font-lato fw-bold text-uppercase element-block cse" style="width: 15%;margin-left: 85%;">Place Order</button>*@
+
+    </section>
+
+
+
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+<script type="text/javascript">
+    $("#openpopupCart").click(function () {
+        $("#popup1").dialog({
+            modal: true,
+            width: 460,
+        });
+        event.preventDefault();
+    })
+
+    $("#openpopup2").click(function () {
+        $("#popup2").dialog({
+            modal: true,
+            width: 460,
+        });
+        event.preventDefault();
+    })
+
+</script>
+
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+<script>
+
+    //Remove items From the Cart
+    $('.cses').click(function () {
+
+        var reid = $(this).attr('data-id');
+
+        var restoredFruits = JSON.parse(localStorage.getItem('fruits'));
+        for (var p = 0; p < restoredFruits.queue.length; p++) {
+
+            if (restoredFruits.queue[p].name == reid) {
+                restoredFruits.queue.splice(p, 1);
+                alert('Remove Sucessfully');
+                //restoredFruits.queue.shift();
+            }
+            else {
+
+            }
+
+        }
+        var out = "";
+
+        localStorage.setItem('fruits', JSON.stringify(restoredFruits));
+        var updatecart = JSON.parse(window.localStorage.getItem('fruits'));
+        for (var t = 0; t < updatecart.queue.length; t++) {
+
+            var res = new Boolean(false);
+            for (var u = 0; u < t; u++) {
+
+                if (updatecart.queue[t].name == updatecart.queue[u].name) {
+
+                    res = true;
+
+                }
+
+            }
+            if (res == false) {
+
+                out += "A" + updatecart.queue[t].name;
+
+            }
+        }
+
+        window.location.href = '/Home/Carttable?values=' + out;
+    });
+
+
+
+
+    $(document).ready(function () {
+
+        var sum = 0;
+        //var input, filter, table, tr, td, i;
+        //input = document.getElementById("myInput");
+        //filter = input.value.toUpperCase();
+        $("#table").find("tr").each(function (index) {
+            if (!index) return;
+            var id = $(this).find("td").text();
+            //$(this).toggle(id.indexOf(filter) !== -1);
+
+            var pri = id.split('  ', 100);
+            var s = pri[76]
+            //var price = s.split('₹');
+
+            sum = parseInt(sum) + parseInt(s);
+
+        });
+        $("#pri").text(sum);
+
+    });
+
+    //Send the course id to save in db
+    $('.cse').click(function () {
+
+        //window.localStorage.clear();
+
+        var productid = $(this).attr('data-id');
+
+        var fruits =
+        {
+            queue:
+                [
+
+
+                ]
+        };
+
+        //var restoredFruits = JSON.parse(localStorage.getItem('fruits'));
+
+        //if (restoredFruits != null) {
+
+        //    restoredFruits.queue.push({
+        //        name: $(this).attr('data-id'),
+        //    });
+        //}
+        //else {
+        //    window.localStorage.setItem('fruits', JSON.stringify(fruits));
+        //    var restoredFruits = JSON.parse(localStorage.getItem('fruits'));
+        //    restoredFruits.queue.push({
+        //        name: $(this).attr('data-id'),
+        //    });
+        //}
+
+
+        //window.localStorage.setItem('fruits', JSON.stringify(restoredFruits));
+        //var cart = [];
+        var restoredFruits = JSON.parse(window.localStorage.getItem('fruits'));
+        var outputs = "";
+        var duplicat = "";
+
+        //for (var i = 0; i < restoredFruits.queue.length; i++) {
+        //   // outputs += '<div id="' + restoredFruits.queue[i].id + '">' + restoredFruits.queue[i].id + ':' + restoredFruits.queue[i].name + '</div>';
+        //    outputs += "A" + restoredFruits.queue[i].name;
+        //}
+
+        for (var i = 0; i < restoredFruits.queue.length; i++) {
+
+            var dup = new Boolean(false);
+            for (var j = 0; j < i; j++) {
+
+                if (restoredFruits.queue[i].name == restoredFruits.queue[j].name) {
+                    dup = true;
+                    duplicat += "A" + restoredFruits.queue[j].name;
+                }
+            }
+            if (dup == false) {
+                outputs += "A" + restoredFruits.queue[i].name;
+            }
+
+        }
+
+        //alert(outputs);
+        //alert(duplicat);
+
+    window.location.href = '/Home/SaveCoures?values=' + outputs;
+
+
+    });
+
+
+    //Send the course id to save in db
+    $('.cse1').click(function () {
+
+        //window.localStorage.clear();
+
+        var productid = $(this).attr('data-id');
+
+        var fruits =
+        {
+            queue:
+                [
+
+
+                ]
+        };
+
+        //var restoredFruits = JSON.parse(localStorage.getItem('fruits'));
+
+        //if (restoredFruits != null) {
+
+        //    restoredFruits.queue.push({
+        //        name: $(this).attr('data-id'),
+        //    });
+        //}
+        //else {
+        //    window.localStorage.setItem('fruits', JSON.stringify(fruits));
+        //    var restoredFruits = JSON.parse(localStorage.getItem('fruits'));
+        //    restoredFruits.queue.push({
+        //        name: $(this).attr('data-id'),
+        //    });
+        //}
+
+
+        //window.localStorage.setItem('fruits', JSON.stringify(restoredFruits));
+        //var cart = [];
+        var restoredFruits = JSON.parse(window.localStorage.getItem('fruits'));
+        var outputs = "";
+        var duplicat = "";
+
+        //for (var i = 0; i < restoredFruits.queue.length; i++) {
+        //   // outputs += '<div id="' + restoredFruits.queue[i].id + '">' + restoredFruits.queue[i].id + ':' + restoredFruits.queue[i].name + '</div>';
+        //    outputs += "A" + restoredFruits.queue[i].name;
+        //}
+
+        for (var i = 0; i < restoredFruits.queue.length; i++) {
+
+            var dup = new Boolean(false);
+            for (var j = 0; j < i; j++) {
+
+                if (restoredFruits.queue[i].name == restoredFruits.queue[j].name) {
+                    dup = true;
+                    duplicat += "A" + restoredFruits.queue[j].name;
+                }
+            }
+            if (dup == false) {
+                outputs += "A" + restoredFruits.queue[i].name;
+            }
+
+        }
+
+        //alert(outputs);
+        //alert(duplicat);
+
+//    window.location.href = '/Home/SaveCoures?values=' + outputs;
+
+
+    });
+
+
+</script>
+
+
+

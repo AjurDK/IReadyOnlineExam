@@ -1,0 +1,149 @@
+﻿@model IReadyonlineexam.Models.StudentProfile
+
+@{
+    ViewBag.Title = "StuProfile";
+    Layout = "~/Views/Student/Shared/_StudentLayoutPage.cshtml";
+}
+
+
+
+<div class="view-header">
+    <div class="pull-right text-right" style="line-height: 14px">
+        <a href="/student"><small>  <i class="ti-back-left"></i> Dashboard </small></a>
+    </div>
+    <div class="header-icon">
+        <i class="ti-user"></i>
+    </div>
+    <div class="header-title">
+        <h3 class="">Student Profile</h3>
+        <small>
+            Personal Information
+        </small>
+    </div>
+</div>
+
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="profile-header">
+            <div class="profile-header-cover"></div>
+
+            <div class="profile-header-content">
+                @*<div class="profile-header-img">
+                    <img src="~/Content/Profile/@Model.Image" alt="Image" />
+                </div>*@
+
+                <div class="profile-header-info">
+                    <h4 class="m-t-sm">
+                        @User.Identity.Name
+                        <span class="pull-right">
+                            <a href="@Url.Action("","")" class="btn btn-xs btn-primary">Edit Profile</a>
+                        </span>
+                    </h4>
+                </div>
+            </div>
+
+
+            @*<ul class="profile-header-tab nav nav-tabs">
+                <li class="nav-item"><a href="#profile-about" class="nav-link" data-toggle="tab">ABOUT</a></li>
+
+            </ul>*@
+
+        </div>
+        <div class="profile-container">
+
+            <div class="row">
+
+                <div class="col-md-5 col-md-offset-4">
+
+                    <div class="tab-content p-0">
+
+
+                        <div class="tab-pane fade in active" id="profile-about">
+                            <table class="table table-profile">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2">PERSONAL INFORMATION</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="field"><b>Name</b></td>
+                                        <td class="value">
+                                            <div class="m-b-5">
+                                                @Html.DisplayFor(model => model.Name)
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="field"><b>Gender</b></td>
+                                        <td class="value">
+                                            <div class="m-b-5">
+                                                @Html.DisplayFor(model => model.Gender)
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="field"><b>Date of Birth</b></td>
+                                        <td class="value">
+                                            <div class="m-b-5">
+                                                @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.DOB))
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="field"><b>Mobile Number</b></td>
+                                        <td class="value">
+                                            @Html.DisplayFor(model => model.MobileNumber)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="field"><b>Enail ID</b></td>
+                                        <td class="value">
+                                            @Html.DisplayFor(model => model.EmailID)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="field"><b>Course</b></td>
+                                        <td class="value">
+                                            @Html.DisplayFor(model => model.Course)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="field"><b>Semester</b></td>
+                                        <td class="value">
+                                            @Html.DisplayFor(model => model.Semester)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="field"><b>Address</b></td>
+                                        <td class="value">
+                                            @Html.DisplayFor(model => model.Address)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="field"><b>Joined On</b></td>
+                                        <td class="value">
+                                            @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.CreatedDate))
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+

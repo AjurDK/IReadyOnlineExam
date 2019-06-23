@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+
+  <head>
+  <title>AngularJs Star Rating Demo</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.css" />
+    <link rel="stylesheet" href="../css/style.css">
+   
+    <script src="https://code.angularjs.org/1.3.0-rc.2/angular.js"></script>
+    <script src="../app/StarApp.js"></script>
+  </head>
+
+  <body ng-app="starApp">
+  <div class="col-md-12">
+        <div class="row">
+                <nav class="navbar navbar-default" role="navigation">
+                    <div class="container-fluid">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <a class="navbar-brand" href="#">Thanks For Taking the Quiz, Please rate your experience of our Online Quiz</a>
+                        </div>
+                    </div><!-- /.container-fluid -->
+                </nav>
+        </div>
+    </div>
+  <div ng-controller="StarCtrl" class="center"> 
+    <div class=col-md-12>
+        <div ng-repeat="rating in ratings">
+        <h2>{{rating.current}} /
+            {{rating.max}}</h2>
+            <div star-rating rating-value="rating.current" max="rating.max" on-rating-selected="getSelectedRating(rating)"></div>
+        </div>
+    </div>
+    <div class="center1">
+        <div class="col-md-12 clear">
+            <div class="btn-toolbar" role="toolbar">
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-default" data-ng-click="setMinrate()">Min Rate</button>
+                    <button type="button" class="btn btn-default" data-ng-click="setMaxrate()">Max Rate</button>
+                </div>
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-primary" data-ng-click="sendRate()">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

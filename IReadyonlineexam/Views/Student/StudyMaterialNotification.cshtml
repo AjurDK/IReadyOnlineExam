@@ -1,0 +1,77 @@
+﻿@model IEnumerable<IReadyonlineexam.Models.StudyMaterialModel>
+
+@{
+    ViewBag.Title = "StudyMaterialNotification";
+    Layout = "~/Views/Student/Shared/_StudentLayoutPage.cshtml";
+}
+
+<style>
+    .pre {
+        font-size: 0.800rem;
+        font-weight: 400;
+        padding: 2px;
+    }
+</style>
+
+<h4 style="font-weight: 400;">Study Materials</h4>
+<!-- BEGIN widget -->
+<div class="row">
+    @*<div class="col-md-4 widget widget-list">
+        @{int c = 0;}
+        @foreach (var item in Model)
+        {
+            c++;
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="btn btn-outline-primary"><b>#@c</b> &nbsp;@item.Name </h5>
+                    <p class="pre" style="text-align:justify;">
+                        Description : @item.Description<br /><br />
+                        <i class="ti-user bg-gradient-silver"></i>
+                        Uploaded By : @item.UploadedBy <br />
+                        <i class="ti-alarm-clock bg-gradient-silver"></i>
+                        Uploaded On : @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.CreatedDate))
+                    </p>
+                </div>
+
+                <div class="card-footer text-muted">
+                    <a href="~/Content/StudyMaterials/@item.Attachement" download>
+                        <i class="ti-download bg-gradient-blue"></i> Download
+                    </a>
+                    <a href="#" class="card-link" style="float:right;"> @item.Days Days ago</a>
+                </div>
+            </div>
+
+        }
+    </div>*@
+    <div class="col-md-4 widget widget-list">
+        @{int d = 0;}
+        @foreach (var item in Model)
+        {
+            d++;
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="btn btn-outline-primary"><b>#@d</b> &nbsp;@item.Name </h5>
+                    <p class="pre" style="text-align:justify;">
+                        Description : @item.Description<br /><br />
+                        <i class="ti-user bg-gradient-silver"></i>
+                        <a href="" class="card-link">@item.UploadedBy</a> <br />
+                        <i class="ti-alarm-clock bg-gradient-silver"></i>
+                        <a href="" class="card-link">@Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.CreatedDate))</a>
+                    </p>
+                </div>
+
+                <div class="card-footer text-muted">
+                    <a href="~/Content/StudyMaterials/@item.Attachement" download>
+                        <i class="ti-download bg-gradient-blue"></i> Download
+                    </a>
+                    <a href="#" class="card-link" style="float:right;"> @item.Days Days ago</a>
+                </div>
+            </div>
+
+        }
+    </div>
+</div>
+
+
+
+

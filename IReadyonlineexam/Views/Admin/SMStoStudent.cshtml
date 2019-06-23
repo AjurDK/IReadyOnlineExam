@@ -1,0 +1,268 @@
+﻿
+@model IReadyonlineexam.Models.StudentProfile
+@using IReadyonlineexam.Models
+@{
+    ViewBag.Title = "SMStoStudent";
+    Layout = "~/Views/Admin/Shared/_AdminLayoutPage.cshtml";
+}
+@if (TempData["result"] != null)
+{
+    <script>
+        alert("@TempData["result"]");
+    </script>
+}
+<h4>SMS To Student</h4>
+
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/javascript">
+
+    $(function () {
+        $("#checkall").click(function () {
+            $("#checkallChild").removeAttr("checked");
+
+            if ($("input[name='checkallChild']").prop("checked", false)) {
+                $("input[name='checkallChild']").prop("checked", this.checked);
+            }
+            else {
+                $("input[name='checkallChild']").removeProp("checked", this.checked);
+            }
+        });
+        $("#checkallChild").click(function () {
+
+            if ($("input[name='checkallChild']").length == $("input[name='checkallChild']:checked").length) {
+                $("#checkall").attr("checked", "checked");
+            }
+            else {
+                $("#checkall").removeAttr("checked");
+            }
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(function () {
+        $("#btnSendMsg").click(function () {
+            var count = $("input[name='checkallChild']:checked").length;
+            if (count == 0) {
+                alert('No rows Selected..!')
+                return false;
+            }
+            else {
+                var ids = $("#mytable tr:has(input:checked)").map(function () {
+                    var $tr = $(this);
+                    var rowindextr = $(this).closest("tr").index();
+                    if (rowindextr == 0) {
+                    }
+                    else {
+                        var id = $tr.find("td:last").text();
+                        return id;
+                    }
+                }).toArray();
+                var postData = {};
+                postData = ids;
+                var templateName = $("#Roadtype option:selected").text();
+                var tempNameVal = $("#Roadtype option:selected").val();
+                if (tempNameVal != 0) {
+                    $.ajax({
+                        type: "POST",
+                        url: "/Admin/sendSms",
+                        contentType: "application/json; charset=utf-8",
+                        data: JSON.stringify({ 'values': postData, 'message': templateName }), //passing the mobile number and template name to back end
+                        dataType: "json",
+                        success: function (response) {
+                            alert(response.responstext);
+                        },
+                        failure: function (response) {
+                            alert("Save Failed ");
+                        },
+                        error: function (response) {
+                            alert("Error occured");
+                        }
+                    });
+                }
+                else {
+                    return confirm('Please Select Template');
+                }
+            }
+        });
+    });
+</script>
+
+<div id="rootwizard" class="wizard wizard-full-width">
+
+
+
+    <div class="wizard-content tab-content">
+
+        <div class="tab-pane active" id="tab1">
+            @using (Html.BeginForm("SMStoStudent", "Admin", FormMethod.Post, new { Year = "Year", Course = "Course", Semester = "Semester", enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="row">
+
+                    <div class="col-md-6 offset-md-3">
+                        <p class="desc m-b-20"></p>
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="form-group">
+                            <label class="control-label">Year</label>
+
+                            @Html.DropDownList("Year", (IEnumerable<SelectListItem>)ViewBag.selectYear, " ----Select Year----", new { @class = "form-control", @id = "Year", required = "required" })
+
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Select Category Name</label>
+                            @Html.DropDownListFor(model => model.Course, ViewBag.state as List<SelectListItem>, new { @class = "form-control" })
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Select Semester </label>
+                            @Html.DropDownListFor(model => model.Semester, new SelectList(string.Empty, "Value", "Text"), "----Select Semester----", new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input id="submit" type="submit" value="Submit" class="btn btn-primary" />
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                if (ViewBag.selectsmsTitle != null)
+                {
+                    <div class="form-group">
+                        <label class="control-label">Select Title</label>
+                        @Html.DropDownList("Itemss", (IEnumerable<SelectListItem>)ViewBag.selectsmsTitle, "----Select List----", new { @class = "form-control", @id = "Itemss" })
+                    </div>
+                }
+
+                if (ViewBag.seletedVal != null)
+
+                {
+                    <div class="form-group">
+                        <label class="control-label">Select Template</label>
+                        @Html.DropDownList("Roadtype", (IEnumerable<SelectListItem>)ViewBag.seletedVal, "----Select Template----", new { @class = "form-control" })
+                    </div>
+                }
+            }
+
+            <div class="panel-body">
+                <h3>Send SMS to Students</h3>
+
+                @if (ViewBag.getstuddata != null)
+                {
+                    <center>
+                        <div id="checkboxes">
+                            <table class="table table-striped m-b-0" id="mytable">
+                                <tr>
+                                    <th>
+                                        <input type="checkbox" id="checkall" name="checkall" /><span>Check All</span>
+                                    </th>
+                                    <th>
+                                        Year
+                                    </th>
+                                    <th>
+                                        Course
+                                    </th>
+
+                                    <th>
+                                        Semester
+                                    </th>
+                                    <th>
+                                        Student_ID
+                                    </th>
+
+                                    <th>
+                                        Name
+                                    </th>
+                                    <th>
+                                        MobileNumber
+                                    </th>
+
+
+                                </tr>
+
+
+                                @foreach (var item in ViewBag.getstuddata)
+                                {
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" name="checkallChild" id="checkallChild" value="@item">
+                                        </td>
+
+                                        <td>
+                                            @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.CreatedDate))
+                                        </td>
+                                        <td>
+                                            @item.Course
+                                        </td>
+                                        <td>
+                                            @item.Semester
+                                        </td>
+                                        <td>
+                                            @item.Student_ID
+                                        </td>
+
+                                        <td>
+                                            @item.Name
+                                        </td>
+                                        <td>
+                                            @item.MobileNumber
+                                        </td>
+                                    </tr>
+                                }
+
+                            </table>
+                            <br />
+                            <input type="submit" value="Send Message" id="btnSendMsg" class="btn btn-primary" />
+                        </div>
+                    </center>
+                }
+            </div>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+            <script type="text/javascript">
+                $(document).ready(function () {
+
+                    $("#Itemss").change(function () {
+                        var v = $("#Itemss").val();
+                        $("#Roadtype").val(v).change().attr('selected', true);
+                    });
+                });
+            </script>
+            <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+            <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+            <script type="text/javascript">
+
+
+
+    $(document).ready(function () {
+
+        $("#Course").change(function () {
+            $("#Semester").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("Getcity")',
+                dataType: 'json',
+                data: { id: $("#Course").val() },
+                success: function (city) {
+
+                    $.each(city, function (i, city) {
+                        $("#Semester").append('<option value="'+ city.Value + '">' + city.Text + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed.' + ex);
+                }
+            });
+            return false;
+        })
+    });
+            </script>
+
+        </div>
+    </div>
+    
+</div>

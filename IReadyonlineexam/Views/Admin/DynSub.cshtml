@@ -1,0 +1,133 @@
+﻿
+@model IReadyonlineexam.Models.DynamicSubject
+@{
+
+
+    ViewBag.Title = "AddSub";
+
+    Layout = "~/Views/Admin/Shared/_AdminLayoutPage.cshtml";
+}
+
+<h2>Subject Add Master</h2>
+@if(TempData["result"] != null)
+{
+    < script >
+        alert("@TempData["result"]");
+    </ script >
+}
+
+
+
+@using (Html.BeginForm("DynSub", "Admin", FormMethod.Post, new { ImageData = "ImageData", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div id="rootwizard" class="wizard wizard-full-width">
+
+        <form action="#" method="POST" name="wizard_form">
+
+            <div class="wizard-content tab-content">
+
+                <div class="tab-pane active" id="tab1">
+                    <div class="row">
+
+                        <div class="col-md-6 offset-md-3">
+                            <p class="desc m-b-20"></p>
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                            <div class="form-group">
+                                <label class="control-label">Category</label>
+                                @Html.DropDownListFor(Model => Model.Course, (IEnumerable<SelectListItem>)ViewBag.selectedcourse as SelectList, new { @class = "form-control", required="required" })
+
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label">Semester</label>
+                                @Html.DropDownListFor(Model => Model.Semester, (IEnumerable<SelectListItem>)ViewBag.selectedsem as SelectList, new { @class = "form-control", required="required" })
+
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="control-label">Subject Name<span class="text-danger">*</span></label>
+                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", required="required" } })
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ImageFile, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    <input type="file" id="ImageData" name="ImageData" placeholder="Upload Image" accept="image/*" required="required" />
+
+                                    @*<input type="file" name="ImageFile" required />*@
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Create" class="btn btn-primary" />
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+}
+
+<div class="panel-body">
+    @if (ViewBag.result != null)
+    {
+    <center>
+        <table class="table table-striped m-b-0">
+            <tr>
+
+                <th>
+                    Category
+                </th>
+
+                <th>
+                    Semester
+                </th>
+                <th>
+                    Course Name
+                </th>
+
+                <th>
+                    Created Date
+                </th>
+                <th>Edit | Delete</th>
+            </tr>
+
+            @foreach (var item in ViewBag.result)
+            {
+                <tr>
+
+                    <td>
+                        @item.CourseName
+                    </td>
+                    <td>
+                        @item.SemName
+                    </td>
+
+                    <td>
+                        @item.SubjectName
+                    </td>
+                    <td>
+
+                        @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.CreatedDate))
+
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "EditSubject", new { id = item.SubjectID }) |
+                        @Html.ActionLink("Delete", "DeleteSubject", new { id = item.SubjectID })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </center>
+    }
+</div>
+

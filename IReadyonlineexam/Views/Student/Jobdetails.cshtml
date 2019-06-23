@@ -1,0 +1,115 @@
+﻿@model IEnumerable<IReadyonlineexam.Models.Job_Master>
+
+@{
+    ViewBag.Title = "Jobdetails";
+    Layout = "~/Views/Student/Shared/_StudentLayoutPage.cshtml";
+}
+
+
+
+<div class="view-header">
+    <div class="pull-right text-right" style="line-height: 14px">
+        <a href="/student"><small>  <i class="ti-back-left"></i> Dashboard </small></a>
+    </div>
+    <div class="header-icon">
+        <i class="ti-eye"></i>
+    </div>
+    <div class="header-title">
+        <h3 class="">PLACEMENT DETAILS</h3>
+        <small>
+            details
+        </small>
+    </div>
+</div>
+
+@if (ViewBag.result != null)
+{
+    <script>
+        alert("@ViewBag.result");
+    </script>
+}
+<div id="rootwizard" class="wizard wizard-full-width">
+
+    <form action="#" method="POST" name="wizard_form">
+
+        <div class="wizard-content tab-content">
+
+            <div class="tab-pane active" id="tab1">
+
+
+                <div class="panel-body">
+                    
+                    <center>
+                        <table class="table table-striped m-b-0">
+                            <tr>
+                                <th>
+                                    Year
+                                </th>
+                                <th>
+                                    Category
+                                </th>
+                                <th>
+                                    Designation
+                                </th>
+                                <th>
+                                    Company Name
+                                </th>
+                                <th>
+                                    Job Description
+                                </th>
+                                <th>
+                                    Scheduled Date
+                                </th>
+                                <th>
+                                    Location
+                                </th>
+                                <th>
+                                    Created Date
+                                </th>
+                            </tr>
+
+                            @foreach (var item in ViewBag.jobdetails)
+                            {
+                                <tr>
+                                    <td>
+                                        @item.year
+                                    </td>
+                                    <td>
+                                        @item.Course
+                                    </td>
+
+                                    <td>
+                                        @item.Designation
+                                    </td>
+                                    <td>
+                                        @item.Company_Name
+                                    </td>
+                                    <td>
+                                        @item.Description
+                                    </td>
+                                    <td>
+                                        @item.ScheduledDate
+                                    </td>
+                                    <td>
+                                        @item.Location
+                                    </td>
+                                    <td>
+                                        @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.CraetedDate))
+
+                                    </td>
+
+                                </tr>
+                            }
+
+                        </table>
+                    </center>
+
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+</div>
+
+

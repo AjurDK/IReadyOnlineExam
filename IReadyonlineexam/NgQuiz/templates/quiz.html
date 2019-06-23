@@ -1,0 +1,224 @@
+﻿
+<div class="header">
+    <div class="row">
+        <div class="col-md-8">
+            <!--<h3>Quiz Application</h3>-->
+            <img src="../../Content/img/logo.png" />
+        </div>
+    </div>
+</div>
+
+<div ng-show="step==1">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3> Choose Subject and Unit</h3>
+        </div>
+
+
+        <div class="panel-body">
+
+            <div class="form-group">
+                <label class="control-label">Course</label>
+                <select id="subList" class="form-control" ng-model="Course_ID" ng-init="GetCourse()" ng-change="GetSemester()">
+                    <option ng-repeat="c in courses" value="{{c.Course_ID}}">{{c.Name}}</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Semester</label>
+                <select id="subList" class="form-control" ng-model="SemID" ng-change="GetSubject()">
+                    <option ng-repeat="s in semester " value="{{s.SemID}}">{{s.Name}}</option>
+                </select>
+            </div>
+
+
+            <div class="form-group">
+                <label class="control-label">Subject</label>
+                <select id="subList" class="form-control" ng-model="subjectid" ng-change="GetUnit()">
+                    <option ng-repeat="s in subjects" value="{{s.SubjectID}}">{{s.Name}}</option>
+                </select>
+            </div>
+           
+            <div class="form-group">
+                <label class="control-label">Unit</label>
+                <select id="unitList" class="form-control" ng-model="unitid" ng-change="ChangeStep(2)">
+                    <option ng-repeat="u in units" value="{{u.Uid}}">{{u.UnitName}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div ng-show="step==2">
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+           Start Test
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label class="control-label">Test Available</label>
+                <select id="quizList" class="form-control" ng-model="quizName" ng-change="loadQuiz(quizName)">
+                    <option ng-repeat="q in quizs" value="{{q.QuizID}}">{{q.QuizName}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div ng-show="step==3">
+
+    <div ng-show="isNew == false">
+        <div style="margin: 70px;margin-top:20px;">
+            <h2 class="page-header"> Instructions</h2>
+            <br />
+            <p style="text-align:justify;font-size: 15px;line-height: 30px;">
+                This Test consists of 10 multiple-choice questions. To be successful with the weekly Tests, it’s important to thoroughly read chapter 5 in the textbook.  It will also be extremely useful to study the key terms at the end of the chapter and review the Test Your Knowledge activity at the end of the chapter. Keep the following in mind:
+            </p>
+            <br />
+            <ul class="ulclass">
+                <li><strong style="width:20%">Multiple Attempts</strong> - You will have three attempts for this Test with your highest score being recorded in the grade book.</li>
+                <li><strong>Timing </strong> - You will need to complete each of your attempts in one sitting, as you are allotted 30 minutes to complete each attempt.</li>
+                <li><strong>Answers </strong> - You may review your answer-choices and compare them to the correct answers after your final attempt.</li>
+            </ul>
+            <br />
+            <p style="text-align:justify;font-size: 15px;line-height: 30px;">To start, click the "<b>Take the Test</b>" button. When finished, click the "<b>Submit Test</b>" button.</p>
+            <br />
+        </div>
+
+        
+        <button ng-click="createNew()" class="btn btn-default">Take the Test</button>
+    </div>
+
+    <div id="quiz" ng-show="isNew == true">
+
+        <div ng-show="loading==true" style="padding:100px;">
+            <center>
+                <img src="/NgQuiz/img/loading.gif" />
+            </center>
+        </div>
+
+        <!--<div ng-show="QuizEnded == true ">
+            <p> Quiz Expired </p>
+            <button ng-click="createNew()">Restart Quiz</button>
+            <button class="btn panel-default" ng-click="onSubmit();">Submit Quiz</button>
+
+        </div>-->
+
+        <div ng-show="loading == false && QuizEnded == false ">
+            <div class="row">
+                <div class="col-md-12" id="countdown" ng-show="mode!='result' && mode!='rating'">
+                    <h1 class="center">{{quiz.name}} </h1>
+                    <div class="col-md-offset-10" >
+                        <h3><b>Timer</b></h3>
+                       <h3><span><b>{{ CountDown.minutes }} :  {{ CountDown.seconds }}</b></span></h3> 
+                    </div>
+                    
+                </div>
+
+            </div>
+
+            <div  ng-show="mode=='quiz'">
+                <div ng-repeat="question in filteredQuestions">
+                    <div class="label label-warning">Question {{currentPage}} of {{totalItems}}.</div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2>{{currentPage}}. <span ng-bind-html="question.Name"></span></h2>
+                        </div>
+                    </div>
+                    <div class="row text-left options">
+                        <div class="col-md-6" ng-repeat="option in question.Options">
+                            <div class="option">
+                                <label class="" for="{{option.Id}}">
+                                    <input id="{{option.Id}}" type="checkbox" ng-model="option.Selected" ng-change="onSelect(question, option);" />
+                                    {{option.Name}}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div class="quizNav">
+                    <div>
+                        <button class="btn btn-default" ng-show="config.allowBack" ng-click="goTo(1);">First</button>
+                        <button class="btn btn-default" ng-show="config.allowBack" ng-click="goTo(currentPage - 1);">Prev</button>
+                        <button class="btn btn-primary" ng-click="goTo(currentPage + 1);">Next</button>
+                        <button class="btn btn-default" ng-show="config.allowBack" ng-click="goTo(totalItems);">Last</button>
+                    </div>
+                    <br />
+                    <pagination ng-show="config.showPager" direction-links="false" total-items="totalItems" items-per-page="itemsPerPage" ng-model="currentPage" ng-change="pageChanged()"></pagination>
+                </div>
+            </div>
+            <div class="row review" ng-show="mode=='review'">
+                <div class="col-sm-4" ng-repeat="question in questions">
+                    <div ng-click="goTo($index + 1)" class="{{ isAnswered($index) == 'Answered'? 'answered': 'not-answered' }}">{{$index + 1}}. {{ isAnswered($index) }}</div>
+                </div>
+            </div>
+            <div class="result" ng-show="mode=='result'">
+                <h2>Test Result</h2>
+                <div class="row" style="margin-top:2%;margin-bottom:2%;">
+
+                    <center><h4>Your Score is {{score.ScoredMarks}}</h4> </center>  
+
+                </div>
+
+
+                <div ng-repeat="question in questions">
+                    <div class="result-question">
+                        <h4>{{$index + 1}}. {{question.Name}}</h4>
+                        <div class="row">
+                            <div class="col-md-6" ng-repeat="Option in question.Options">
+                                <div>
+                                    <input id="{{Option.Id}}" type="checkbox" disabled="disabled" ng-model="Option.Selected" />
+                                    {{Option.Name}}
+                                </div>
+                            </div>
+                        </div>
+                        <h4 class="alert {{ isCorrect(question) == 'correct'? 'alert-success': 'alert-danger'}}">Your answer is {{isCorrect(question)}}.</h4>
+                    </div>
+                </div>
+                <h4 class="alert alert-info text-center" ng-click="CloseSession()">Click here to close the session</h4>             
+            </div>
+            <hr />
+            <div class="" ng-show="mode!='result' && mode!='rating'">
+                <button class="btn btn-default" ng-click="mode = 'quiz'">Test</button>
+                <button class="btn btn-default" ng-click="mode = 'review'">Review</button>
+                <button class="btn btn-default" ng-click="onSubmit();">Submit Test</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div ng-show="mode=='rating'">
+    <div class="col-md-12 center">
+
+        <div class="col-md-12 center ">
+
+            <h5>Thanks for taking Test, Please rate your overall experience</h5>
+
+        </div>
+        
+        <div ng-repeat="rating in ratings">
+            
+            <h2>
+                {{rating.current}} /
+                {{rating.max}}
+            </h2>
+            <div star-rating rating-value="rating.current" max="rating.max" on-rating-selected="getSelectedRating(rating)"></div>
+        </div>
+    </div>
+    <div class="center1">
+        <div class="col-md-12 clear">
+            <div class="btn-toolbar" role="toolbar">
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-default" data-ng-click="setMinrate()">Min Rate</button>
+                    <button type="button" class="btn btn-default" data-ng-click="setMaxrate()" style="margin-left:2px;">Max Rate</button>
+                </div>
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-default" data-ng-click="sendRate()">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

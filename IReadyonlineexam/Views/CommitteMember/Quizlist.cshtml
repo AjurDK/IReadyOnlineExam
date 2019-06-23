@@ -1,0 +1,79 @@
+﻿@model IReadyonlineexam.Models.Question
+
+@{
+    ViewBag.Title = "Quizlist";
+    Layout = "~/Views/CommitteMember/Shared/_CommitteLayoutPage.cshtml";
+}
+
+<h2>Quiz list</h2>
+<div id="rootwizard" class="wizard wizard-full-width">
+
+    <form action="#" method="POST" name="wizard_form">
+
+        <div class="wizard-content tab-content">
+
+            <div class="tab-pane active" id="tab1">
+
+                <div class="panel-body">
+                    <h3>Quiz Questionlist with options</h3>
+                    <center>
+                        <table class="table table-striped m-b-0">
+                            <tr>
+                                <th>
+                                    Question ID
+                                </th>
+                                <th>
+                                    Question Text
+                                </th>
+                                <th>
+                                    Course Name
+                                </th>
+                                <th>
+                                   Subject Name
+                                </th>
+                                <th>
+                                    Unit Name
+                                </th>
+                                <th>
+                                    Edit | Delete
+                                    </th>
+
+                            </tr>
+
+                            @foreach (var item in ViewBag.quizlsit)
+                            {
+                                <tr>
+                                    <td>
+                                        @item.QuestionID
+                                    </td>
+                                    <td>
+                                        @item.QuestionText
+                                    </td>
+                                    <td>
+                                        @item.CourseName
+                                    </td>
+                                    <td>
+                                        @item.SubjectName
+                                    </td>
+                                    <td>
+                                        @item.UnitName
+                                    </td>
+                                    <td>
+                                            @Html.ActionLink("Edit", "EditQuizQuestions", new { id = item.QuestionID }) |
+
+                                            @Html.ActionLink("Delete", "DeleteQuizQuestions", new { id = item.QuestionID })
+                                        </td>
+                                 </tr>
+                            }
+
+                        </table>
+                    </center>
+
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+

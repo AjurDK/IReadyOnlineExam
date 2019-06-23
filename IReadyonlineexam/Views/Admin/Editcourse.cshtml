@@ -1,0 +1,69 @@
+﻿@model IReadyonlineexam.Models.Course_master
+
+@{
+    ViewBag.Title = "Editcourse";
+    Layout = "~/Views/Admin/Shared/_AdminLayoutPage.cshtml";
+}
+
+<h4>Edit course</h4>
+
+    <div id="rootwizard" class="wizard wizard-full-width">
+
+        @*<form action="#" method="POST" name="wizard_form">*@
+
+        <div class="wizard-content tab-content">
+
+            <div class="tab-pane active" id="tab1">
+                @using (Html.BeginForm("Editcourse", "Admin", FormMethod.Post, new { FileUpload = "FileUpload", enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.Course_ID)
+                    <div class="row">
+
+                        <div class="col-md-6 offset-md-3">
+                            <p class="desc m-b-20"></p>
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            <div class="form-group">
+            <label class="control-label">Category<span class="text-danger">*</span></label>
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+                            @*<div class="form-group">
+                                <label class="control-label">Course Image<span class="text-danger">*</span></label>
+                                <img src="~/Images/CourseImages/@Model.Imageurl" style="height:100px;width:200px" alt="Course" />
+                            </div>*@
+                            <div class="form-group">
+                                <label class="control-label">Image <span class="text-danger">*</span></label>
+                                <input type="file" id="FileUpload" name="FileUpload" placeholder="Upload Image" class="form-control text-box single-line" accept="image/*" />
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Price<span class="text-danger">*</span></label>
+                                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Course Description<span class="text-danger">*</span></label>
+                                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Save" class="btn btn-primary" />
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                }
+
+                <div>
+                    @Html.ActionLink("Back to List", "DynCrc")
+                </div>
+            </div>
+        </div>
+
+        @*</form>*@
+
+    </div>
+

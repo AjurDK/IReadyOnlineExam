@@ -1,0 +1,54 @@
+﻿@model IReadyonlineexam.Models.YearMaster
+
+@{
+    ViewBag.Title = "EditYear";
+    Layout = "~/Views/Admin/Shared/_AdminLayoutPage.cshtml";
+}
+
+<h4>Edit Year</h4>
+
+<div id="rootwizard" class="wizard wizard-full-width">
+
+    <form action="#" method="POST" name="wizard_form">
+
+        <div class="wizard-content tab-content">
+
+            <div class="tab-pane active" id="tab1">
+                @using (Html.BeginForm("EditYear", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.YearID)
+
+                    <div class="row">
+
+                        <div class="col-md-6 offset-md-3">
+                            <p class="desc m-b-20"></p>
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            <div class="form-group">
+                                <label class="control-label">Year<span class="text-danger">*</span></label>
+                                @Html.EditorFor(model => model.Year, new { htmlAttributes = new { @class = "form-control", required="required" } })
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Save" class="btn btn-primary" />
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                }
+                <div>
+                    @Html.ActionLink("Back to List", "YearAdd")
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+</div>
+

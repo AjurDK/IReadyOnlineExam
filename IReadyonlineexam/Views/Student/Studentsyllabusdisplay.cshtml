@@ -1,0 +1,131 @@
+﻿@model IEnumerable<IReadyonlineexam.Models.studentsyllabu>
+
+@{
+    ViewBag.Title = "Studentsyllabusdisplay";
+    Layout = "~/Views/Student/Shared/_StudentLayoutPage.cshtml";
+}
+
+
+<div class="view-header">
+    <div class="pull-right text-right" style="line-height: 14px">
+        <a href="/student"><small>  <i class="ti-back-left"></i> Dashboard </small></a>
+    </div>
+    <div class="header-icon">
+        <i class="ti-book"></i>
+    </div>
+    <div class="header-title">
+        <h3 class="">Subject Syllabus</h3>
+        <small>
+            view your results
+        </small>
+    </div>
+</div>
+
+@if (ViewBag.result != null)
+{
+    <script>
+        alert("@ViewBag.result");
+    </script>
+}
+
+<div id="rootwizard" class="wizard wizard-full-width">
+
+    <form action="#" method="POST" name="wizard_form">
+
+        <div class="wizard-content tab-content">
+
+            <div class="tab-pane active" id="tab1">
+
+
+                <div class="panel-body">
+
+                    @using (Html.BeginForm("Studentsyllabusdisplay", "Student", FormMethod.Post, new { SubjectID = "SubjectID", enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="row">
+
+                            <div class="col-md-6 offset-md-3">
+                                <p class="desc m-b-20"></p>
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <h3 class="m-b-20" style="color:red"><span><b>SUBJECT WISE SYLLABUS</b> </span></h3>
+                                <br />
+                                
+                                <div class="form-group">
+                                    <label class="control-label">Subject Name</label>
+                                    @Html.DropDownList("SubjectID", ViewBag.selectedsubject as SelectList, "", new { @id = "SubjectID", @class = "form-control" })
+
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input type="submit" value="Display" class="btn btn-primary" />
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+                        <center>
+                            <table class="table table-striped m-b-0">
+                                <tr>
+                                    <th>
+                                        Subject Name
+                                    </th>
+                                    <th>
+                                        Unit Number
+                                    </th>
+                                    <th>
+                                        Unit Name
+                                    </th>
+                                    <th>
+                                        Unit Description
+                                    </th>
+                                </tr>
+
+
+                                @foreach (var item in ViewBag.ssd)
+                                {
+
+                                    <tr>
+                                        <td>
+                                            @item.SubjectName
+                                        </td>
+                                        <td>
+                                            @item.UnitName
+                                        </td>
+                                        <td>
+                                            @item.ChapterName
+                                        </td>
+                                        <td>
+                                            @item.ChapterDesciption
+                                        </td>
+
+                                    </tr>
+                                }
+                            </table>
+                        </center>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

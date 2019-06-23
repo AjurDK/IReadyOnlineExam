@@ -1,0 +1,182 @@
+﻿@model IReadyonlineexam.Models.Question_details
+
+@{
+    ViewBag.Title = "MCQQuestionUploadwithAns";
+    Layout = "~/Views/Admin/Shared/_AdminLayoutPage.cshtml";
+}
+
+<h2>MCQ Question Upload with Ans</h2>
+@if (ViewBag.result != null)
+{
+    <script>
+        alert("@ViewBag.result");
+    </script>
+}
+<div id="rootwizard" class="wizard wizard-full-width">
+
+    <form action="#" method="POST" name="wizard_form">
+
+        <div class="wizard-content tab-content">
+
+            <div class="tab-pane active" id="tab1">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="row">
+
+                        <div class="col-md-6 offset-md-3">
+                            <p class="desc m-b-20"></p>
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                <label class="control-label">Category</label>
+                                @Html.DropDownListFor(Model => Model.CategoryId, (IEnumerable<SelectListItem>)ViewBag.selectedcourse as SelectList, new { @class = "form-control" })
+
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label">Course Name</label>
+
+
+                                @Html.DropDownListFor(model => model.Subjectid, (IEnumerable<SelectListItem>)ViewBag.selectedsubject as SelectList, new { @class = "form-control" })
+
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Unit </label>
+                                @Html.DropDownListFor(Model => Model.UnitID, (IEnumerable<SelectListItem>)ViewBag.selectedunit as SelectList, new { @class = "form-control" })
+
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label">Question Number<span class="text-danger">*</span></label>
+                                @Html.EditorFor(model => model.Q_no, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Question Name<span class="text-danger">*</span></label>
+                                @Html.EditorFor(model => model.Question_Name, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">A<span class="text-danger">*</span></label>
+                                @Html.EditorFor(model => model.Q_op1, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">B<span class="text-danger">*</span></label>
+                                @Html.EditorFor(model => model.Q_op2, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">C<span class="text-danger">*</span></label>
+                                @Html.EditorFor(model => model.Q_op3, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">D<span class="text-danger">*</span></label>
+                                @Html.EditorFor(model => model.Q_op4, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Answer<span class="text-danger">*</span></label>
+                                @Html.EditorFor(model => model.Q_Ans, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Create" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                }
+                <div class="panel-body">
+                    <h3>Job Post Master</h3>
+                    <center>
+                        <table class="table table-striped m-b-0">
+                            <tr>
+                                <th>
+                                    Category
+                                </th>
+                                <th>
+                                    Course Name
+                                </th>
+
+                                <th>
+                                    Unit
+                                </th>
+                                <th>
+                                    Question Number
+                                </th>
+                                <th>
+                                    Question Name
+                                </th>
+                                <th>
+                                    Question option1
+                                </th>
+                                <th>
+                                    Question option2
+                                </th>
+                                <th>
+                                    Question option3
+                                </th>
+                                <th>
+                                    Question option4
+                                </th>
+                                <th>
+                                    Question Answer
+                                </th>
+                                <th>
+                                        Edit | Delete
+                                    </th>                            </tr>
+
+                            @foreach (var item in ViewBag.mcquploaded)
+                            {
+                                <tr>
+                                    <td>
+                                        @item.CourseName
+                                    </td>
+                                    <td>
+                                        @item.SubjectName
+                                    </td>
+                                    <td>
+                                        @item.UnitName
+                                    </td>
+                                    <td>
+                                        @item.Q_Numeber
+                                    </td>
+                                    <td>
+                                        @item.Q_Name
+                                    </td>
+                                    <td>
+                                        @item.Q_op1
+                                    </td>
+                                    <td>
+                                        @item.Q_op2
+                                    </td>
+                                    <td>
+                                        @item.Q_op3
+                                    </td>
+                                    <td>
+                                        @item.Q_op4
+
+                                    </td>
+                                    <td>
+                                        @item.Q_Ans
+                                    </td>
+                                    <td>
+                                    <td>
+                                        @Html.ActionLink("Edit", "EditMCQQuestionUploaded", new { id = item.quizid }) |
+                                        @Html.ActionLink("Delete", "DeleteMCQQUploaded", new { id = item.quizid })
+                                    </td>
+
+
+
+                                </tr>
+                            }
+
+                        </table>
+                    </center>
+
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+

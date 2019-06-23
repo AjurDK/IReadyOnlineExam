@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "Contactus";
+    Layout = "~/Views/Home/Shared/_HomeLayoutPage.cshtml";
+}
+
+<h2>Contact us</h2>
+
+
+<div class="row">
+    @using (Html.BeginForm("Contact", "Home", new { firstname = "firstname", lastname = "lastname", email = "email", phone = "phone", message = "message" }, FormMethod.Post, new { @class = "row", role = "form" }))
+    {
+        <div class="messages"></div>
+        <div class="controls" style="font-family: 'Roboto Slab', serif;">
+            <div class="row no-gutter">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="form_name">Firstname *</label>
+                        <input id="firstname" type="text" name="firstname" class="form-control" placeholder="Please enter your Name *" required data-error="Firstname is required.">
+                        <div class="help-block with-errors"></div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="form_lastname">Lastname *</label>
+                        <input id="lastname" type="text" name="lastname" class="form-control" placeholder="Please enter mail Subject *" required data-error="Lastname is required.">
+                        <div class="help-block with-errors"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row no-gutter">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="form_email">Email *</label>
+                        <input id="email" type="email" name="email" class="form-control" placeholder="Please enter your email *" required data-error="Valid email is required.">
+                        <div class="help-block with-errors"></div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="form_phone">Phone</label>
+                        <input id="phone" type="tel" name="phone" class="form-control" placeholder="Please enter your phone Number">
+                        <div class="help-block with-errors"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="form_message">Message *</label>
+                    <textarea id="message" name="message" class="form-control" placeholder="Please enter message *" rows="4" required data-error="Please,leave us a message."></textarea>
+                    <div class="help-block with-errors"></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <input type="submit" class="btn btn-success btn-send" value="Send message" onclick="reqRange();">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row no-gutter">
+                <div class="col-md-12">
+                    <p class="text-muted"><strong>*</strong> These fields are required.</p>
+                </div>
+            </div>
+        </div>
+    }
+</div>

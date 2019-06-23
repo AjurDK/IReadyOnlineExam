@@ -1,0 +1,74 @@
+﻿@model IEnumerable<IReadyonlineexam.Models.Question>
+
+@{
+    ViewBag.Title = "QuestionList";
+    Layout = "~/Views/Contributor/Shared/_ContributorLayoutPage.cshtml";
+}
+<style type="text/css">
+    .checkClass {
+        outline-color: green;
+        outline-style: solid;
+        outline-width: 2px;
+    }
+</style>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <h2 style="font-weight:700;">@ViewBag.QuizName</h2>
+        <p>
+            @Html.ActionLink("New Question", "QuestionInsert", new { _QuizId = ViewBag.QuizID })
+        </p>
+
+        <table id="datatables-default" class="table table-striped table-condensed table-bordered bg-white">
+            @{int sl = 0;}
+            @foreach (var item in Model)
+            {
+                sl++;
+                <tr>
+                    <td>
+                        <b>@sl</b>
+                    </td>
+                    <td>
+                        <b>@item.QuestionText</b>
+
+                        <table>
+                            @{int i = 0;}
+                            @foreach (var item2 in ViewBag.Answers)
+                            {
+                                if (item.QuestionID == item2.QuestionID)
+                                {
+                                    i++;
+                                    <tr>
+                                        <td>
+                                            @i .
+                                            @item2.AnswerText
+                                            &nbsp; &nbsp;
+                                            @if (item2.IsAnwer == true)
+                                            {
+                                                <input type="checkbox" checked disabled class="checkClass" />
+                                            }
+                                            else
+                                            {
+                                                <input type="checkbox" disabled />
+                                            }
+
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </table>
+
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedDate)
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("Delete", "QuestionDelete", new { _QuizId = item.QuizID, _QuestionID = item.QuestionID })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>

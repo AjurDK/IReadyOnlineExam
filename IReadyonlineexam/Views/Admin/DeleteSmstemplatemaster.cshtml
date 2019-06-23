@@ -1,0 +1,62 @@
+﻿@model IReadyonlineexam.Models.Smstemplate_master
+
+@{
+    ViewBag.Title = "DeleteSmstemplatemaster";
+    Layout = "~/Views/Admin/Shared/_AdminLayoutPage.cshtml";
+}
+
+<h4>Delete Smstemplate master</h4>
+
+<h4>Are you sure you want to delete this?</h4>
+
+<div id="rootwizard" class="wizard wizard-full-width">
+
+    <form action="#" method="POST" name="wizard_form">
+
+        <div class="wizard-content tab-content">
+
+            <div class="tab-pane active" id="tab1">
+                @using (Html.BeginForm("EditSmstemplatemaster", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.SmstemplateID)
+
+                    <div class="row">
+
+                        <div class="col-md-6 offset-md-3">
+                            <p class="desc m-b-20"></p>
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                          <div class="form-group">
+                                <label class="control-label">Sms Title<span class="text-danger">*</span></label>
+                                @Html.EditorFor(model => model.smstemp_title, new { htmlAttributes = new { @class = "form-control", required="required" } })
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Sms Description<span class="text-danger">*</span></label>
+                                @Html.EditorFor(model => model.smstemp_description, new { htmlAttributes = new { @class = "form-control", @rows = 5, required="required" } })
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Delete" class="btn btn-primary" />
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                }
+                <div>
+                    @Html.ActionLink("Back to List", "Smstemplatemaster")
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+</div>
+
+

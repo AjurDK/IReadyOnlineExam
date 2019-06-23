@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "BronzeCirtificate";
+    Layout = "";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <style>
+        body {
+            background-image: url('../../Content/img/bronze.jpg');
+            /*background-image: url("Gold.jpg");*/
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            border-collapse: collapse;
+            background-size: cover;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div style="margin-top:31%;">
+
+        <center><lable><h1><b>@ViewBag.studentName</b></h1></lable></center>
+
+    </div>
+
+    <div style="margin-top:8%;">
+        <center><lable><h1><b>@ViewBag.Course</b></h1></lable></center>
+    </div>
+    <div style="margin-top:2%;margin-left: -3%;">
+        <center><lable><h1><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@ViewBag.Fromyear &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@ViewBag.Toyear</b></h1></lable></center>
+        <!--<center><lable><h1><b>2019</b></h1></lable></center>-->
+    </div>
+
+    <!--<div style="margin-top:2%;margin-left: -20%;">
+    <center><lable><h1><b>2019</b></h1></lable></center>
+    </div>
+    -->
+</body>
+</html>
+

@@ -1,0 +1,248 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>iReady Today</title>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+
+
+
+    <link href="~/Template/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+    <link href="~/Template/plugins/bootstrap/bootstrap4/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Template/plugins/icon/themify-icons/themify-icons.css" rel="stylesheet" />
+    <link href="~/Template/css/animate.min.css" rel="stylesheet" />
+    <link href="~/Template/css/style.min.css" rel="stylesheet" />
+    <link href="~/Template/css/theme/default.css" rel="stylesheet" id="theme" />
+    <script src="~/Template/plugins/loader/pace/pace.min.js"></script>
+
+</head>
+<body>
+
+    <div id="page-container" class="page-header-fixed page-sidebar-fixed fade">
+        <div id="header" class="header navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a href="#" class="navbar-brand">
+                        <img src="~/Content/img/icon.jpg" />
+                        <b>IreadyToday </b>
+                    </a>
+                    <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="navbar-xs-justified">
+                    <ul class="nav navbar-nav navbar-right">
+
+
+                        @*<li class="dropdown">
+                                <a href="javascript:;" data-toggle="dropdown">
+                                    <span class="navbar-user-img online pull-left">
+                                        <img src="~/Content/img/icon.jpg" alt="" />
+                                    </span>
+                                    <span class="hidden-xs ">  @User.Identity.Name <b class="caret"></b></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="@Url.Action("ChangePassword", "Manage")">Change password</a>
+                                    </li>
+
+                                    <li>
+
+                                        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            <a class="nav-link" style="" href="javascript:document.getElementById('logoutForm').submit()">
+                                                <i class="fa fa-lock"></i>
+                                                Log off
+                                            </a>
+                                        }
+
+                                    </li>
+                                </ul>
+                            </li>*@
+                        <li class="dropdown">
+                            <a href="javascript:;" data-toggle="dropdown">
+                                <span class="navbar-user-img online pull-left">
+                                    <img src="~/Content/img/icon.jpg" alt="" />
+                                </span>
+                                <span class="hidden-xs ">  @User.Identity.Name <b class="caret"></b></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="@Url.Action("ChangePassword", "Manage")">Change password</a>
+                                </li>
+
+                                <li style="padding-left:10px;">
+
+                                    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <a class="nav-link" style="" href="javascript:document.getElementById('logoutForm').submit()">
+                                            <i class="fa fa-lock"></i>
+                                            Log off
+                                        </a>
+                                    }
+
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="header-search-bar">
+                <form action="#" method="POST" name="search_bar_form"></form>
+            </div>
+
+        </div>
+
+        <div id="sidebar" class="sidebar sidebar-inverse">
+
+            <div data-scrollbar="true" data-height="100%">
+
+                <ul class="nav">
+
+
+                    <li><a href="@Url.Action("Index", "Admin")"><i class="ti-home"></i>Home</a></li>
+                    <li>
+                        <a href="@Url.Action("StudentReviewforApprove", "Admin")"><i class="ti-star"></i>Testimonial Approvals </a>
+                    </li>
+
+
+                    <li class="has-sub">
+                        <a href="javascript:;">
+                            <b class="caret caret-right pull-right"></b>
+                            <i class="ti-settings"></i>
+                            <span>Master Forms</span>
+                        </a>
+                        <ul class="sub-menu">
+
+                            <li>
+                                <a href="@Url.Action("DynCrc", "Admin" )">Course Master</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("SemesterAdd", "Admin")">Semester Master</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("SemesterMaster", "Admin")">Course Wise Semester </a>
+                            </li>
+
+                            <li>
+                                <a href="@Url.Action("Smstemplatemaster", "Admin")">SMS Template Master</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("MailTemplateMaster", "Admin")">Mail Template Master</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("SubjectAddmaster", "Admin")">Subject Add Master</a>
+                            </li>
+                        </ul>
+                    </li>
+
+
+
+                    @*<li class="has-sub">
+                            <a href="javascript:;">
+                                <b class="caret caret-right pull-right"></b>
+                                <i class="ti-notepad"></i>
+                                <span>Registered Members</span>
+                            </a>k
+                            <ul class="sub-menu">
+                                <li>
+                                    <a href="@Url.Action("RegisteredStudents", "Admin")"><i class="ti-list"></i>Student List</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("RegisteredCommitteMember", "Admin")"><i class="ti-list"></i>Committe Members List</a>
+                                </li>
+
+                            </ul>
+                        </li>*@
+                    <li class="has-sub">
+                        <a href="javascript:;">
+                            <b class="caret caret-right pull-right"></b>
+                            <i class="ti-email"></i>
+                            <span>Communication</span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="@Url.Action("SMStoStudent", "Admin")"><i class="ti-bar-chart"></i>SMS to Students</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("MailtoStudent", "Admin")"><i class="ti-email"></i>Mail to Students</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Jobmaster", "Admin")"><i class="ti-upload"></i>Job Upload</a>
+                    </li>
+                    @*<li>
+                            <a href="@Url.Action("StuSyllabus", "Admin")"><i class="ti-pencil"></i>Student Syllabus Upload</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Studentadditionquestion", "Admin")"><i class="ti-ticket"></i>Additional question request</a>
+                        </li>*@
+                    <li>
+                        <a href="@Url.Action("RegisterByAdmin", "Account")"><i class="ti-key"></i>Enroll Contributors  </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("StudentReviewforApprove", "Admin")"><i class="ti-star"></i>Testimonial Approvals </a>
+                    </li>
+
+
+
+
+
+
+
+                    @*<li class="nav-copyright">
+                            <p>
+                                Copyright ©
+                                <script language="JavaScript" type="text/javascript">document.write((new Date()).getFullYear());</script> - Designed and Hosted by <a href="http://shlrtechnosoft.com/" target="_blank">SHLR Technosoft PVT LTD</a>
+                            </p>
+                        </li>*@
+                </ul>
+
+            </div>
+            @*<a href="#" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="ti-arrow-left"></i></a>*@
+
+        </div>
+
+        <div id="content" class="content">
+
+            @RenderBody()
+        </div>
+
+        <a href="#" data-click="scroll-top" class="btn-scroll-top fade"><i class="ti-arrow-up"></i></a>
+
+    </div>
+
+
+    <script src="~/Template/plugins/jquery/jquery-3.2.1.min.js"></script>
+    <script src="~/Template/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script src="~/Template/plugins/cookie/js/js.cookie.js"></script>
+    <script src="~/Template/plugins/tooltip/popper/popper.min.js"></script>
+    <script src="~/Template/plugins/bootstrap/bootstrap4/js/bootstrap.min.js"></script>
+    <script src="~/Template/plugins/scrollbar/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="~/Template/plugins/chart/chart-js/Chart.min.js"></script>
+    <script src="~/Template/js/page/dashboard.demo.min.js"></script>
+    <script src="~/Template/js/apps.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            App.init();
+            Dashboard.init();
+        });
+    </script>
+
+
+   
+</body>
+
+
+</html>

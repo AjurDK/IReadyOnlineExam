@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0ffdb90d984441d992b28d9cd54ecd0c" Name="Diagram1">
+        <EntityTypeShape EntityType="ireadytodayModel.Answer" Width="1.5" PointX="12.75" PointY="24.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ireadytodayModel.AspNetRole" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ireadytodayModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ireadytodayModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ireadytodayModel.AspNetUser" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ireadytodayModel.ContributorProfile" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ireadytodayModel.Course_master" Width="1.5" PointX="0.75" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ireadytodayModel.Customer" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ireadytodayModel.Job_Master" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="ireadytodayModel.MailTemplateMaster" Width="1.5" PointX="9.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ireadytodayModel.PriceMaster" Width="1.5" PointX="5.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ireadytodayModel.Question_details" Width="1.5" PointX="5.25" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ireadytodayModel.Question" Width="1.5" PointX="10.5" PointY="24.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ireadytodayModel.Quiz" Width="1.5" PointX="8.25" PointY="24" IsExpanded="true" />
+        <EntityTypeShape EntityType="ireadytodayModel.Semester" Width="1.5" PointX="3" PointY="22.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ireadytodayModel.Semester_master" Width="1.5" PointX="0.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="ireadytodayModel.Smstemplate_master" Width="1.5" PointX="7.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ireadytodayModel.Stu_Additionalquestionrequest" Width="1.5" PointX="3" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ireadytodayModel.Stu_AddQuestionReq" Width="1.5" PointX="9.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ireadytodayModel.StudentReview" Width="1.5" PointX="11.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ireadytodayModel.studentsyllabu" Width="1.5" PointX="5.25" PointY="34.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ireadytodayModel.StudyMaterial" Width="1.5" PointX="11.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ireadytodayModel.Subject_Master" Width="1.5" PointX="3" PointY="34" IsExpanded="true" />
+        <EntityTypeShape EntityType="ireadytodayModel.sysdiagram" Width="1.5" PointX="5.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ireadytodayModel.tblState" Width="1.5" PointX="5.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="ireadytodayModel.UnitMaster" Width="1.5" PointX="3" PointY="25.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ireadytodayModel.YearMaster" Width="1.5" PointX="0.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ireadytodayModel.tblCity" Width="1.5" PointX="8" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ireadytodayModel.TechCours" Width="1.5" PointX="13.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="ireadytodayModel.FK_Answers_Questions" ManuallyRouted="false" />
+        <AssociationConnector Association="ireadytodayModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="ireadytodayModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="ireadytodayModel.FK__Job_Maste__Cours__69FBBC1F" ManuallyRouted="false" />
+        <AssociationConnector Association="ireadytodayModel.FK__Question___Categ__2645B050" ManuallyRouted="false" />
+        <AssociationConnector Association="ireadytodayModel.FK__Quiz__CourseID__793DFFAF" ManuallyRouted="false" />
+        <AssociationConnector Association="ireadytodayModel.FK__Semester__Course__634EBE90" ManuallyRouted="false" />
+        <AssociationConnector Association="ireadytodayModel.FK__Stu_Addit__Cours__6EF57B66" ManuallyRouted="false" />
+        <AssociationConnector Association="ireadytodayModel.FK__Subject_M__Cours__787EE5A0" ManuallyRouted="false" />
+        <AssociationConnector Association="ireadytodayModel.FK__Question___Subje__2739D489" ManuallyRouted="false" />
+        <AssociationConnector Association="ireadytodayModel.FK__Question___UnitI__282DF8C2" ManuallyRouted="false" />
+        <AssociationConnector Association="ireadytodayModel.FK_Questions_Quiz" ManuallyRouted="false" />
+        <AssociationConnector Association="ireadytodayModel.FK__Quiz__SemesterID__7A3223E8" ManuallyRouted="false" />
+        <AssociationConnector Association="ireadytodayModel.FK__Quiz__SubjectID__7C1A6C5A" ManuallyRouted="false" />
+        <AssociationConnector Association="ireadytodayModel.FK__Quiz__UnitID__7B264821" ManuallyRouted="false" />
+        <AssociationConnector Association="ireadytodayModel.FK__Stu_Addit__Semes__6FE99F9F" ManuallyRouted="false" />
+        <AssociationConnector Association="ireadytodayModel.FK__Stu_Additi__Year__6E01572D" ManuallyRouted="false" />
+        <AssociationConnector Association="ireadytodayModel.FK__studentsy__Subje__00200768" ManuallyRouted="false" />
+        <AssociationConnector Association="ireadytodayModel.FK__studentsyll__Uid__01142BA1" ManuallyRouted="false" />
+        <AssociationConnector Association="ireadytodayModel.FK__tblCity__stateid__671F4F74" ManuallyRouted="false" />
+        <AssociationConnector Association="ireadytodayModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ireadytodayModel.Movie" Width="1.5" PointX="12.375" PointY="14" />
+        <EntityTypeShape EntityType="ireadytodayModel.StarRating" Width="1.5" PointX="14.625" PointY="14.25" />
+        <AssociationConnector Association="ireadytodayModel.FK__StarRatin__Movie__1209AD79" />
+        <EntityTypeShape EntityType="ireadytodayModel.Stu_Result" Width="1.5" PointX="14.375" PointY="3.75" />
+        <EntityTypeShape EntityType="ireadytodayModel.StudentCourseRating" Width="1.5" PointX="14.375" PointY="8.75" />
+        <EntityTypeShape EntityType="ireadytodayModel.StudentProfile" Width="1.5" PointX="3" PointY="29.5" />
+        <AssociationConnector Association="ireadytodayModel.FK__StudentPr__Cours__6CD828CA" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

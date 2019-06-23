@@ -1,0 +1,658 @@
+﻿@model IReadyonlineexam.Models.MergeLoginRegister
+@using Microsoft.AspNet.Identity.EntityFramework;
+@using Vereyon.Web;
+@{
+    /**/
+
+    ViewBag.Title = "Index";
+Layout = "~/Views/Home/Shared/_HomeLayoutPage.cshtml";
+}
+
+
+
+<section class="intro-block">
+    <div class="slider fade-slider">
+        <div>
+
+            <article class="intro-block-slide overlay bg-cover" style="background-image: url(../../HomeTemplate/images/img01.jpg);">
+                <div class="align-wrap container">
+                    <div class="align">
+                        <div class="anim">
+                            <h1 class="intro-block-heading">
+                                @Html.RenderFlashMessages()
+                                Determine Your Future By Your Performance
+                                &amp; Online Test Portal
+                            </h1>
+                        </div>
+                        <div class="anim delay1">
+
+                        </div>
+                        <div class="anim delay2">
+                            <div class="btns-wrap">
+                                <a href="/Home/Courses" class="btn btn-warning btn-theme text-uppercase">Our Courses</a>
+                                <a href="/Home/Contact" class="btn btn-white text-uppercase">Contact us</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+        <div>
+
+            <article class="intro-block-slide overlay bg-cover" style="background-image: url(../../HomeTemplate/images/img01.jpg);">
+                <div class="align-wrap container">
+                    <div class="align">
+                        <div class="anim">
+                            <h1 class="intro-block-heading">Education Organization</h1>
+                        </div>
+                        <div class="anim delay1">
+                            <p>We offer the most complete course pakage in the country, for the research, design and development of Education.</p>
+                        </div>
+                        <div class="anim delay2">
+                            <div class="btns-wrap">
+                                <a href="courses-list.html" class="btn btn-warning btn-theme text-uppercase">Our Courses</a>
+                                <a href="contact.html" class="btn btn-white text-uppercase">Contact us</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+        <div>
+
+            <article class="intro-block-slide overlay bg-cover" style="background-image: url(../../HomeTemplate/images/img01.jpg);">
+                <div class="align-wrap container">
+                    <div class="align">
+                        <div class="anim">
+                            <h1 class="intro-block-heading">Training Organization</h1>
+                        </div>
+                        <div class="anim delay1">
+                            <p>We offer the most complete course pakage in the country, for the research, design and development of Education.</p>
+                        </div>
+                        <div class="anim delay2">
+                            <div class="btns-wrap">
+                                <a href="courses-list.html" class="btn btn-warning btn-theme text-uppercase">Our Courses</a>
+                                <a href="contact.html" class="btn btn-white text-uppercase">Contact us</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+    <div class="container">
+
+        <aside class="features-aside">
+            <a href="#" class="col">
+                <span class="icn-wrap text-center no-shrink">
+                    <img src="~/HomeTemplate/images/icon01.svg" width="44" height="43" alt="trophy">
+                </span>
+                <div class="description">
+                    <h2 class="features-aside-heading">World’d Best Instructors</h2>
+
+                </div>
+            </a>
+            <a href="#" class="col">
+                <span class="icn-wrap text-center no-shrink">
+                    <img src="~/HomeTemplate/images/icon02.svg" width="43" height="39" alt="computer">
+                </span>
+                <div class="description">
+                    <h2 class="features-aside-heading">Learn Courses Onlines</h2>
+
+                </div>
+            </a>
+            <a href="#" class="col">
+                <span class="icn-wrap text-center no-shrink">
+                    <img src="~/HomeTemplate/images/icon03.svg" width="43" height="39" alt="computer">
+                </span>
+                <div class="description">
+                    <h2 class="features-aside-heading">Online Library &amp; Store</h2>
+
+                </div>
+            </a>
+        </aside>
+    </div>
+</section>
+
+@*<section class="popular-posts-block container">
+        <header class="popular-posts-head">
+            <h2 class="popular-head-heading">Most Popular Courses</h2>
+        </header>
+        <div class="row">
+
+            <div class="slider popular-posts-slider">
+
+
+
+            </div>
+        </div>
+    </section>*@
+<section class="popular-posts-block container">
+    <header class="popular-posts-head">
+        <h2 class="popular-head-heading">Most Popular Courses</h2>
+    </header>
+    <div class="row">
+        <!-- popular posts slider -->
+        <div class="slider popular-posts-slider">
+
+
+            @{ int count = 0;}
+            @{ int rateflag = 0;}
+            @foreach (var item in ViewBag.course)
+
+            {
+                rateflag = 0;
+                count++;
+                <div>
+                    <div class="col-xs-12">
+                        <!-- popular post -->
+                        <article class="popular-post">
+                            <div class="aligncenter">
+                                @*<img src="http://placehold.it/262x212" alt="image description">*@
+
+                                <img src="~/Images/CourseImages/@item.Imageurl" style="height:147px;" />
+                            </div>
+                            <div>
+                                Rs. <strong class="text-black font-lato ">@item.Price </strong>
+                            </div>
+                            <h3 class="post-heading"><a href="course-single.html">@item.Name</a></h3>
+                            <div class="post-author">
+                                @*<div class="alignleft no-shrink rounded-circle">
+                                        <a href="instructor-single.html"><img src="http://placehold.it/35x35" class="rounded-circle" alt="image description"></a>
+                                    </div>*@
+                                @*<h4 class="author-heading"><a href="instructor-single.html">Jhon Milton</a></h4>*@
+                            </div>
+                            <footer class="post-foot gutter-reset">
+                                @*<ul class="list-unstyled post-statuses-list">
+                                        <li>
+                                            <a href="#">
+                                                <span class="fas icn fa-users no-shrink"><span class="sr-only">users</span></span>
+                                                <strong class="text fw-normal">200</strong>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <span class="fas icn no-shrink fa-comments"><span class="sr-only">comments</span></span>
+                                                <strong class="text fw-normal">3</strong>
+                                            </a>
+                                        </li>
+                                    </ul>*@
+                                @foreach (var rate in ViewBag.CourseRatings)
+
+                                {
+                                    if (item.Course_ID == rate.CourseID)
+                                    {
+                                        rateflag = 1;
+                                        <ul class="star-rating list-unstyled" id="@("myid" + count)">
+
+                                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+                                            <script>
+
+                                        var rating =@rate.Rating;
+                                        for (var t = 0; t < rating; t++) {
+
+                                            $('#@("myid"+count)').prepend("<br><li><span class='fas fa-star'><span class='sr - only'></span></span></li>");
+                                        }
+                                            </script>
+
+                                        </ul>
+                                    }
+
+
+                                }
+
+                                @if (rateflag == 0)
+                                {
+                                    <ul class="star-rating list-unstyled" id="@("myid" + count)">
+
+                                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+                                        <script>
+
+                                        var rating =4;
+                                        for (var t = 0; t < rating; t++) {
+
+                                            $('#@("myid"+count)').prepend("<br><li><span class='fas fa-star'><span class='sr - only'></span></span></li>");
+                                        }
+                                        </script>
+
+                                    </ul>
+
+                                }
+
+
+
+
+
+                                @Html.ActionLink("Course Details", "CourseDetails", new { id = @item.Course_ID }, new { @class = "btn btn-warning btn-theme font-lato text-uppercase cse", })
+                            </footer>
+                        </article>
+                    </div>
+                </div>
+            }
+
+
+
+        </div>
+    </div>
+</section>
+
+<aside class="bg-cover counter-aside" style="background-image: url(../../HomeTemplate/images/img10.jpg);">
+    <div class="container align-wrap">
+        <div class="align">
+            <div class="row">
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                    <h2 class="counter-aside-heading">
+                        <strong class="countdown element-block">@ViewBag.Coursecount</strong>
+                        <strong class="text element-block">COURSES</strong>
+                    </h2>
+                </div>
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                    <h2 class="counter-aside-heading">
+                        <strong class="countdown element-block">@ViewBag.Studentcount</strong>
+                        <strong class="text element-block">NUMBER OF STUDENTS</strong>
+                    </h2>
+                </div>
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                    <h2 class="counter-aside-heading">
+                        <strong class="countdown element-block">@ViewBag.Contributorcount</strong>
+                        <strong class="text element-block">QUALIFIED CONTRIBUTOR</strong>
+                    </h2>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</aside>
+
+
+
+<section class="testimonials-block text-center bg-gray" style="background-image: url(images/bg-pattern01.png);">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+                <h2>What People Say</h2>
+
+                <div class="slick-slider slider testimonail-slider">
+                    @{
+                        if (ViewBag.test != null)
+                        {
+                            foreach (var items in ViewBag.test)
+                            {
+
+                                <div>
+
+                                    <blockquote class="testimonial-quote font-roboto">
+                                        <p>@items.StudentName </p>
+                                        <cite class="element-block font-lato">
+                                            <span class="avatar square element-block">
+                                                <img class="note-icon-square bg-dark" src="~/HomeTemplate/images/icon03.svg" alt="Nethor Doct -Developer">
+                                            </span>
+                                            <strong class="element-block h5 h"><p style="text-align:justify">“ @items.RDescription ”</p></strong>
+                                            <br />
+                                            <strong class="element-block h5 h">Course: @items.CourseName</strong>
+                                        </cite>
+                                    </blockquote>
+                                </div>
+                            }
+                        }
+                    }
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+@*<section class="news-block container">
+        <header class="seperator-head text-center">
+            <h2>Recent News</h2>
+            <p>Share your work to collaboratve with our vibrant design element.</p>
+        </header>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-4">
+
+                <article class="news-post">
+                    <div class="aligncenter">
+                        <a href="blog-single.html"><img src="~/HomeTemplate/images/img19.jpg" alt="image desciption"></a>
+                    </div>
+                    <h3><a href="blog-single.html">Best Educational Psd Template Launching Today</a></h3>
+                    <p>Areas tackled in the most fundamental part of medical research include cellu lar and molecular biology&hellip;</p>
+                    <time datetime="2011-01-12" class="time text-uppercase text-gray">Mar 05,2017  by <a href="blog-single.html">andrew caset</a></time>
+                </article>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4">
+
+                <article class="news-post">
+                    <div class="aligncenter">
+                        <a href="blog-single.html"><img src="~/HomeTemplate/images/img18.jpg" alt="image desciption"></a>
+                    </div>
+                    <h3><a href="blog-single.html">Your one stop Solution for Android Development Needs</a></h3>
+                    <p>Areas tackled in the most fundamental part of medical research include cellu lar and molecular biology&hellip;</p>
+                    <time datetime="2011-01-12" class="time text-uppercase text-gray">Mar 05,2017  by <a href="blog-single.html">andrew caset</a></time>
+                </article>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4">
+
+                <article class="news-post">
+                    <div class="aligncenter">
+                        <a href="blog-single.html"><img src="~/HomeTemplate/images/img17.jpg" alt="image desciption"></a>
+                    </div>
+                    <h3><a href="blog-single.html">Online Learning students council meeting 2017</a></h3>
+                    <p>Areas tackled in the most fundamental part of medical research include cellu lar and molecular biology&hellip;</p>
+                    <time datetime="2011-01-12" class="time text-uppercase text-gray">Mar 05,2017  by <a href="blog-single.html">andrew caset</a></time>
+                </article>
+            </div>
+        </div>
+    </section>*@
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+<script>
+
+    //$(document).ready(function () {
+
+    var products = [];
+
+    var store = localStorage;
+
+    $('.cse').click(function () {
+
+        //window.localStorage.clear();
+
+        var productid = $(this).attr('data-id');
+
+        var fruits =
+        {
+            queue:
+                [
+
+
+                ]
+        };
+
+
+
+
+        var restoredFruits = JSON.parse(localStorage.getItem('fruits'));
+
+        if (restoredFruits != null) {
+
+            restoredFruits.queue.push({
+                name: $(this).attr('data-id'),
+            });
+        }
+        else {
+            window.localStorage.setItem('fruits', JSON.stringify(fruits));
+            var restoredFruits = JSON.parse(localStorage.getItem('fruits'));
+            restoredFruits.queue.push({
+                name: $(this).attr('data-id'),
+            });
+        }
+
+
+        window.localStorage.setItem('fruits', JSON.stringify(restoredFruits));
+        var cart = [];
+        var restoredFruits = JSON.parse(window.localStorage.getItem('fruits'));
+        var outputs = "";
+        var duplicat = "";
+
+        //for (var i = 0; i < restoredFruits.queue.length; i++) {
+        //   // outputs += '<div id="' + restoredFruits.queue[i].id + '">' + restoredFruits.queue[i].id + ':' + restoredFruits.queue[i].name + '</div>';
+        //    outputs += "A" + restoredFruits.queue[i].name;
+        //}
+
+        for (var i = 0; i < restoredFruits.queue.length; i++) {
+
+            var dup = new Boolean(false);
+            for (var j = 0; j < i; j++) {
+
+                if (restoredFruits.queue[i].name == restoredFruits.queue[j].name) {
+                    dup = true;
+                    duplicat += "A" + restoredFruits.queue[j].name;
+                }
+            }
+            if (dup == false) {
+                outputs += "A" + restoredFruits.queue[i].name;
+            }
+
+        }
+
+        //alert(outputs);
+        //alert(duplicat);
+
+        window.location.href = '/Home/Carttable?values=' + outputs;
+
+
+        function popIt() {
+
+
+
+            var restoredFruits = JSON.parse(localStorage.getItem('fruits'));
+            for (var p = 0; p < restoredFruits.queue.length; p++) {
+
+                if (restoredFruits.queue[p].name == "135") {
+
+                }
+                else {
+
+                }
+
+            }
+            restoredFruits.queue.shift();
+            localStorage.setItem('fruits', JSON.stringify(restoredFruits));
+            outputIt();
+        }
+
+
+
+        //var cart = {};
+        //cart.items = [];
+        //var cart = [];
+        // cart.push(JSON.parse(window.localStorage.getItem('fruits')));
+
+
+        //$.ajax({
+        //            type: "POST",
+        //            url: '/Home/cartitems',
+        //            data: '{ values: "' + outputs + '" }',
+        //            contentType: "application/json; charset=utf-8",
+        //            dataType: "Json",
+        //            success: function (data) {
+        //                alert(data)
+        //                var ss = String(data)
+        //                //toString(data);
+
+        //                //var vi = String(data);
+        //               // data: JSON.stringify({ 'values': data }),
+        //                //window.open("/Home/Carttable/", '?val=' + cid);
+        //                window.location.href = '/Home/Carttable?values=' + ss;
+
+        //            },
+        //            error: function (data) {
+        //                alert(data);
+        //            }
+        //        });
+
+
+
+
+
+
+
+
+
+
+        //window.localStorage.setItem("Cou", productid);
+
+        //var pid = [];
+        //window.localStorage['productId'] = productid;
+
+        //pid = window.localStorage.getItem('productId');
+
+        //for (var d = 0; d < pid.length; ++d) {
+
+        //    alert("product Id from local storage :" + pid);
+        //}
+
+
+        ////products.push(productid);
+        ////localStorage.setItem("Cartproducts", products);
+
+
+        ////alert("product Id from Session :" + sessionStorage.getItem("Cartproduct"));
+
+        //if (products.indexOf(productid) == -1) {
+
+        //    //sessionStorage.setItem("Cartproduct", productid);
+        //    //products.push(sessionStorage.getItem("Cartproduct"));
+        //    localStorage.setItem("Cartproduct", productid);
+        //    products.push(localStorage.getItem("Cartproduct"));
+
+        //    //alert('Item add successfully..!');
+
+        //    //store.setItem("Cartproducts", productid);
+        //    //alert("Session items" + store.getItem("Cartproducts"));
+
+        //}
+        //else {
+
+        //    //alert('Duplicate Item Found......!');
+
+        //}
+
+        //(function ($) {
+        //    $.Shop = function (element) {
+        //        this.$element = $(element);
+        //        this.init();
+        //    };
+
+        //    $.Shop.prototype = {
+        //        init: function () {
+
+        //            this.Cartprifix = "Cartproducts";
+        //            this.Cartname = this.Cartprifix + "Cart";
+
+
+        //        }
+        //    }
+        //sessionStorage.clear();
+        //alert("product Id from local storage :" + productid);
+
+
+
+        //for (var i = 0; i < products.length; ++i) {
+
+        //    alert("product Id from local storage :" + products[i]);
+
+        //}
+
+        //window.onload = function () {
+
+        //    // Check for LocalStorage support.
+        //    if (localStorage) {
+
+        //        // Add an event listener for form submissions
+        //        document.getElementById('contactForm').addEventListener('submit', function () {
+        //            // Get the value of the name field.
+        //            var name = document.getElementById('name').value;
+
+        //            // Save the name in localStorage.
+        //            localStorage.setItem('name', productid);
+        //        });
+
+        //    }
+
+        //}
+
+
+        //alert('loacal data' + localStorage.getItem("Cartproduct"));
+
+    });
+
+
+
+    $('.carttable').click(function () {
+
+
+
+          var productid = $(this).attr('data-id');
+
+        var fruits =
+        {
+            queue:
+                [
+
+
+                ]
+        };
+
+
+
+
+       // var restoredFruits = JSON.parse(localStorage.getItem('fruits'));
+
+          
+     
+        var restoredFruits = JSON.parse(window.localStorage.getItem('fruits'));
+        var outputs = "";
+        var duplicat = "";
+
+        if (restoredFruits != null) {
+
+            for (var i = 0; i < restoredFruits.queue.length; i++) {
+
+                var dup = new Boolean(false);
+                for (var j = 0; j < i; j++) {
+
+                    if (restoredFruits.queue[i].name == restoredFruits.queue[j].name) {
+                        dup = true;
+                        duplicat += "A" + restoredFruits.queue[j].name;
+                    }
+                }
+                if (dup == false) {
+                    outputs += "A" + restoredFruits.queue[i].name;
+                }
+
+            }
+
+              window.location.href = '/Home/Carttable?values=' + outputs;
+
+        }
+        else {
+
+            alert('Cart is Empty...!');
+
+        }
+       
+
+        //alert(outputs);
+        //alert(duplicat);
+
+      
+
+
+
+
+
+
+
+
+
+    });
+
+ 
+
+
+
+
+
+
+
+
+
+
+</script>
+

@@ -1,0 +1,59 @@
+﻿@model IEnumerable<IReadyonlineexam.Models.Stu_AddQuestionReq>
+
+@{
+    ViewBag.Title = "DisplayQuestionS";
+    Layout = "~/Views/Student/Shared/_StudentLayoutPage.cshtml";
+}
+
+<style>
+     .textarea {
+        margin-left: 3%;
+        width: 90%;
+    }
+
+    .textarea1 {
+        margin-left: 3%;
+        width: 90%;
+    }
+    .gap {
+        margin-left: 3%;
+        margin-top: 3%;
+    }
+    body{
+        background-color:white;
+    }
+</style>
+
+<h2>Your Questions</h2>
+
+
+
+
+<div class="row">
+
+    @foreach (var item in Model)
+    {
+
+    <div class="col-md-12 gap">
+        @Html.Label(item.QuestionID.ToString())
+        @Html.LabelFor(modelItem => item.Qestion_Heading)
+
+        @Html.TextAreaFor(modelItem => item.Qestion_Heading, new { @class = "summernote form-control textarea", @name = "Q_heading", @readonly = "readonly" })
+        @Html.LabelFor(modelItem => item.Question_Description)
+
+        @Html.TextAreaFor(modelItem => item.Question_Description, new { @class = "summernote form-control textarea1", @name = "Q_heading", @readonly = "readonly" })
+        @Html.LabelFor(modelItem => item.Answer)
+
+        @if (item.IsAnswered == true)
+        {
+            @Html.TextAreaFor(modelItem => item.Answer, new { @class = "summernote form-control textarea1", @name = "Q_heading", @readonly = "readonly" })
+        }
+        else
+        {
+            @Html.TextArea("Answer", "Your Question is not Answered yet!!!!", new { @class = "summernote form-control textarea", @name = "Q_heading", @readonly = "readonly" })
+        }
+        <hr />
+    </div>
+    }
+</div>
+

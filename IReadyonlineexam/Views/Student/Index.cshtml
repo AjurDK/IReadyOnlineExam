@@ -1,0 +1,536 @@
+﻿
+@{
+    /**/
+
+    ViewBag.Title = "StudentDashBoard";
+    Layout = "~/Views/Student/Shared/_StudentLayoutPage.cshtml";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    #twitter {
+        height: 350px;
+        overflow: scroll;
+    }
+
+    #divheight {
+        height: 350px;
+    }
+
+    .centered {
+        color: black;
+        font-size: 52px;
+        position: absolute;
+        top: 40%;
+        left: 65%;
+        transform: translate(-50%, -50%);
+    }
+
+    .outer {
+        width: 600px;
+        height: 200px;
+        margin: 0 auto;
+    }
+
+        .outer .chart-container {
+            width: 300px;
+            float: left;
+            height: 200px;
+        }
+
+    .highcharts-yaxis-grid .highcharts-grid-line {
+        display: none;
+    }
+
+    @@media (max-width: 600px) {
+        .outer {
+            width: 100%;
+            height: 400px;
+        }
+
+            .outer .chart-container {
+                width: 300px;
+                float: none;
+                margin: 0 auto;
+            }
+    }
+</style>
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+<script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+
+<script src="~/Scripts/chart.js/dist/Chart.min.js"></script>
+<script src="~/Scripts/chart.js/dist/utils.js"></script>
+
+
+@*<div class="view-header">
+        <div class="pull-right text-right" style="line-height: 14px">
+
+        </div>
+
+        <div class="header-title">
+            <h4><b>Dashboard</b></h4>
+
+        </div>
+    </div>*@
+<h4>
+    <b>Dashboard</b>
+</h4>
+
+<!-- BEGIN row -->
+<div class="row ">
+
+    <!-- BEGIN col-4 -->
+    <div class="col-lg-8 col-sm-6">
+        <!-- BEGIN panel -->
+        <div class="panel panel-default with-rounded-corner with-shadow box-panel">
+            @*<div class="panel-footer">
+
+        </div>*@
+            <!-- BEGIN panel-body -->
+            <div class="panel-body">
+                <div>
+                    <canvas id="singleBarOptions" height="120"></canvas>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <center><b>Score</b></center>
+            </div>
+        </div>
+    </div>
+    <!-- END col-4 -->
+    <!-- BEGIN col-4 -->
+
+    <div class="col-lg-2 col-sm-6">
+
+        <div class="panel panel-default with-rounded-corner with-shadow box-panel">
+
+            <!-- BEGIN panel -->
+            <div class="panel-body">
+                <div id="newchart1" @*style="min-width: 200px; height:300px; margin: -88px auto;background:none;top:100px;"*@></div>
+            </div>
+            <div class="panel-footer">
+                <center><b>Performance</b></center>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- END col-4 -->
+    <!-- BEGIN col-4 -->
+
+    <div class="col-lg-2 col-sm-6">
+        <div class="panel panel-default with-rounded-corner with-shadow box-panel">
+
+            <div class="panel-body">
+                <div class="" style=" padding-top:200px;">
+                    @*<img src="~/Content/img/Rank.png" class="img-responsive text-center" />*@
+                    <h3 class="text-center"> <label id="RankLabel"></label></h3>
+                </div>
+
+
+
+
+            </div>
+            <div class="panel-footer">
+                <center><b>Rank</b></center>
+            </div>
+        </div>
+    </div>
+
+    <!-- END col-4 -->
+
+
+</div>
+<!-- End row -->
+@*<div class="row">
+        <br />
+    </div>*@
+
+
+<!-- BEGIN row -->
+<div class="row">
+
+    <!-- BEGIN col-4 -->
+    <div class="col-lg-4 col-sm-6">
+        <div class="panel panel-default with-rounded-corner with-shadow" style="height:320px">
+
+
+            <div class="panel-body">
+                <marquee direction="up" scrolldelay="290">
+                    @{ int z = 0;}
+                    @foreach (var job in ViewBag.JobsN)
+                    {
+                        z++;
+                        <div class="text-center m-b-md">
+                            <div class="panel-heading-btn">
+                                @*<div class="dropdown dropdown-icon">
+                                        <a href="javascript:;" class="btn" data-toggle="dropdown"><i class="ti-more-alt"></i></a>
+                                        <ul class="dropdown-menu dropdown-menu-right">
+                                            <li class="active"><a href="#">@z</a></li>
+                                            <li><a href="#">@job.Company_Name</a></li>
+                                            <li><a href="#">@job.Location</a></li>
+                                            <li><a href="#">@Convert.ToString(string.Format("{0:dd/MM/yyyy}", job.CraetedDate))</a></li>
+                                        </ul>
+                                    </div>*@
+                            </div>
+                            <div class="f-w-500 m-t-xs">
+                                <span class="circle circle-sm text-success m-r-xs"></span>@job.Designation
+                            </div>
+                        </div>
+                        <hr />
+                    }
+                </marquee>
+            </div>
+            <div class="panel-footer">
+                <a href="@Url.Action("JobNotification","Student")" class="widget-title-link bg-primary">More + </a>
+                Job Notifications
+            </div>
+
+        </div>
+    </div>
+    @*<div class="col-lg-4 col-sm-6">
+            <div class="panel panel-primary with-rounded-corner with-shadow box-panel-2">
+                <!-- BEGIN panel-heading -->
+                <!-- END panel-heading -->
+                <!-- BEGIN panel-body -->
+
+            </div>
+        </div>*@
+    <!-- END col-4 -->
+    <!-- BEGIN col-4 -->
+    <div class="col-lg-4 col-sm-6">
+        <div class="panel panel-default with-rounded-corner with-shadow" style="height:320px">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a href="@Url.Action("StudyMaterialNotification","Student")" class="widget-title-link bg-primary">More + </a>
+                    STUDY MATERIALS
+                </h4>
+            </div>
+            <!-- END panel-heading -->
+            <table class="table table-panel table-condensed table-striped table-bordered table-th-without-border">
+                <tbody>
+                    @{int y = 0;}
+                    @foreach (var study in ViewBag.studymN)
+                    {
+                        y++;
+                        <tr>
+                            <td width="1%">@y.</td>
+                            <td><a href="#"> @study.SM_Name</a></td>
+                            <td width="3%">
+                                <a href="~/Content/StudyMaterials/@study.Attachments" download>
+                                    <i class="ti-download bg-gradient-green-light"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+            <div class="panel-footer">
+                <center><b>Study Materials</b></center>
+            </div>
+        </div>
+    </div>
+   
+    <!-- END col-4 -->
+    <!-- BEGIN col-4 -->
+
+    <div class="col-lg-4 col-sm-6">
+        <div class="panel panel-default with-rounded-corner with-shadow" style="height:320px">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    Advertisements
+                </h4>
+
+            </div>
+            <div class="panel-footer">
+                <center><b>Advertisements</b></center>
+            </div>
+        </div>
+    </div>
+
+    <!-- END col-4 -->
+    <!-- BEGIN col-4 -->
+
+    <div class="col-lg-3 col-sm-6">
+
+        <!-- BEGIN panel -->
+        <!-- END panel -->
+
+    </div>
+
+    <!-- END col-4 -->
+</div>
+<!-- END row -->
+
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+@if (ViewBag.mes != null)
+{
+    if (ViewBag.mes == "1")
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+
+                $("#popup1").dialog({
+                    modal: true,
+                    width: 460,
+                });
+                event.preventDefault();
+            }
+        </script>
+    }
+    else if (ViewBag.mes == "2")
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                $("#popup2").dialog({
+                    modal: true,
+                    width: 460,
+                });
+                event.preventDefault();
+            }
+        </script>
+    }
+}
+<script>
+
+    $(document).ready(function () {
+        $.getJSON("/Student/SubjectPerformance", function (data) {
+            var Rank = data.scoreCard.Rank;
+            var AverageScore = parseInt(data.scoreCard.AverageScore);
+
+
+            document.getElementById("RankLabel").textContent = Rank
+
+
+
+            Highcharts.chart("newchart1",
+                {
+                    chart: {
+                        type: "gauge",
+                        backgroundColor: null,
+                        plotBorder: false,
+                        plotBackgroundImage: null,
+                        plotBorderWidth: 0,
+                        borderRadius: 0,
+                        borderWidth: 0,
+                        plotShadow: false,
+                    },
+                    exporting: { enabled: false },
+
+                    title: {
+                        text: '',
+                        style: {
+                            display: 'none'
+                        }
+                    },
+
+                    credits: {
+                        enabled: false
+                    },
+
+                    pane: {
+                        //center: ['50%', '60%'],
+                        size: '80%',
+                        startAngle: -150,
+                        endAngle: 150,
+                        background: [
+                            {
+                                borderWidth: 0,
+                                outerRadius: "10%"
+                            },
+                            {
+                                borderWidth: 0,
+                                outerRadius: "10%"
+                            },
+                            {
+                                // default background
+                            },
+                            {
+                                borderWidth: 0,
+                                outerRadius: "100%",
+                                innerRadius: "103%"
+                            }
+                        ]
+                    },
+
+                    // the value axis
+                    yAxis: {
+                        min: 0,
+                        max: 100,
+
+                        minorTickInterval: "auto",
+                        minorTickWidth: 1,
+                        minorTickLength: 10,
+                        minorTickPosition: "inside",
+                        minorTickColor: "#666",
+
+                        tickPixelInterval: 30,
+                        tickWidth: 2,
+                        tickPosition: "inside",
+                        tickLength: 10,
+                        tickColor: "#666",
+                        labels: {
+                            step: 2,
+                            rotation: "auto"
+                        },
+                        title: {
+                            text: null
+                        },
+                        plotBands: [
+                            {
+                                from: 0,
+                                to: 25,
+                                color: "#55BF3B" // green
+                            },
+                            {
+                                from: 25,
+                                to: 50,
+                                color: "#DDDF0D" // yellow
+                            },
+                            {
+                                from: 50,
+                                to: 75,
+                                color: "#0CCFF4" // blue
+                            },
+                            {
+                                from: 75,
+                                to: 100,
+                                color: "#DF5353" // red
+                            },
+                        ]
+                    },
+
+                    plotOptions: {
+                        gauge: {
+                            //dataLabels: {
+                            //    enabled: false
+                            //},
+                            dial: {
+                                radius: '65%',
+                                backgroundColor: '#003854',
+                                baseWidth: 10,
+                                topWidth: 1,
+                                //baseLength: '2%', // of radius
+                                //rearLength: '0%',
+                                borderColor: 'red',
+                            },
+                            pivot: {
+                                radius: 3,
+                                backgroundColor: '#003854'
+                            }
+                        }
+                    },
+
+                    series: [
+                        {
+                            name: "Your Performance",
+                            data: [AverageScore],
+                            dataLabels: {
+                                format: '<div style="text-align:center"><span style="font-size:15px;color:' +
+                                    ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y} %</span><br/>' +
+                                    '<span style="font-size:12px;color:silver"></span></div>'
+                            },
+                            tooltip: {
+                                valueSuffix: "% Score"
+                            }
+                        }
+                    ]
+                }),
+
+
+                function copyTo(obj) {
+                    document.getElementById("RankLabel").textContent = Rank
+                }
+
+
+            // ChartJS SingleBar
+
+            /**
+         * Options for Line chart
+         */
+
+            //var MONTHS =[0, data.marks[0].Day, data.marks[1].Day, data.marks[2].Day];
+            //var _data = [0, data.marks[0].Marks, data.marks[1].Marks, data.marks[2].Marks];
+
+            var MONTHS = [0];
+            var _data = [0];
+
+            data.marks.forEach(AddData);
+            //data.marks.forEach(AddMarks);
+
+            function AddData(item, index, arr) {
+                MONTHS.push(item.Day);
+                _data.push(item.Marks);
+            }
+
+            function AddMarks(item, index, arr) {
+                _data.push(item.Marks);
+            }
+
+            var globalOptions = {
+                responsive: true,
+                legend: {
+                    labels: {
+                        fontColor: "#90969D"
+                    }
+                },
+                scales: {
+                    xAxes: [{
+                        ticks: {
+                            fontColor: "transparency"
+                        },
+                        gridLines: {
+                            color: "rgba(0, 0, 0, 0)"
+                        }
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            fontColor: "transparency"
+                        },
+                        gridLines: {
+                            color: "rgba(0, 0, 0, 0)"
+                        }
+                    }]
+                }
+            };
+
+            /** Options for Bar chart   */
+
+            /**
+             * Data for Bar chart
+             */
+            var scores = [];
+            var color = Chart.helpers.color;
+            var singleBarData = {
+                labels: MONTHS,
+                datasets: [
+                    {
+                        label: "Score",
+                        //backgroundColor: color(window.chartColors.red).alpha(0.0).rgbString(),
+                        backgroundColor: "#FDFEFE",
+                        //borderColor: window.chartColors.red,
+                        borderColor: "#ff0000",
+                        borderWidth: 0,
+                        data: _data
+                    }
+                ]
+            };
+
+            var c4 = document.getElementById("singleBarOptions").getContext("2d");
+            new Chart(c4, { type: 'line', data: singleBarData, options: globalOptions });
+            // End ChartJS SingleBar
+
+        });
+    });
+
+</script>
+
+

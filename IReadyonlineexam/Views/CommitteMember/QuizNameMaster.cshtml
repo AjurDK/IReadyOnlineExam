@@ -1,0 +1,131 @@
+﻿@model IReadyonlineexam.Models.Quiz
+
+@{
+    ViewBag.Title = "QuizNameMaster";
+    Layout = "~/Views/CommitteMember/Shared/_CommitteLayoutPage.cshtml";
+}
+
+<h2>Quiz Name Master</h2>
+<div id="rootwizard" class="wizard wizard-full-width">
+
+    <form action="#" method="POST" name="wizard_form">
+
+        <div class="wizard-content tab-content">
+
+            <div class="tab-pane active" id="tab1">
+
+                @using (Html.BeginForm("QuizNameMaster", "CommitteMember", FormMethod.Post, new { interviewdate = "interviewdate", enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="row">
+
+
+                        <div class="col-md-6 offset-md-3">
+                            <p class="desc m-b-20"></p>
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.QuizID)
+
+
+                            <div class="form-group">
+                                <label class="control-label">Course Name</label>
+                                @Html.DropDownListFor(model => model.CourseID, (IEnumerable<SelectListItem>)ViewBag.selectedcourse as SelectList, new { @class = "form-control" })
+
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Subject Name</label>
+                                @Html.DropDownListFor(Model => Model.SubjectID, (IEnumerable<SelectListItem>)ViewBag.selectedsubject as SelectList, new { @class = "form-control" })
+
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Unit Name</label>
+                                @Html.DropDownListFor(Model => Model.UnitID, (IEnumerable<SelectListItem>)ViewBag.selectedunit as SelectList, new { @class = "form-control" })
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Quiz Name<span class="text-danger">*</span></label>
+                                @Html.EditorFor(model => model.QuizName, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label">Quiz Description<span class="text-danger">*</span></label>
+                                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", @rows = 5 } })
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Create" class="btn btn-primary" />
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                }
+
+                <div class="panel-body">
+                    <h3>Quiz Name Master</h3>
+                    <center>
+                        <table class="table table-striped m-b-0">
+                            <tr>
+                                <th>
+                                    Course Name
+                                </th>
+                                <th>
+                                    Subject Name
+                                </th>
+
+                                <th>
+                                    Unit Name
+                                </th>
+                                <th>
+                                    Quiz Name
+                                </th>
+                                <th>
+                                    Quiz Description
+                                </th>
+                                <th>Edit | Delete</th>
+
+                            </tr>
+
+                            @foreach (var item in ViewBag.Quiznamemaster)
+                            {
+                            <tr>
+                                <td>
+                                    @item.CourseName
+                                </td>
+                                <td>
+                                    @item.SubjectName
+                                </td>
+                                <td>
+                                    @item.UnitName
+                                </td>
+                                <td>
+                                    @item.QuizName
+                                </td>
+                                <td>
+                                    @item.Description
+                                </td>
+                              
+                                <td>
+                                    @Html.ActionLink("Edit", "EditQuiznamemaster", new { id = item.QuizID })
+
+                              |
+
+                                    @Html.ActionLink("Delete", "DeleteQuizmastername", new { id = item.QuizID })
+                                </td>
+
+                               
+                            </tr>
+                            }
+
+                        </table>
+                    </center>
+
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+

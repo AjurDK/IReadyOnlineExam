@@ -1,0 +1,125 @@
+﻿@model IReadyonlineexam.Models.studentsyllabu
+
+@{
+    ViewBag.Title = "StuSyllabus";
+    Layout = "~/Views/CommitteMember/Shared/_CommitteLayoutPage.cshtml";
+}
+
+<h4>Student Syllabus</h4>
+@if (ViewBag.result != null)
+{
+    <script>
+        alert("@ViewBag.result");
+    </script>
+}
+<div id="rootwizard" class="wizard wizard-full-width">
+
+    <form action="#" method="POST" name="wizard_form">
+
+        <div class="wizard-content tab-content">
+
+            <div class="tab-pane active" id="tab1">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="row">
+
+                        <div class="col-md-6 offset-md-3">
+                            <p class="desc m-b-20"></p>
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            <div class="form-group">
+                                <label class="control-label">Subject Name</label>
+                                @Html.DropDownListFor(model => model.SubjectID, (IEnumerable<SelectListItem>)ViewBag.selectedsubject as SelectList, new { @class = "form-control" })
+
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Unit</label>
+                                @Html.DropDownListFor(Model => Model.Uid, (IEnumerable<SelectListItem>)ViewBag.selectedunit as SelectList, new { @class = "form-control" })
+
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Unit Name<span class="text-danger">*</span></label>
+                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Unit Description<span class="text-danger">*</span></label>
+                                @Html.EditorFor(model => model.UnitDescription, new { htmlAttributes = new { @class = "form-control", @rows = 4 } })
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Create" class="btn btn-primary" />
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                }
+
+                <div class="panel-body">
+                    <center>
+                        <table class="table table-striped m-b-0">
+                            <tr>
+                                <th>
+                                    Subject Name
+                                </th>
+                                <th>
+                                    Unit Number
+                                </th>
+
+                                <th>
+                                    Unit Name
+                                </th>
+                                <th>
+                                    Description
+                                </th>
+
+                                <th>
+                                    Created Date
+                                </th>
+                            </tr>
+
+                            @foreach (var item in ViewBag.SSyllabus)
+                            {
+                                <tr>
+                                    <td>
+                                        @item.SubjectName
+                                    </td>
+                                    <td>
+                                        @item.UnitName
+                                    </td>
+                                    <td>
+                                        @item.ChapterName
+                                    </td>
+
+                                    <td>
+                                        @item.ChapterDesciption
+                                    </td>
+                                    <td>
+
+                                        @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.CreatedDate))
+
+                                    </td>
+                                    @*<td>
+                                        @Html.ActionLink("Edit", "EditStuSyllabus", new { id = item.ssid }) |
+                                        @Html.ActionLink("Delete", "DeleteStuSyllabus", new { id = item.ssid })
+                                    </td>*@
+                                </tr>
+                            }
+
+                        </table>
+                    </center>
+
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+</div>
+
+

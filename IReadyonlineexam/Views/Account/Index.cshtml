@@ -1,0 +1,382 @@
+﻿@model IReadyonlineexam.Models.MergeLoginRegister
+
+@using Vereyon.Web;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Home/Shared/_HomeLayoutPage.cshtml";
+}
+
+
+
+<section class="intro-block">
+    <div class="slider fade-slider">
+        <div>
+
+            <article class="intro-block-slide overlay bg-cover" style="background-image: url(../../HomeTemplate/images/img01.jpg);">
+                <div class="align-wrap container">
+                    <div class="align">
+                        <div class="anim">
+                            <h1 class="intro-block-heading">
+                                @Html.RenderFlashMessages()
+                                Determine Your Future By Your Performance
+                                &amp; Online Test Portal
+                            </h1>
+                        </div>
+                        <div class="anim delay1">
+
+                        </div>
+                        <div class="anim delay2">
+                            <div class="btns-wrap">
+                                <a href="/Home/Courses" class="btn btn-warning btn-theme text-uppercase">Our Courses</a>
+                                <a href="/Home/Contact" class="btn btn-white text-uppercase">Contact us</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+        <div>
+
+            <article class="intro-block-slide overlay bg-cover" style="background-image: url(../../HomeTemplate/images/img01.jpg);">
+                <div class="align-wrap container">
+                    <div class="align">
+                        <div class="anim">
+                            <h1 class="intro-block-heading">Education Organization</h1>
+                        </div>
+                        <div class="anim delay1">
+                            <p>We offer the most complete course pakage in the country, for the research, design and development of Education.</p>
+                        </div>
+                        <div class="anim delay2">
+                            <div class="btns-wrap">
+                                <a href="courses-list.html" class="btn btn-warning btn-theme text-uppercase">Our Courses</a>
+                                <a href="contact.html" class="btn btn-white text-uppercase">Contact us</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+        <div>
+
+            <article class="intro-block-slide overlay bg-cover" style="background-image: url(../../HomeTemplate/images/img01.jpg);">
+                <div class="align-wrap container">
+                    <div class="align">
+                        <div class="anim">
+                            <h1 class="intro-block-heading">Training Organization</h1>
+                        </div>
+                        <div class="anim delay1">
+                            <p>We offer the most complete course pakage in the country, for the research, design and development of Education.</p>
+                        </div>
+                        <div class="anim delay2">
+                            <div class="btns-wrap">
+                                <a href="courses-list.html" class="btn btn-warning btn-theme text-uppercase">Our Courses</a>
+                                <a href="contact.html" class="btn btn-white text-uppercase">Contact us</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+    <div class="container">
+
+        <aside class="features-aside">
+            <a href="#" class="col">
+                <span class="icn-wrap text-center no-shrink">
+                    <img src="~/HomeTemplate/images/icon01.svg" width="44" height="43" alt="trophy">
+                </span>
+                <div class="description">
+                    <h2 class="features-aside-heading">World’d Best Instructors</h2>
+
+                </div>
+            </a>
+            <a href="#" class="col">
+                <span class="icn-wrap text-center no-shrink">
+                    <img src="~/HomeTemplate/images/icon02.svg" width="43" height="39" alt="computer">
+                </span>
+                <div class="description">
+                    <h2 class="features-aside-heading">Learn Courses Onlines</h2>
+
+                </div>
+            </a>
+            <a href="#" class="col">
+                <span class="icn-wrap text-center no-shrink">
+                    <img src="~/HomeTemplate/images/icon03.svg" width="43" height="39" alt="computer">
+                </span>
+                <div class="description">
+                    <h2 class="features-aside-heading">Online Library &amp; Store</h2>
+
+                </div>
+            </a>
+        </aside>
+    </div>
+</section>
+
+@*<section class="popular-posts-block container">
+    <header class="popular-posts-head">
+        <h2 class="popular-head-heading">Most Popular Courses</h2>
+    </header>
+    <div class="row">
+
+        <div class="slider popular-posts-slider">
+
+
+
+        </div>
+    </div>
+</section>*@
+<section class="popular-posts-block container">
+    <header class="popular-posts-head">
+        <h2 class="popular-head-heading">Most Popular Courses</h2>
+    </header>
+    <div class="row">
+        <!-- popular posts slider -->
+        <div class="slider popular-posts-slider">
+
+
+
+            @foreach (var item in ViewBag.course)
+            {
+
+                <div>
+                    <div class="col-xs-12">
+                        <!-- popular post -->
+                        <article class="popular-post">
+                            <div class="aligncenter">
+                                @*<img src="http://placehold.it/262x212" alt="image description">*@
+
+                                <img src="~/Images/CourseImages/@item.Imageurl" style="height:147px;" />
+                            </div>
+                            <div>
+                                <strong class="bg-primary text-white font-lato text-uppercase price-tag">@item.Price</strong>
+                            </div>
+                            <h3 class="post-heading"><a href="course-single.html">@item.Name</a></h3>
+                            <div class="post-author">
+                                @*<div class="alignleft no-shrink rounded-circle">
+                                    <a href="instructor-single.html"><img src="http://placehold.it/35x35" class="rounded-circle" alt="image description"></a>
+                                </div>*@
+                                @*<h4 class="author-heading"><a href="instructor-single.html">Jhon Milton</a></h4>*@
+                            </div>
+                            <footer class="post-foot gutter-reset">
+                                @*<ul class="list-unstyled post-statuses-list">
+            <li>
+                <a href="#">
+                    <span class="fas icn fa-users no-shrink"><span class="sr-only">users</span></span>
+                    <strong class="text fw-normal">200</strong>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="fas icn no-shrink fa-comments"><span class="sr-only">comments</span></span>
+                    <strong class="text fw-normal">3</strong>
+                </a>
+            </li>
+        </ul>*@
+                                <ul class="star-rating list-unstyled">
+                                    <li><span class="fas fa-star"><span class="sr-only">star</span></span></li>
+                                    <li><span class="fas fa-star"><span class="sr-only">star</span></span></li>
+                                    <li><span class="fas fa-star"><span class="sr-only">star</span></span></li>
+                                    <li><span class="fas fa-star"><span class="sr-only">star</span></span></li>
+                                    <li><span class="far fa-star-half"><span class="sr-only">star</span></span></li>
+                                </ul>
+                            </footer>
+                        </article>
+                    </div>
+                </div>
+            }
+
+
+
+        </div>
+    </div>
+</section>
+
+<aside class="bg-cover counter-aside" style="background-image: url(../../HomeTemplate/images/img10.jpg);">
+    <div class="container align-wrap">
+        <div class="align">
+            <div class="row">
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                    <h2 class="counter-aside-heading">
+                        <strong class="countdown element-block">@ViewBag.Coursecount</strong>
+                        <strong class="text element-block">COURSES</strong>
+                    </h2>
+                </div>
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                    <h2 class="counter-aside-heading">
+                        <strong class="countdown element-block">@ViewBag.Studentcount</strong>
+                        <strong class="text element-block">NUMBER OF STUDENTS</strong>
+                    </h2>
+                </div>
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                    <h2 class="counter-aside-heading">
+                        <strong class="countdown element-block">@ViewBag.Contributorcount</strong>
+                        <strong class="text element-block">QUALIFIED CONTRIBUTOR</strong>
+                    </h2>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+</aside>
+
+
+
+<section class="testimonials-block text-center bg-gray" style="background-image: url(images/bg-pattern01.png);">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+                <h2>What People Say</h2>
+
+                <div class="slick-slider slider testimonail-slider">
+                    @{
+                        if (ViewBag.test != null)
+                        {
+                            foreach (var items in ViewBag.test)
+                            {
+
+                                <div>
+
+                                    <blockquote class="testimonial-quote font-roboto">
+                                        <p>“ @items.StudentName ”</p>
+                                        <cite class="element-block font-lato">
+                                            <span class="avatar square element-block">
+                                                <img class="note-icon-square bg-dark" src="~/HomeTemplate/images/icon03.svg" alt="Nethor Doct -Developer">
+                                            </span>
+                                            <strong class="element-block h5 h"><p style="text-align:justify">@items.RDescription</p></strong>
+                                            <strong class="element-block h5 h">@items.CourseName</strong>
+                                        </cite>
+                                    </blockquote>
+                                </div>
+                            }
+                        }
+                    }
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="news-block container">
+    <header class="seperator-head text-center">
+        <h2>Recent News</h2>
+        <p>Share your work to collaboratve with our vibrant design element.</p>
+    </header>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+
+            <article class="news-post">
+                <div class="aligncenter">
+                    <a href="blog-single.html"><img src="~/HomeTemplate/images/img19.jpg" alt="image desciption"></a>
+                </div>
+                <h3><a href="blog-single.html">Best Educational Psd Template Launching Today</a></h3>
+                <p>Areas tackled in the most fundamental part of medical research include cellu lar and molecular biology&hellip;</p>
+                <time datetime="2011-01-12" class="time text-uppercase text-gray">Mar 05,2017  by <a href="blog-single.html">andrew caset</a></time>
+            </article>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4">
+
+            <article class="news-post">
+                <div class="aligncenter">
+                    <a href="blog-single.html"><img src="~/HomeTemplate/images/img18.jpg" alt="image desciption"></a>
+                </div>
+                <h3><a href="blog-single.html">Your one stop Solution for Android Development Needs</a></h3>
+                <p>Areas tackled in the most fundamental part of medical research include cellu lar and molecular biology&hellip;</p>
+                <time datetime="2011-01-12" class="time text-uppercase text-gray">Mar 05,2017  by <a href="blog-single.html">andrew caset</a></time>
+            </article>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4">
+
+            <article class="news-post">
+                <div class="aligncenter">
+                    <a href="blog-single.html"><img src="~/HomeTemplate/images/img17.jpg" alt="image desciption"></a>
+                </div>
+                <h3><a href="blog-single.html">Online Learning students council meeting 2017</a></h3>
+                <p>Areas tackled in the most fundamental part of medical research include cellu lar and molecular biology&hellip;</p>
+                <time datetime="2011-01-12" class="time text-uppercase text-gray">Mar 05,2017  by <a href="blog-single.html">andrew caset</a></time>
+            </article>
+        </div>
+    </div>
+</section>
+
+<div class="popup-holder">
+    <div id="popup1" class="lightbox-demo" role="dialog">
+        <div class="user-log-form">
+            <h2>Login Form</h2>
+            <div class="form-group">
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="form-group">
+                        <label class="control-label">Email</label>
+
+                        @Html.TextBoxFor(Model => Model.Email, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(Model => Model.Email, "", new { @class = "text-danger" })
+
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label ">Password</label>
+
+                        @Html.PasswordFor(Model => Model.Password, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(Model => Model.Password, "", new { @class = "text-danger" })
+
+                    </div>
+
+
+                    <a href="#" class="pull-right">Forgot your ID or password?</a>
+
+                    <input type="submit" value="Log in" class="btn btn-primary" />
+
+                    <div class="m-t-20">
+
+                        <a href="#popup2" class="lightbox" id="logiPopup1" );">Not a member yet?</a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div id="popup2" class="lightbox-demo">
+        <div class="user-log-form">
+            <h2>Register Form</h2>
+            <div class="form-group">
+                @using (Html.BeginForm("Register", "Account", new { ReturnUrl = ViewBag.ReturnUrl, Roles = "Roles" }, FormMethod.Post, new { @class = "", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <label class="control-label">Email</label>
+
+                        @Html.TextBoxFor(Model => Model.Email, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(Model => Model.Email, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label ">Password</label>
+
+                        @Html.PasswordFor(Model => Model.Password, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(Model => Model.Password, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label ">Confirm Password</label>
+
+                        @Html.PasswordFor(Model => Model.ConfirmPassword, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(Model => Model.ConfirmPassword, "", new { @class = "text-danger" })
+
+                    </div>
+                    <input type="submit" value="Sign Up" class="btn btn-primary" />
+
+                    <div class="m-t-20">
+                        Already have an Adobe ID? <a href="#popup1" class="lightbox">Sign In</a>
+                        <a href="#popup1" class="lightbox" );">Already have an Account</a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

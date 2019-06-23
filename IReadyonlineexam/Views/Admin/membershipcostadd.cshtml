@@ -1,0 +1,131 @@
+﻿@model IReadyonlineexam.Models.StuMembershipCost_master
+
+@{
+    ViewBag.Title = "membershipcostadd";
+    Layout = "~/Views/Admin/Shared/_AdminLayoutPage.cshtml";
+}
+
+<h2>membershi cost master</h2>
+@if (ViewBag.result != null)
+{
+    <script>
+        alert("@ViewBag.result");
+    </script>
+}
+
+<div id="rootwizard" class="wizard wizard-full-width">
+
+    <form action="#" method="POST" name="wizard_form">
+
+        <div class="wizard-content tab-content">
+
+            <div class="tab-pane active" id="tab1">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="row">
+
+                        <div class="col-md-6 offset-md-3">
+                            <p class="desc m-b-20"></p>
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            <div class="form-group">
+                                <label class="control-label">Year</label>
+                                @*@Html.DropDownListFor(model => model.year, (IEnumerable<SelectListItem>)ViewBag.selectedyear as SelectList, "--select Year--", new { @class = "form-control" })*@
+
+                                @Html.DropDownListFor(model => model.YearID, (IEnumerable<SelectListItem>)ViewBag.selectedyear, " Select Year", new { @class = "form-control" })
+
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Category</label>
+                                @Html.DropDownListFor(Model => Model.CourseID, (IEnumerable<SelectListItem>)ViewBag.selectedcourse as SelectList, new { @class = "form-control" })
+
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Semester</label>
+                                @Html.DropDownListFor(Model => Model.SemID, (IEnumerable<SelectListItem>)ViewBag.selectedsem as SelectList, new { @class = "form-control" })
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label">Membership Cost<span class="text-danger">*</span></label>
+                                @Html.EditorFor(model => model.membershipcost, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Create" class="btn btn-primary" />
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                }
+
+                <div class="panel-body">
+
+                    <center>
+                        <table class="table table-striped m-b-0">
+                            <tr>
+                                <th>
+                                    Year
+                                </th>
+                                <th>
+                                    Category
+                                </th>
+
+                                <th>
+                                    Semester
+                                </th>
+                                <th>
+                                    Membership Cost
+                                </th>
+
+                                <th>
+                                    Created Date
+                                </th>
+                                <th>Edit | Delete</th>
+                            </tr>
+
+                            @foreach (var item in ViewBag.MemList)
+                            {
+                                <tr>
+                                    <td>
+                                        @item.YearName
+                                    </td>
+                                    <td>
+                                        @item.CourseName
+                                    </td>
+                                    <td>
+                                        @item.SemName
+                                    </td>
+
+                                    <td>
+                                        @item.Membershipcost
+                                    </td>
+                                    <td>
+
+                                        @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.CreatedDate))
+
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Edit", "EditMembershipcost", new { id = item.MemID }) |
+                                        @Html.ActionLink("Delete", "DeletMembershipCost", new { id = item.MemID })
+                                    </td>
+
+                                </tr>
+                            }
+
+                        </table>
+                    </center>
+
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+</div>

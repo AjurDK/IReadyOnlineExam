@@ -1,0 +1,489 @@
+﻿@model IReadyonlineexam.Classes.UserData
+@{
+    /**/
+
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Admin/Shared/_AdminLayoutPage.cshtml";
+}
+
+
+<style>
+
+    #container {
+        min-width: 320px;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    #container1 {
+        width: 400px !important;
+        height: 250px !important;
+        overflow: scroll;
+    }
+
+    .Layout {
+        display: block,
+    }
+
+    .DrpDown {
+        margin-top: 20px;
+        width: 100%;
+        font-size: 10px;
+    }
+
+    .btn {
+        margin-top: 50px;
+        margin-left: 254px;
+    }
+</style>
+
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+
+
+<!-- END page-header -->
+<!-- BEGIN row -->
+<div class="row">
+    <!-- BEGIN col-3 -->
+    <div class="col-lg-3 col-sm-6">
+        <!-- BEGIN widget -->
+        <a href="#" class="widget widget-stats bg-gradient-blue-dark">
+            <div class="widget-stats-info">
+                <div class="widget-stats-title">Total Visitors</div>
+                <div class="widget-stats-value">
+                    @ViewBag.Visits
+                </div>
+                @*<div class="widget-desc">Today, 1:50PM</div>*@
+            </div>
+            <div class="widget-stats-icon">
+                <i class="ti-eye -full text-inverse"></i>
+            </div>
+        </a>
+        <!-- END widget -->
+    </div>
+    <!-- END col-3 -->
+    <!-- BEGIN col-3 -->
+    <div class="col-lg-3 col-sm-6">
+        <!-- BEGIN widget -->
+        <a href="#" class="widget widget-stats bg-gradient-purple-dark">
+            <div class="widget-stats-info">
+                <div class="widget-stats-title">Total Students</div>
+                <div class="widget-stats-value">
+                    @ViewBag.StudentCount
+                </div>
+                @*<div class="widget-desc">Today, 11:25AM</div>*@
+            </div>
+            <div class="widget-stats-icon text-inverse">
+                <i class="ti-user"></i>
+            </div>
+        </a>
+        <!-- END widget -->
+    </div>
+    <!-- END col-3 -->
+    <!-- BEGIN col-3 -->
+    <div class="col-lg-3 col-sm-6">
+        <!-- BEGIN widget -->
+        <a href="#" class="widget widget-stats bg-gradient-pink">
+            <div class="widget-stats-info">
+                <div class="widget-stats-title">Total Contributors</div>
+                <div class="widget-stats-value">
+                    @ViewBag.ContributorCount
+
+                </div>
+                @*<div class="widget-desc">Today, 8:20AM</div>*@
+            </div>
+            <div class="widget-stats-icon text-inverse">
+                <i class="ti-user"></i>
+            </div>
+        </a>
+    </div>
+    <!-- END col-3 -->
+    <!-- BEGIN col-3 -->
+    <div class="col-lg-3 col-sm-6">
+        <!-- BEGIN widget -->
+        <a href="#" class="widget widget-stats bg-gradient-orange-dark">
+            <div class="widget-stats-info">
+                <div class="widget-stats-title">New Registered</div>
+                <div class="widget-stats-value">
+                    @ViewBag.NewRegistration
+                </div>
+                @*<div class="widget-desc">Yesterday, 10:23PM</div>*@
+            </div>
+            <div class="widget-stats-icon text-inverse">
+                <i class="ti-files"></i>
+            </div>
+        </a>
+        <!-- END widget -->
+    </div>
+    <!-- END col-3 -->
+</div>
+
+
+<div class="row">
+    <!-- BEGIN col-4 -->
+    <div class="col-lg-4 col-sm-6">
+        <!-- BEGIN panel -->
+        <div class="panel panel-default with-rounded-corner with-shadow" style="height:320px">
+            <!-- BEGIN panel-heading -->
+            <div class="panel-heading">
+                <div class="panel-heading-btn">
+                    @*<div class="dropdown dropdown-icon">
+                            <a href="javascript:;" class="btn" data-toggle="dropdown"><i class="ti-more-alt"></i></a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li><a href="#">Today</a></li>
+                                <li><a href="#">Yesterday</a></li>
+                                <li class="active"><a href="#">Last 7 days</a></li>
+                                <li><a href="#">Last 28 days</a></li>
+                            </ul>
+                        </div>*@
+                </div>
+                <h4 class="panel-title">
+                    OVERVIEW
+                </h4>
+            </div>
+            <!-- END panel-heading -->
+            <!-- BEGIN panel-body -->
+            <div class="panel-body">
+                <div class="text-center m-b-lg" style="margin-top:60px">
+                    <div class="f-s-1rem f-w-500 m-t-xs">Right now</div>
+                    <div class="f-s-5rem text-gradient bg-gradient-black line-height-1 m-xs">
+                        <span data-id="active-user">@ViewBag.ActiveUsers</span>
+                    </div>
+                    <div>active users on site</div>
+                </div>
+                @*<hr />*@
+                @*<ul class="list-inline m-b-sm">
+                        <li>
+                            <span class="circle circle-sm text-primary m-r-xs"></span> Desktop
+                        </li>
+                        <li>
+                            <span class="circle circle-sm text-success m-r-xs"></span> Mobile
+                        </li>
+                        <li>
+                            <span class="circle circle-sm text-warning m-r-xs"></span> Tablet
+                        </li>
+                    </ul>
+                    <div class="progress without-rounded-corner m-b-sm">
+                        <div class="progress-bar bg-primary" data-id="desktop-user" style="width: 60%;">60%</div>
+                        <div class="progress-bar bg-success" data-id="mobile-user" style="width: 25%;">25%</div>
+                        <div class="progress-bar bg-warning" data-id="tablet-user" style="width: 15%;">15%</div>
+                    </div>
+                    <p class="desc m-b-0">
+                        * Data updates continuously and each pageview is reported seconds after it occurs.
+                    </p>*@
+            </div>
+        </div>
+        <!-- END panel -->
+        <!-- BEGIN panel -->
+        <!-- END panel -->
+    </div>
+    <!-- END col-4 -->
+    <!-- BEGIN col-8 -->
+
+    <div class="col-lg-8 col-sm-6">
+        <!-- BEGIN panel -->
+
+        <canvas id="myChart" width="400" height="180" style="background-color:white" class="panel panel-default with-rounded-corner with-shadow"></canvas>
+
+        <!-- END panel -->
+        <!-- BEGIN panel -->
+        <!-- END panel -->
+        <!-- BEGIN panel -->
+        <!-- END panel -->
+    </div>
+    <!-- END col-8 -->
+</div>
+
+<div class="row">
+    <div class="col-lg-4 col-sm-6">
+        <div class="panel panel-default with-rounded-corner with-shadow" style="max-height: 250px !important; overflow:hidden;">
+
+
+            <div class="panel-heading">
+
+                <h4 class="panel-title">
+                    Student Questions
+                </h4>
+
+
+                <marquee direction="up" scrollamount="3" scrolldelay="200">
+                    <ul class="widget widget-list">
+                        @foreach (var a in ViewBag.Stu_Questionrequest)
+                        {
+
+                            <li>
+                                <div class="widget-list-container">
+                                    <div class="widget-list-media icon">
+                                        <i class="ti-book bg-gradient-orange"></i>
+                                    </div>
+                                    <div class="widget-list-content">
+                                        <h4 class="widget-title"> @a.Qestion_Heading</h4>
+                                        <div class="widget-desc">@a.Question_Description</div>
+                                    </div>
+
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                    </marquee>
+                    <!-- BEGIN widget -->
+                    <!-- END widget -->
+
+
+</div>
+
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-sm-6">
+        <div class="panel panel-default with-rounded-corner with-shadow" style="height:250px">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    Reports
+                </h4>
+                <div class="panel-body">
+
+                    @{
+                        List<SelectListItem> listItems = new List<SelectListItem>();
+                        listItems.Add(new SelectListItem
+                        {
+                            Text = "Student",
+                            Value = "0"
+
+                        });
+                        listItems.Add(new SelectListItem
+                        {
+                            Text = "Contributor",
+                            Value = "1",
+                            Selected = true
+                        });
+
+                    }
+                    @if (listItems != null)
+                    {
+
+                        foreach (var item in listItems)
+                        {
+
+                            @Html.RadioButton("Report", item.Value, new { @class = " control-label col-md-2", @name = item.ToString(), @id = "rdolst" })
+
+                            @Html.Label(item.Text.ToString(), " " + item.Text, new { @title = item.Text, @for = "rdolst" + item.Value.ToString() })
+
+                            @*@Html.DropDownList("Report", listItems, "-- Select Member --", new { @class = "DrpDown form-control", @name = "Report", @id = "drprprt" })*@
+
+                        }
+                    }
+
+
+                        <input type="submit" id="btnrprt" value="Report" class="btn btn-primary btn" style="margin-left:0px; margin-top:0px;">
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-lg-4 col-sm-6">
+        <div class="panel panel-default with-rounded-corner with-shadow" style="height:250px">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    Ads
+                </h4>
+                <br />
+                    <div class="widget widget-card inverse-mode with-min-height">
+                        <!-- BEGIN widget-card-cover -->
+                        <div class="widget-card-cover">
+                            <div class="cover-bg with-gradient"></div>
+                            <img src="~/Template/img/dashboard-cover-3.jpg" alt="" />
+                        </div>
+                        <!-- END widget-card-cover -->
+                        <!-- BEGIN widget-card-content -->
+                        <div class="widget-card-content">
+                            <div class="dropdown dropdown-icon pull-right">
+                                <a href="#" data-toggle="dropdown"><i class="ti-more-alt"></i></a>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="#">View</a></li>
+                                    <li><a href="#">Analytics</a></li>
+                                    <li><a href="#">Report</a></li>
+                                </ul>
+                            </div>
+                            <h4 class="widget-title">TOP SALES PRODUCT</h4>
+                        </div>
+                        <!-- END widget-card-content -->
+                        <!-- BEGIN widget-card-content -->
+                        <div class="widget-card-content bottom">
+                            <div class="widget-card-img bg-gradient-purple">
+                                <img src="~/Template/img/dashboard-cover-3.jpg" alt="" />
+                            </div>
+                            <div class="widget-card-info">
+                                <h4 class="widget-title"><a href="#">DJI Mavic Pro</a></h4>
+                                <ul class="widget-inline-list">
+                                    <li>129 orders</li>
+                                    <li>$1,382 earned</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- END widget-card-content -->
+                    </div>
+               
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- END row -->
+<!-- BEGIN row -->
+@*<div class="row">
+
+        <div id="container1">
+            <div class="row">
+                <a class="twitter-timeline" href="https://twitter.com/TwitterDev/timelines/539487832448843776?ref_src=twsrc%5Etfw"></a>
+                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            </div>
+        </div>
+    </div>*@
+
+
+
+
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/charts/exporting.js"></script>
+<script src="~/Scripts/charts/highcharts.js"></script>
+<script src="~/Scripts/Chart.js"></script>
+<script src="~/Scripts/Chart.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.getJSON("/Admin/viewCount", function (data) {
+            temp1 = data.UserData[0].UserCount;
+            temp2 = data.UserData[1].UserCount;
+            temp3 = data.UserData[2].UserCount;
+            temp4 = data.UserData[3].UserCount;
+            temp5 = data.UserData[4].UserCount;
+            temp6 = data.UserData[5].UserCount;
+            temp7 = data.UserData[6].usercount;
+            temp8 = data.UserData[7].usercount;
+            temp9 = data.UserData[8].usercount;
+            temp10 = data.UserData[9].usercount;
+            temp11 = data.UserData[10].usercount;
+            temp12 = data.UserData[11].usercount;
+
+            var ctx = document.getElementById("myChart").getContext('2d');
+
+            var myChart = new Chart(ctx, {
+                type: 'bar', //'polarArea',bar, radar,
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+
+                    datasets: [{
+                        label: 'Number of Students Per Month',
+                        //data:[temp1,temp2,temp3,temp4,temp5,temp6,temp7,temp8,temp9,temp10,temp11,temp12], Uncomment to pass dynamic data
+                        data: [35, 30, temp3, 25, 35, 45, 55, 42, 31, 24, 13, 5], // comment it to get dynamic data
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(117, 24, 24, 0.2)',
+                            'rgba(255, 99, 200, 0.2)',
+                            'rgba(54, 162, 180, 0.2)',
+                            'rgba(255, 206, 26, 0.2)',
+                            'rgba(75, 192, 170, 0.2)',
+                            'rgba(153, 102, 280, 0.2)',
+                            'rgba(255, 159, 50, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(117, 24, 24, 1)',
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    legend: {
+                        labels: {
+                            fontColor: "black",
+                            fontSize: 18
+                        }
+                    },
+                    scales: {
+                        xAxes: [{
+                            barPercentage: 0.5,
+                            barThickness: 20,
+                            maxBarThickness: 8,
+                            minBarLength: 2,
+                            gridLines: {
+                                display: false,
+                                offsetGridLines: true
+                            },
+                            ticks: {
+
+                                fontColor: "black",
+                                fontSize: 10,
+                            }
+                        }],
+                        yAxes: [{
+                            gridLines: {
+                                display: false
+                            },
+                            ticks: {
+
+                                fontColor: "black",
+                                fontSize: 10,
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+
+
+        });
+
+
+        $('#btnrprt').click(function () {
+            var selValue = $('input[name=Report]:checked').val();
+            if (selValue == "0") {
+                window.location.href = "/admin/StudentExlDownload";
+            }
+            else if (selValue == "1") {
+                window.location.href = "/admin/ContributorExlDownload";
+            }
+        });
+        //$("#btnrprt").click(function (e) {
+        //    var drpval = $("#drprprt").val();
+
+        //    if (drpval == "0") {
+        //        window.location.href = "/admin/ReportStudent";
+        //    }
+        //    else if (drpval == "1") {
+        //        window.location.href = "/admin/ReportContributer";
+        //    }
+        //    else if (drpval == "2") {
+        //        window.location.href = "/admin/ReportCommitee";
+        //    }
+
+        //});
+
+
+    });
+</script>
+

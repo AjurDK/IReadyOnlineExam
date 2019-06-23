@@ -1,0 +1,60 @@
+﻿@model IReadyonlineexam.Models.Stu_AddQuestionReq
+
+@{
+    ViewBag.Title = "Answer";
+    Layout = "~/Views/Contributor/Shared/_ContributorLayoutPage.cshtml";
+}
+
+<style>
+    .textarea {
+        margin-left: 3%;
+        width: 90%;
+    }
+
+    .textarea1 {
+        margin-left: 3%;
+        width: 90%;
+    }
+
+    .gap {
+        margin-left: 3%;
+        margin-top: 3%;
+    }
+
+     .button{
+    margin-top:2%;
+        margin-left:3%;
+    }
+   
+</style>
+
+<h2>Answer Questions </h2>
+
+
+
+@using (Html.BeginForm())
+{
+
+    <div class="panel panel-default m-b-0">
+        <div class="col-md-12 gap">
+            @Html.LabelFor(modelItem => Model.QuestionID)
+            @Html.TextBoxFor(modelItem => Model.QuestionID, new { @class = "summernote form-control textarea", @name = "Q_heading", @readonly = "readonly" })
+            @Html.LabelFor(modelItem => Model.Qestion_Heading)
+
+            @Html.TextAreaFor(modelItem => Model.Qestion_Heading, new { @class = "summernote form-control textarea", @name = "Q_heading", @readonly = "readonly" })
+            @Html.LabelFor(modelItem => Model.Question_Description)
+
+            @Html.TextAreaFor(modelItem => Model.Question_Description, new { @class = "summernote form-control textarea1", @name = "Q_heading", @readonly = "readonly" })
+            @Html.LabelFor(modelItem => Model.Answer)
+
+
+
+            @Html.TextAreaFor(modelItem => Model.Answer, new { @class = "summernote form-control textarea1", @name = "Q_heading", required = "required" })
+
+
+        </div>
+
+        <input type="submit" value="Submit Answer" class="btn btn-primary button" />
+
+    </div>
+}

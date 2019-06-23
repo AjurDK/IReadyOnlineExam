@@ -1,0 +1,105 @@
+﻿
+@{
+    ViewBag.Title = "Courses";
+    Layout = "~/Views/Home/Shared/_HomeLayoutPage.cshtml";
+}
+
+<!-- contain main informative part of the site -->
+<main id="main">
+    <!-- heading banner -->
+    <header class="heading-banner text-white bgCover" style="background-image: url(../../HomeTemplate/images/img23.jpg);">
+        <div class="container holder">
+            <div class="align">
+                <center>   <h1>Courses</h1>     </center>
+</div>
+        </div>
+    </header>
+   
+   
+    <div id="two-columns" class="container">
+        <div class="row">
+          
+            <article id="content" class="col-xs-12 col-md-12">
+               
+                <div class="row flex-wrap">
+                    @{ int count = 0;}
+                    @{ int rateflag = 0;}
+                    @foreach (var item in ViewBag.courses)
+                    {
+                        rateflag = 0;
+                        count++;
+                        <div class="col-xs-12 col-sm-6 col-lg-3">
+
+                            <article class="popular-post">
+                                <div class="aligncenter">
+                                    <img src="~/Images/CourseImages/@item.Imageurl" style="height:147px;" />
+
+                                </div>
+                                <div>
+                                    Rs.<strong class="text-black font-lato  price-tag">@item.Price</strong>
+                                </div>
+                                <h3 class="post-heading"><a href="course-single.html">@item.Name</a></h3>
+                                <div class="post-author">
+
+                                    <h4 class="author-heading"><a href="instructor-single.html"></a></h4>
+                                </div>
+                                <footer class="post-foot gutter-reset">
+
+                                    @foreach (var rate in ViewBag.CourseRatings)
+
+                                    {
+                                        if (item.Course_ID == rate.CourseID)
+                                        {
+                                            rateflag = 1;
+                                            <ul class="star-rating list-unstyled" id="@("myid" + count)">
+
+                                                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+                                                <script>
+
+                                        var rating =@rate.Rating;
+                                        for (var t = 0; t < rating; t++) {
+
+                                            $('#@("myid"+count)').prepend("<br><li><span class='fas fa-star'><span class='sr - only'></span></span></li>");
+                                        }
+                                                </script>
+
+                                            </ul>
+                                        }
+
+
+                                    }
+
+                                    @if (rateflag == 0)
+                                    {
+                                        <ul class="star-rating list-unstyled" id="@("myid" + count)">
+
+                                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+                                            <script>
+
+                                        var rating =4;
+                                        for (var t = 0; t < rating; t++) {
+
+                                            $('#@("myid"+count)').prepend("<br><li><span class='fas fa-star'><span class='sr - only'></span></span></li>");
+                                        }
+                                            </script>
+
+                                        </ul>
+
+                                    }
+
+                                    @Html.ActionLink("Course Details", "CourseDetails", new { id = @item.Course_ID }, new { @class = "btn btn-warning btn-theme font-lato text-uppercase cse", })
+                                </footer>
+                            </article>
+                        </div>
+                    }
+
+                </div>
+                
+            </article>
+            <!-- sidebar -->
+
+        </div>
+    </div>
+</main>
+
+

@@ -1,0 +1,195 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>iReady Today</title>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+
+    <!-- ================== BEGIN BASE CSS STYLE ================== -->
+
+    <link href="~/Template/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+    <link href="~/Template/plugins/bootstrap/bootstrap4/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Template/plugins/icon/themify-icons/themify-icons.css" rel="stylesheet" />
+    <link href="~/Template/css/animate.min.css" rel="stylesheet" />
+    <link href="~/Template/css/style.min.css" rel="stylesheet" />
+    <link href="~/Template/css/theme/default.css" rel="stylesheet" id="theme" />
+    @*<link href="~/Template/css/theme/orange.css" rel="stylesheet" id="theme" />*@
+    <!-- ================== END BASE CSS STYLE ================== -->
+    <!-- ================== BEGIN BASE JS ================== -->
+    <script src="~/Template/plugins/loader/pace/pace.min.js"></script>
+
+
+</head>
+@*@{
+        ireadytodayEntities2 dbcontext = new ireadytodayEntities2();
+    }*@
+<body>
+    <!-- BEGIN #page-container -->
+    <div id="page-container" class="page-header-fixed page-sidebar-fixed fade">
+        <!-- BEGIN #header -->
+        <div id="header" class="header navbar navbar-default navbar-fixed-top">
+            <!-- BEGIN container-fluid -->
+            <div class="container-fluid">
+                <!-- BEGIN mobile sidebar expand / collapse button -->
+                <div class="navbar-header">
+                    @*<a href="#" class="navbar-brand">
+                            <img src="~/Template/img/ireadytoday_logo.png" class="img-responsive" />
+                        </a>*@
+                    <img src="~/Content/img/icon.jpg" />
+                    <b>IReadyToday</b>
+                    <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+
+                <div class="navbar-xs-justified">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+
+                        </li>
+
+
+                        <li class="dropdown">
+                            <a href="javascript:;" data-toggle="dropdown">
+                                <span class="navbar-user-img online pull-left">
+                                    <img src="~/student.png" alt="" />
+                                </span>
+                                <span class="hidden-xs ">  @User.Identity.Name <b class="caret"></b></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="@Url.Action("ChangePassword", "Manage")">Change password</a>
+                                </li>
+
+                                <li style="padding-left:10px;">
+
+                                    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <a class="nav-link" style="" href="javascript:document.getElementById('logoutForm').submit()">
+                                            <i class="fa fa-lock"></i>
+                                            Log off
+                                        </a>
+                                    }
+
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END header navigation right -->
+            </div>
+
+        </div>
+
+        <div id="sidebar" class="sidebar sidebar-inverse">
+
+            <div data-scrollbar="true" data-height="100%">
+
+
+                <ul class="nav">
+                    @*<li class="nav-profile" style="margin-bottom:10px">
+                            <div class="image">
+                                <img src="~/student.png" />
+                            </div>
+                            <div class="info">
+                                @foreach (var a in ViewBag.name)
+                                {
+                                    @a
+                                }
+                            </div>
+                        </li>*@
+
+                    <li @((Request.RawUrl.ToLower().EndsWith("/student/index") || Request.RawUrl.ToLower().EndsWith("/student")) ? "class=active" : "")>
+
+                        <a href="@Url.Action("Index", "Student")"><i class="ti-dashboard"></i>Dashboard</a>
+                    </li>
+
+                    <li class="has-sub">
+
+                    </li>
+                    <li @((Request.RawUrl.ToLower().EndsWith("/student/ProfileStudent")) ? "class=active" : "")>
+                        <a href="@Url.Action("ProfileStudent", "Student")"><i class="ti-user"></i>My Profile</a>
+                    </li>
+
+                    <li @((Request.RawUrl.ToLower().EndsWith("/student/startquiz")) ? "class=active" : "")>
+                        <a href="@Url.Action("StartQuiz", "Student")"><i class="ti-control-play"></i>Start Test</a>
+                    </li>
+                    <li @((Request.RawUrl.ToLower().EndsWith("/student/studentquizresult")) ? "class=active" : "")>
+                        <a href="@Url.Action("StudentQuizResult", "Student")"><i class="ti-star"></i>Test Result</a>
+                    </li>
+
+                    <li @((Request.RawUrl.ToLower().EndsWith("/student/studentsyllabusdisplay")) ? "class=active" : "")>
+                        <a href="@Url.Action("Studentsyllabusdisplay", "Student")"><i class="ti-book"></i>Subject Syllabus</a>
+                    </li>
+
+                    <li @((Request.RawUrl.ToLower().EndsWith("/student/jobdetails")) ? "class=active" : "")>
+                        <a href="@Url.Action("Jobdetails", "Student")"><i class="ti-eye"></i>Placement details</a>
+                    </li>
+
+                    <li @((Request.RawUrl.ToLower().EndsWith("/student/Newquestion_request")) ? "class=active" : "")>
+                        <a href="@Url.Action("Newquestion_request", "Student")"><i class="ti-eye"></i>New Question Request</a>
+                    </li>
+
+                    <li @((Request.RawUrl.ToLower().EndsWith("/student/Displayquestions")) ? "class=active" : "")>
+                        <a href="@Url.Action("Displayquestions", "Student")"><i class="ti-eye"></i>Requested Question</a>
+                    </li>
+                    <li @((Request.RawUrl.ToLower().EndsWith("/student/studentfeedback")) ? "class=active" : "")>
+                        <a href="@Url.Action("StudentFeedback", "Student")"><i class="ti-face-smile"></i>Feedback </a>
+                    </li>
+                    <li @((Request.RawUrl.ToLower().EndsWith("/student/GetPdftest")) ? "class=active" : "")>
+                        <a href="@Url.Action("GetPdftest", "Student")"><i class="ti-face-smile"></i>Certificate </a>
+                    </li>
+                </ul>
+
+                <div class="nav-copyright hide">
+                    <p>
+                        Copyright © <br />
+                        <script language="JavaScript" type="text/javascript">document.write((new Date()).getFullYear());</script> - Designed and Hosted by <br /> <a href="http://shlrtechnosoft.com/" target="_blank">SHLR Technosoft PVT LTD</a>
+                    </p>
+                </div>
+            </div>
+
+            @*<a href="#" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="ti-arrow-left"></i></a>*@
+
+        </div>
+
+        <div id="content" class="content">
+
+            @RenderBody()
+        </div>
+
+        <a href="#" data-click="scroll-top" class="btn-scroll-top fade"><i class="ti-arrow-up"></i></a>
+
+    </div>
+
+    <!-- ================== BEGIN BASE JS ================== -->
+    <script src="~/Template/plugins/jquery/jquery-3.2.1.min.js"></script>
+    <script src="~/Template/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script src="~/Template/plugins/cookie/js/js.cookie.js"></script>
+    <script src="~/Template/plugins/tooltip/popper/popper.min.js"></script>
+    <script src="~/Template/plugins/bootstrap/bootstrap4/js/bootstrap.min.js"></script>
+    <script src="~/Template/plugins/scrollbar/slimscroll/jquery.slimscroll.min.js"></script>
+    <!-- ================== END BASE JS ================== -->
+    <!-- ================== BEGIN PAGE LEVEL JS ================== -->
+    <script src="~/Template/plugins/chart/chart-js/Chart.min.js"></script>
+    <script src="~/Template/js/page/dashboard.demo.min.js"></script>
+    <script src="~/Template/js/apps.min.js"></script>
+    <!-- ================== END PAGE LEVEL JS ================== -->
+
+    <script>
+        $(document).ready(function () {
+            App.init();
+            Dashboard.init();
+        });
+    </script>
+
+
+    
+</body>
+</html>

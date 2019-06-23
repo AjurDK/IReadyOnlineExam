@@ -1,0 +1,122 @@
+﻿@model IReadyonlineexam.Models.StudentAttempandTimer_master
+
+@{
+    ViewBag.Title = "Student_attempt_timmer";
+    Layout = "~/Views/Admin/Shared/_AdminLayoutPage.cshtml";
+}
+
+<h2>Student attempt timmer master</h2>
+
+
+
+<div id="rootwizard" class="wizard wizard-full-width">
+
+    <form action="#" method="POST" name="wizard_form">
+
+        <div class="wizard-content tab-content">
+
+            <div class="tab-pane active" id="tab1">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="row">
+
+                        <div class="col-md-6 offset-md-3">
+                            <p class="desc m-b-20"></p>
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            <div class="form-group">
+                                <label class="control-label">Year</label>
+                                @Html.DropDownListFor(model => model.year, (IEnumerable<SelectListItem>)ViewBag.selectedyear, "Select Year", new { @class = "form-control" })
+
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Category</label>
+                                @Html.DropDownListFor(Model => Model.course, (IEnumerable<SelectListItem>)ViewBag.selectedcourse as SelectList, new { @class = "form-control" })
+
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="control-label">Number of attempts<span class="text-danger">*</span></label>
+                                @Html.EditorFor(model => model.Numberofattempts, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Exam Timmer<span class="text-danger">*</span></label>
+                                @Html.EditorFor(model => model.time, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Create" class="btn btn-primary wizard-next-btn btn-rounded" />
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                }
+
+                <div class="panel-body">
+                    <center>
+                        <table class="table table-striped m-b-0">
+                            <tr>
+                                <th>
+                                    Year
+                                </th>
+                                <th>
+                                    Category
+                                </th>
+
+                                <th>
+                                    Number of attempts
+                                </th>
+                                <th>
+                                    Timmer
+                                </th>
+
+                                <th>
+                                    Created Date
+                                </th>
+                            </tr>
+
+                            @foreach (var item in ViewBag.sat)
+                            {
+                                <tr>
+                                    <td>
+                                        @item.YearName
+                                    </td>
+                                    <td>
+                                        @item.CourseName
+                                    </td>
+                                    <td>
+                                        @item.Numberofattempts
+                                    </td>
+
+                                    <td>
+                                        @item.time
+                                    </td>
+                                    <td>
+
+                                        @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.CreatedDate))
+
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Edit","EditstudentAttemptandTimer", new {id=item.SATID }) |
+                                        @Html.ActionLink("Delete","DeleteStudentAttemptandTimer",new {id = item.SATID })
+                                    </td>
+                                </tr>
+                            }
+
+                        </table>
+                    </center>
+
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+</div>

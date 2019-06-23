@@ -1,0 +1,115 @@
+﻿@model List<IReadyonlineexam.Models.MyAnswerModel>
+
+@{
+    ViewBag.Title = "QuestionInsert";
+    Layout = "~/Views/Contributor/Shared/_ContributorLayoutPage.cshtml";
+}
+
+
+<style type="text/css">
+
+    .textarea {
+        background: rgba(255, 255, 255, 0.3);
+        border-color: #C8C7CC;
+        width: 100%;
+        padding: 0.375rem 0.75rem;
+        overflow: auto;
+        resize: vertical;
+    }
+</style>
+
+@Html.Raw(TempData["msg"])
+
+@*<div class="col-md-12">*@
+<div class="panel panel-default">
+    <h2 style="font-weight:700;">Add Questions</h2>
+
+    <div class="panel-body">
+        @using (Html.BeginForm("QuestionInsert", "Contributor", FormMethod.Post, new { QuestionText = "QuestionText", enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                <div class="form-group">
+                    <label class="control-label">Enter Question</label>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        @Html.TextArea("QuestionText", new { @class = "form-control textarea", @placeholder = "Enter Question", @id = "QuestionText" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" style="padding-bottom:10px;">Enter Options </label>
+                </div>
+
+                <div class="row">
+                    @for (int i = 0; i < 4; i++)
+                    {
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.TextBoxFor(model => model[i].AnswerName, new { @class = "form-control textarea", @placeholder = "Enter Option " + i, required = "required" })
+                                @Html.CheckBoxFor(model => model[i].isAnswer, new { @class = "check" })
+                            </div>
+                        </div>
+                    }
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        }
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+        <script type="text/javascript">
+            $('.check').on('change', function () {
+                $('.check').not(this).prop('checked', false);
+            });
+        </script>
+    </div>
+
+    <div class="panel-body">
+
+        @Html.ActionLink("View All Questions", "QuizDetails", new { _QuizID = @ViewBag._QuizID }) |
+    </div>
+</div>
+@*</div>*@
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4 style="font-weight:700;">Existing Questions</h4>
+    </div>
+    @{Html.RenderAction("CategoryDetails");}
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,121 @@
+﻿@model IReadyonlineexam.Models.CommitteeMembers_Profile
+
+@{
+    ViewBag.Title = "CommittememProfile";
+    Layout = "~/Views/CommitteMember/Shared/_CommitteLayoutPage.cshtml";
+}
+
+<h2>My Profile</h2>
+@if (ViewBag.result != null)
+{
+    <script>
+        alert("@ViewBag.result");
+    </script>
+}
+
+<div id="rootwizard" class="wizard wizard-full-width">
+
+    <form action="#" method="POST" name="wizard_form">
+
+        <div class="wizard-content tab-content">
+
+            <div class="tab-pane active" id="tab1">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="row">
+
+                        <div class="col-md-6 offset-md-3">
+                            <p class="desc m-b-20"></p>
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                }
+
+                <div class="panel-body">
+                    <center>
+                        <table class="table table-striped m-b-0">
+                            <tr>
+
+                                <th>
+                                    Name
+                                </th>
+
+                                <th>
+                                    Gender
+                                </th>
+                                <th>
+                                    Mobile Number
+                                </th>
+                                <th>
+                                    EmailID
+                                </th>
+                                <th>
+                                    Category Name
+                                </th>
+
+                                <th>
+                                    Address
+                                </th>
+                                <th>
+                                    Qualification
+                                </th>
+                                <th>
+                                    Registered Date
+                                </th>
+
+                            </tr>
+
+                            @foreach (var item in ViewBag.myprofile)
+                            {
+                                <tr>
+                                    <td>
+                                        @item.Name
+                                    </td>
+                                    <td>
+                                        @item.Gender
+                                    </td>
+                                    <td>
+                                        @item.MobileNumber
+                                    </td>
+                                    <td>
+                                        @item.Email
+                                    </td>
+                                    <td>
+                                        @item.CourseName
+                                    </td>
+
+                                    <td>
+                                        @item.Address
+                                    </td>
+                                    <td>
+                                        @item.Qualification
+                                    </td>
+
+
+                                    <td>
+                                        @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.CreatedDate))
+
+
+                                    </td>
+
+
+
+                                </tr>
+                            }
+
+                        </table>
+                    </center>
+
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+</div>
+
+
+

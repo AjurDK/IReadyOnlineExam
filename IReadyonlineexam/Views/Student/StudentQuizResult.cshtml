@@ -1,0 +1,86 @@
+﻿@model IEnumerable<IReadyonlineexam.Models.Stu_Result>
+
+@{
+    ViewBag.Title = "StudentQuizResult";
+    Layout = "~/Views/Student/Shared/_StudentLayoutPage.cshtml";
+}
+
+<div class="view-header">
+    <div class="pull-right text-right" style="line-height: 14px">
+        <a href="/student"><small>  <i class="ti-back-left"></i> Dashboard </small></a>
+    </div>
+    <div class="header-icon">
+        <i class="ti-user"></i>
+    </div>
+    <div class="header-title">
+        <h3 class="">Test Result</h3>
+     
+    </div>
+</div>
+
+<div id="rootwizard" class="wizard wizard-full-width">
+
+    <form action="#" method="POST" name="wizard_form">
+
+        <div class="wizard-content tab-content">
+
+            <div class="tab-pane active" id="tab1">
+
+                <div class="panel-body">
+
+                    <center>
+                        <table class="table table-striped m-b-0">
+                            <tr>
+                                <th>
+                                    Subject Name
+                                </th>
+                                <th>
+                                    Unit Name
+                                </th>
+                                <th>
+                                    Total Marks
+                                </th>
+                                <th>
+                                    Scored Marks
+                                </th>
+
+                                <th>
+                                    Quiz Taken Date
+                                </th>
+
+                            </tr>
+
+                            @foreach (var item in ViewBag.StudentQuizResult)
+                            {
+                                <tr>
+                                    <td>
+                                        @item.SubjectName
+                                    </td>
+                                    <td>
+                                        @item.UnitName
+                                    </td>
+                                    <td>
+                                        @item.TotalMarks
+                                    </td>
+                                    <td>
+                                        @item.ScoredMarks
+                                    </td>
+                                    <td>
+                                        @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.CreatedDate))
+                                    </td>
+                                </tr>
+                            }
+
+                        </table>
+                    </center>
+
+                </div>
+
+            </div>
+        </div>
+
+    </form>
+
+</div>
+
+

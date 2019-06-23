@@ -1,0 +1,78 @@
+﻿@model IReadyonlineexam.Models.Registration
+
+@{
+                /**/
+
+                ViewBag.Title = "Details";
+                Layout = "~/Views/Admin/Shared/_AdminLayoutPage.cshtml";
+}
+
+<h2>Details</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Registration</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.State, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.State, ViewBag.state as List<SelectListItem>, new { style = "width: 200px;" })
+
+                @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.City, new SelectList(string.Empty, "Value", "Text"), "--Select City--", new { style = "width:200px" })
+
+                @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+<script type="text/javascript">
+
+
+
+    $(document).ready(function () {
+
+        $("#State").change(function () {
+            $("#City").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("getcity")',
+                dataType: 'json',
+                data: { id: $("#State").val() },
+                success: function (city) {
+
+                    $.each(city, function (i, city) {
+                        $("#City").append('<option value="'+ city.Value + '">' + city.Text + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed.' + ex);
+                }
+            });
+            return false;
+        })
+    });
+</script>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

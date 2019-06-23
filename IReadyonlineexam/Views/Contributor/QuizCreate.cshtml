@@ -1,0 +1,172 @@
+﻿@model IReadyonlineexam.Models.MyQuizModel
+
+@{
+    /**/
+
+    ViewBag.Title = "QuizCreate";
+    Layout = "~/Views/Contributor/Shared/_ContributorLayoutPage.cshtml";
+}
+<style>
+    .center {
+        margin: auto;
+        width: 60%;
+        padding: 10px;
+    }
+</style>
+@Html.Raw(TempData["msg"])
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4 style="font-weight:700;">Create Quiz To Add Questions</h4>
+    </div>
+    <div class="col-md-12">
+        <div class="col-md-8 center">
+            <div class="panel-body">
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Course Name</label>
+                        @Html.DropDownListFor(model => model.CourseID, ViewBag.CourseDDL as List<SelectListItem>, new { @class = "form-control", @id = "CourseID" })
+                        @Html.ValidationMessageFor(m => m.CourseID, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Semester Name</label>
+                        @Html.DropDownListFor(model => model.SemesterID, new SelectList(string.Empty, "Value", "Text"), "--Select Semester--", new { @class = "form-control" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Subject Name</label>
+                        @Html.DropDownListFor(model => model.SubjectID, new SelectList(string.Empty, "Value", "Text"), "--Select Subject--", new { @class = "form-control" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Unit Name</label>
+                        @Html.DropDownListFor(model => model.UnitID, (IEnumerable<SelectListItem>)ViewBag.UnitDDL as SelectList, new { @class = "form-control", @id = "UnitID" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Category</label>
+                        <input type="text" id="QuizName" name="QuizName" class="form-control" value="" readonly />
+                        @*@Html.EditorFor(model => model.QuizName, new { htmlAttributes = new { @class = "form-control", required = "required" } })*@
+                        @Html.ValidationMessageFor(model => model.QuizName, "", new { @class = "text-danger" })
+                    </div>
+
+                    <button id="btnSubmit" type="submit" class="btn btn-primary">Create Quiz</button>
+                }
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4 style="font-weight:700;">Add Questions into Existing Quiz</h4>
+    </div>
+    @{Html.RenderAction("QuizLists");}
+
+</div>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#CourseID").change(function() {
+            $("#SemesterID").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetSemester")',
+                dataType: 'json',
+                data: { CourseID: $("#CourseID").val() },
+                success: function (course) {
+
+                    $.each(course, function(i, sem) {
+                        $("#SemesterID").append('<option value="' + sem.Value + '">' + sem.Text + '</option>');
+                        });
+                    },
+                error: function(ex) {
+                        alert('Failed.' + ex);
+                    }
+                });
+                return false;
+            })
+    });
+
+
+     $(document).ready(function () {
+
+         $("#SemesterID").change(function() {
+             $("#SubjectID").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("QuizGetSubject")',
+                dataType: 'json',
+                data: { SemesterID: $("#SemesterID").val() },
+                success: function (sem) {
+
+                    $.each(sem, function(i, sub) {
+                        $("#SubjectID").append('<option value="' + sub.Value + '">' + sub.Text + '</option>');
+                        });
+                    },
+                error: function(ex) {
+                        alert('Failed.' + ex);
+                    }
+                });
+                return false;
+            })
+     });
+
+    $(document).ready(function () {
+
+        $("#UnitID").change(function () {
+            var CourseID = $("#CourseID option:selected").text();
+            var SemID = $("#SemesterID option:selected").text();
+            var SubjectID = $("#SubjectID option:selected").text();
+            var Unit = $("#UnitID option:selected").text();
+            var Quiz =CourseID + " / "+ SemID + " / " + SubjectID + " / " + Unit;
+
+            $("#QuizName").val(Quiz);
+                document.getElementById('QuizName').value = Quiz;
+        });
+    });
+
+    $(function () {
+        $("#btnSubmit").click(function () {
+            var course = $("#CourseID  option:selected");
+            var sem = $("#SemesterID  option:selected");
+            var subject = $("#SubjectID  option:selected");
+            var unit = $("#UnitID  option:selected");
+
+            if (course.val() == "" || course.val()==0) {
+                alert("Please select Course!");
+                return false;
+            }
+            else if (sem.val() == "" || sem.val() == 0) {
+                alert("Please select Semester!");
+                return false;
+            }
+            else if (subject.val() == "" || subject.val() == 0) {
+                alert("Please select Subject!");
+                return false;
+            }
+            else if (unit.val() == "" || unit.val() == 0) {
+                alert("Please select Unit!");
+                return false;
+            }
+            return true;
+        });
+    });
+</script>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+

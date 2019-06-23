@@ -1,0 +1,94 @@
+﻿@model IEnumerable<IReadyonlineexam.Models.ContAnsModel>
+
+@{
+    ViewBag.Title = "AnswerQuestion";
+    Layout = "~/Views/Contributor/Shared/_ContributorLayoutPage.cshtml";
+}
+
+<h4>Answer Question</h4>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.QuestionID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StudentID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CourseName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SemName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SubjectName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QuestinoHeading)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QuestionDescription)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Answer)
+        </th>*@
+        @*<th>
+            @Html.DisplayNameFor(model => model.IsAnswered)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.QuestDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuestionID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StudentID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CourseName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SemName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SubjectName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnitName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuestinoHeading)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuestionDescription)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Answer)
+        </td>*@
+        @*<td>
+            @Html.DisplayFor(modelItem => item.IsAnswered)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.QuestDate)
+        </td>
+        <td>
+            @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |*@
+            @Html.ActionLink("Answer", "Answer", new {  id=item.QuestionID }) 
+            @*@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+        </td>
+    </tr>
+}
+
+</table>

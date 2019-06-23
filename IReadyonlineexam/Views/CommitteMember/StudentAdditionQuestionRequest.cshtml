@@ -1,0 +1,91 @@
+﻿@model IEnumerable<IReadyonlineexam.Models.Stu_Additionalquestionrequest>
+
+@{
+    ViewBag.Title = "StudentAdditionQuestionRequest";
+    Layout = "~/Views/CommitteMember/Shared/_CommitteLayoutPage.cshtml";
+}
+
+<h2>Student Addition Question Request</h2>
+@if (ViewBag.result != null)
+{
+    <script>
+        alert("@ViewBag.result");
+    </script>
+}
+<div id="rootwizard" class="wizard wizard-full-width">
+
+    <form action="#" method="POST" name="wizard_form">
+
+        <div class="wizard-content tab-content">
+
+            <div class="tab-pane active" id="tab1">
+
+
+                <div class="panel-body">
+
+                    <center>
+                        <table class="table table-striped m-b-0">
+                            <tr>
+                                <th>
+                                    Year
+                                </th>
+                                <th>
+                                    Category
+                                </th>
+
+                                <th>
+                                    Semester
+                                </th>
+                                <th>
+                                    Subject
+                                </th>
+
+                                <th>
+                                    Description
+                                </th>
+                                <th>
+                                    Requested Date
+                                </th>
+                            </tr>
+
+                            @foreach (var item in ViewBag.saqr)
+                            {
+                                <tr>
+                                    <td>
+                                        @item.YearName
+
+                                    </td>
+                                    <td>
+                                        @item.CourseName
+                                    </td>
+                                    <td>
+                                        @item.SemName
+                                    </td>
+
+                                    <td>
+                                        @item.SubjectName
+                                    </td>
+                                    <td>
+                                        @item.AQDescription
+                                    </td>
+                                    <td>
+
+                                        @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.CreatedDate))
+
+                                    </td>
+
+                                </tr>
+                            }
+
+                        </table>
+                    </center>
+
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+</div>
+
+

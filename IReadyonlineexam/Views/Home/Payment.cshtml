@@ -1,0 +1,168 @@
+﻿
+@{
+    ViewBag.Title = "Payment";
+    Layout = "~/Views/Home/Shared/_HomeLayoutPage.cshtml";
+}
+
+
+
+<input type="hidden" value="@Session["OrderID"]" id="myHiddenVar" />
+<input type="hidden" value="@Session["Price"]" id="myHiddenVar1" />
+
+
+<main id="main">
+    <section class="container checkout-block">
+
+        <h2>Your Order</h2>
+        <form action="#" class="checkout-form">
+
+            <div class="table-wrap">
+                <!-- order data table -->
+                <table class="table order-data-table">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{int? i = 0, j = 0;}
+                        @foreach (var course in ViewBag.Courses)
+                        {
+                            j = 0;
+                            <tr>
+                                <td>@course</td>
+
+                                @foreach (var price in ViewBag.Pricelist)
+                                {
+                                    if (i == j)
+                                    {
+                                        <td><strong class="price">@price</strong></td>
+                                    }
+                                    j++;
+                                }
+                            </tr>
+                            i++;
+                        }
+
+
+                        <tr>
+                            <td><span class="text-dark">Total</span></td>
+                            <td><strong class="price">@Session["Price"]</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- confirmation box -->
+            <div class="confirmation-box">
+                <!-- radio list -->
+                <ul class="list-unstyled radio-list">
+                    <li>
+                        <input type="radio" class="customFormReset" id="rad01" name="paym" checked>
+                        <label for="rad01" class="custom-radio-wrap fw-normal">Pay Offline</label>
+                        <div class="m-descr">
+                            <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your course won’t be subscribed until the fund have cleared in our account.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <input type="radio" class="customFormReset" id="rad02" name="paym" checked>
+                        <label for="rad02" class="custom-radio-wrap fw-normal">Razorpay </label>
+                        <img src="~/Content/img/rzp-logo-positive.png" alt="payment-method" class="hidden-xs">
+
+                    </li>
+                </ul>
+                <hr class="sep">
+                <div class="text-right">
+                    @*<button type="submit" class="btn btn-warning btn-theme font-lato fw-bold text-uppercase">Place Order</button>*@
+                    <button id="rzp-button1" class="btn btn-warning btn-theme font-lato fw-bold text-uppercase">Pay Now</button>
+                </div>
+            </div>
+</form>
+
+            @*<div class="row" style="margin-top:5%;margin-left:10%">
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3><span class="text-purple">Dear</span> @Session["User"]</h3>
+                        </div>
+                        <div class="panel-body">
+                            <p>
+                                <table class="table m-b-0">
+                                    <thead>
+                                        <tr>
+
+                                            <th>Order ID</th>
+                                            <th>Amount</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>>@Session["OrderID"]</td>
+                                            <td>@Session["Price"]</td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </p>
+                            <button id="rzp-button1" class="btn btn-purple">Pay Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+    </section>
+</main>
+
+
+
+
+
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+        var amount = 0;
+        var OrderID = $("#myHiddenVar").val();
+        var Price = $("#myHiddenVar1").val();
+        Price1 = Price + "00";
+        amount = Price1;
+
+
+        var options = {
+            "key": "rzp_test_OIkqkKP1mCz6bE",
+            //"amount": "59900", /// The amount is shown in currency subunits. Actual amount is ₹599.
+            "amount": amount,
+            "name": "Merchant Name",
+            "order_id": OrderID, // Pass the order ID if you are using Razorpay Orders.
+            "currency": "INR", // Optional. Same as the Order currency
+            "description": "Purchase Description",
+            "image": "/your_logo.png",
+            "handler": function (response) {
+                alert("Your Payment Is Successfull \n Your Payment ID is : " + response.razorpay_payment_id);
+                localStorage.clear();
+
+                window.location.href = "PaymentSuccess?payid=" + response.razorpay_payment_id;
+
+
+            },
+            "prefill": {
+                "name": "Gaurav Kumar",
+                "email": "test@test.com"
+            },
+            "notes": {
+                "address": "Hello World"
+            },
+            "theme": {
+                "color": "#F37254"
+            }
+
+        };
+        var rzp1 = new Razorpay(options);
+
+        document.getElementById('rzp-button1').onclick = function (e) {
+            rzp1.open();
+            e.preventDefault();
+        }
+    </script>
+

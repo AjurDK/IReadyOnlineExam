@@ -1,0 +1,65 @@
+﻿@model IReadyonlineexam.Models.StudentAttempandTimer_master
+
+@{
+    /**/
+
+    ViewBag.Title = "DeleteStudentAttemptandTimer";
+    Layout = "~/Views/Admin/Shared/_AdminLayoutPage.cshtml";
+}
+
+<h2>Delete Student Attempt and Timer</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+
+<div id="rootwizard" class="wizard wizard-full-width">
+
+    <form action="#" method="POST" name="wizard_form">
+
+        <div class="wizard-content tab-content">
+
+            <div class="tab-pane active" id="tab1">
+                @using (Html.BeginForm("DeleteStudentAttempandTimer", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="row">
+
+                        <div class="col-md-6 offset-md-3">
+                            <p class="desc m-b-20"></p>
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.SATID)
+
+
+
+
+                            <div class="form-group">
+                                <label class="control-label">Number of attempts<span class="text-danger">*</span></label>
+                                @Html.EditorFor(model => model.Numberofattempts, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Exam Timmer<span class="text-danger">*</span></label>
+                                @Html.EditorFor(model => model.time, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Delete" class="btn btn-primary wizard-next-btn btn-rounded" />
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                }
+                <div>
+                    @Html.ActionLink("Back to List", "Student_attempt_timmer")
+                </div>
+
+            </div>
+        </div>
+
+    </form>
+
+</div>
+

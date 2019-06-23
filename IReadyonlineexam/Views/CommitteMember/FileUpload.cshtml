@@ -1,0 +1,264 @@
+﻿@model IReadyonlineexam.Models.StudyMaterial
+
+@{
+                /**/
+
+                ViewBag.Title = "FileUpload";
+                Layout = "~/Views/CommitteMember/Shared/_CommitteLayoutPage.cshtml";
+}
+
+<h2>FileUpload</h2>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+@if (ViewBag.mes != null)
+{
+    string me = ViewBag.mes;
+    string suc = "1";
+    string fail = "0";
+    if (me.Equals(suc))
+    {
+        <script type="text/javascript">
+
+            window.onload = function () {
+
+                swal("Good job!", "Your File Was Uploaded Successfully....!", "success");
+            };
+
+        </script>
+    }
+    else if (me.Equals(fail))
+    {
+        <script type="text/javascript">
+
+            window.onload = function () {
+
+                swal("Error Occured!", "Your File Not Uploaded Please Enter Nessary Data....!", "error");
+            };
+
+        </script>
+    }
+
+}
+else
+{
+
+}
+
+
+
+
+
+
+<div id="rootwizard" class="wizard wizard-full-width">
+
+
+
+    <div class="wizard-content tab-content">
+
+        <div class="tab-pane active" id="tab1">
+
+            @using (Html.BeginForm("FileUpload", "CommitteMember", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="row">
+
+
+                    <div class="col-md-6 offset-md-3">
+                        <p class="desc m-b-20"></p>
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="form-group">
+                            <label class="control-label">Course Name</label>
+                            @Html.DropDownListFor(model => model.CourseID, (IEnumerable<SelectListItem>)ViewBag.selectedcourse as SelectList, new { @class = "form-control", id = "ddlcource" })
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Semester</label>
+                            @Html.DropDownListFor(Model => Model.SemID, (IEnumerable<SelectListItem>)ViewBag.selectedsem as SelectList, new { @class = "form-control", id = "ddlsem" })
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Study Material Title<span class="text-danger">*</span></label>
+                            @Html.EditorFor(model => model.SM_Name, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Study Material Description<span class="text-danger">*</span></label>
+                            @Html.EditorFor(model => model.SM_Description, new { htmlAttributes = new { @class = "form-control", @rows = 4 } })
+                        </div>
+
+
+                        <div class="form-group row ">
+                            <label class="col-md-2 form-control-label" for="text-input" id="lbl1" style="margin-top: 1%;">Select File</label>
+                            <div class="col-md-3">
+
+                                <span class="btn btn-info btn-file">
+                                    <input type="file" id="FileUpload1" name="FileUpload1" multiple="multiple" class="multi" />
+                                </span>
+                                <span style="color:Red" id=gg></span>
+
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10" style="margin-left: 160%;">
+                                    <input type="submit" value="Submit" class="btn btn-primary wizard-next-btn btn-rounded" />
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+
+                        <div class="col-md-10" id="">
+
+                            <h3><b>View File by Clicking On Name</b></h3>
+                            <div class="col-md-12 border border-info" id="fileView" style="height:300px;overflow-y: scroll;padding:5px; border: 1px solid #ccc;">
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            }
+
+
+        </div>
+    </div>
+
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#btnUploa1').click(function () {
+
+
+            if (window.FormData !== undefined) {
+
+                var fileUpload = $("#FileUpload1").get(0);
+                var files = fileUpload.files;
+                var lblid = $("#lbl1").text();
+                var fileData = new FormData();
+                for (var i = 0; i < files.length; i++) {
+                    fileData.append(files[i].name, files[i]);
+                }
+                var data = JSON.stringify(fileData);
+                console.log(fileData);//
+                $.ajax({
+                    type: "POST",
+
+                    url: '/CommitteMember/UploadScanfiles?str1=' + $("#txtPropertyNumber").val() + '&dis=' + $("#NewRow").val() + '&formtype=' + $("#ddlap option:selected").text() + '&FileTypeName=' + lblid,
+                    contentType: false, // Not to set any content header
+                    processData: false, // Not to process data
+                    data: fileData,
+                    dataType: JSON,
+                    success: function (result) {
+                        alert(result.responstext);
+                    },
+                    error: function (err) {
+                        alert(err.statusText);
+                    }
+                });
+            } else {
+                alert("Form Data is not supported.");
+            }
+        });
+    });
+</script>
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+
+        //$(document).on("click", ".Cert", function () {
+
+        $("#ddlsem").change(function () {
+
+            $.get("/CommitteMember/Getfiles", { sem: $("select#ddlsem").val(), cource: $("select#ddlcource").val() }, function (data) {
+                $("#fileView").empty();
+                $.each(data, function (i, v) {
+                    var c = '<lable>' + v.discription + '</lable><br/>'
+                    $("#NewRow").val(v.discription);
+                    var h = v.userid;
+                    var c2 = v.Attachment;
+                    //var c3 = v.waterTest;
+                    //var c4 = v.OrganicFormar;
+                    //var c5 = v.SLA;
+                    //for (k = 0; k < c2; k++) {
+                    //    if (c2[k] != "") {
+                    //var c1 = '<a href="/Content/Docs/' + c + '/' + c2[k] + '" target="_blank">' + c2[k] + '</a><br/>'
+                    if (c2 != "") {
+                        $("#fileView").append('<a href="/Content/Doc/' + h + '/' + c2 + '" class="rem" target="_blank">' + c2 + '    </a> <a href="/Content/Doc/' + h + '/' + c2 + '" class="rem1" ><i class="glyphicon glyphicon-trash" style="margin-left:10px;font-size:24px" ></i></i></a><br/>');
+                    }
+                    //if (c3 != "") {
+                    //    $("#fileView2").append('<a href="/Content/Docs/' + h + '/' + c3 + '" class="rem" target="_blank">' + c3 + '    </a> <a href="/Content/Docs/' + h + '/' + c3 + '" class="rem2" ><i class="fa fa-trash rem" aria-hidden="true" style="margin-left:10px;font-size:24px"></i></a><br/>');
+                    //}
+                    //if (c4 != "") {
+                    //    $("#fileView3").append('<a href="/Content/Docs/' + h + '/' + c4 + '" class="rem" target="_blank">' + c4 + '    </a> <a href="/Content/Docs/' + h + '/' + c4 + '" class="rem3" ><i class="fa fa-trash rem" aria-hidden="true" style="margin-left:10px;font-size:24px"></i></a><br/>');
+                    //}
+                    //if (c5 != "") {
+                    //    $("#fileView4").append('<a href="/Content/Docs/' + h + '/' + c5 + '" class="rem" target="_blank">' + c5 + '    </a> <a href="/Content/Docs/' + h + '/' + c5 + '" class="rem4" ><i class="fa fa-trash rem" aria-hidden="true" style="margin-left:10px;font-size:24px"></i></a><br/>');
+                    //}
+
+
+
+                    //    }
+                    //}
+                });
+
+                // console.log(kkk);
+            });
+
+        });
+
+        //var ddd = $("#ddlaplicant option:selected").text();
+        //var h = $("#textPropertyNumber").val();
+
+
+
+        $(document).on("click", ".rem1", function () {
+
+            var filename = $(this).attr("href");
+            var c2 = filename.split("/");
+            var fid = c2[c2.length - 2];
+            var k = c2[c2.length - 1];
+            var filetype = "SoilTest";
+            $(this).remove();
+            $(this).attr("href", "#");
+            $.ajax({
+                type: "POST",
+                url: "/CommitteMember/Removefile",//?FileName=" +k+'&name='+ $("#textPropertyNumber").text()+'&formtype='+ $("#ddlap option:selected").text(),
+                //data: '{name: "' + $("#textPropertyNumber").val() + '",ResidentialFlatFloorDetails:"' + ResidentialFlatFloorDetails + '",SubStageOfWork:"' + $("#SubStageOfWork").val() + '",SubInspection:"' + $("#SubInspection").val() + '",SubStageOfWorkPer:"' + $("#SubStageOfWorkPer").val() + '",SubValuationby:"' + $("#SubValuationby").val() + '" ,SubBankOfficer:"' + $("#SubBankOfficer").val() + '",SubRemarks:"' + $("#SubRemarks").val() + '"}',
+                data: '{semid:"' + $("select#ddlsem").val() + '", CourseID:"' + $("select#ddlcource").val() + '",ddd:"' + filetype + '"}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+
+                    alert("Removed Successfully");
+
+                    // $(".filetab").trigger("click");
+                },
+                failure: function (response) {
+                    alert("Save Failed ");
+                },
+                error: function (response) {
+                    alert("Error occared");
+                }
+            });
+
+
+        });
+
+    });
+
+</script>

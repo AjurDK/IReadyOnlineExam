@@ -1,0 +1,57 @@
+﻿@model IReadyonlineexam.Models.Question
+
+@{
+    ViewBag.Title = "UploadQuizQuestion";
+    Layout = "~/Views/CommitteMember/Shared/_CommitteLayoutPage.cshtml";
+}
+
+<h2>UploadQuizQuestion</h2>
+
+
+<div id="rootwizard" class="wizard wizard-full-width">
+
+    <form action="#" method="POST" name="wizard_form">
+
+        <div class="wizard-content tab-content">
+
+            <div class="tab-pane active" id="tab1">
+
+                @using (Html.BeginForm("UploadQuizQuestion", "CommitteMember", FormMethod.Post, new { interviewdate = "interviewdate", enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="row">
+
+
+                        <div class="col-md-6 offset-md-3">
+                            <p class="desc m-b-20"></p>
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            <div class="form-group">
+                                <label class="control-label">Quiz Question</label>
+                                @Html.DropDownListFor(model => model.QuizID, (IEnumerable<SelectListItem>)ViewBag.selectedquizname as SelectList, new { @class = "form-control" })
+
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Quiz Question<span class="text-danger">*</span></label>
+                                @Html.EditorFor(model => model.QuestionText, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Create" class="btn btn-primary" />
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                }
+
+                
+            </div>
+        </div>
+
+    </form>
+</div>

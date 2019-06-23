@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "QuizInstruction";
+    Layout = "~/Views/Student/Shared/_StudentLayoutPage.cshtml";
+}
+
+<style>
+    .ulclass {
+        text-align: justify;
+        padding-left: 100px;
+        line-height: 30px;
+        font-size: 17px;
+    }
+</style>
+
+<!-- BEGIN panel -->
+<div class="panel panel-default">
+    <!-- BEGIN panel-heading -->
+    <div class="panel-heading">
+        <h1 style="font-weight: 600;">Test Instructions</h1>
+    </div>
+    <!-- END panel-heading -->
+    <div class="col-md-12">
+        <div class="email-detail-body">
+            <hr />
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h5><b>Date</b>  : @DateTime.Now</h5>
+                    </div>
+                    <div class="col-md-4">
+                        <h5><b>Points</b>: 10</h5>
+
+                    </div>
+                    <div class="col-md-4">
+                        <h5><b>Questions</b>: 10</h5>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <h5><b>Time Limit</b>: 30 Minutes</h5>
+                    </div>
+                    <div class="col-md-4">
+                        <h5><b>Allowed Attempts</b>: 3</h5>
+
+                    </div>
+                </div>
+            </div>
+            <hr />
+
+            <div style="margin: 70px;margin-top:20px;">
+                <h2 class="page-header"> Instructions</h2>
+                <br />
+                <p style="text-align:justify;font-size: 15px;line-height: 30px;">
+                    This quiz consists of 10 multiple-choice questions. To be successful with the weekly quizzes, it’s important to thoroughly read chapter 5 in the textbook.  It will also be extremely useful to study the key terms at the end of the chapter and review the Test Your Knowledge activity at the end of the chapter. Keep the following in mind:
+                </p>
+                <br />
+                <ul class="ulclass">
+                    <li><strong style="width:20%">Multiple Attempts</strong> - You will have three attempts for this quiz with your highest score being recorded in the grade book.</li>
+                    <li><strong>Timing </strong> - You will need to complete each of your attempts in one sitting, as you are allotted 30 minutes to complete each attempt.</li>
+                    <li><strong>Answers </strong> - You may review your answer-choices and compare them to the correct answers after your final attempt.</li>
+                </ul>
+                <br />
+                <p style="text-align:justify;font-size: 15px;line-height: 30px;">To start, click the "<b>Take the Quiz</b>" button. When finished, click the "<b>Submit Quiz</b>" button.</p>
+                <br />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

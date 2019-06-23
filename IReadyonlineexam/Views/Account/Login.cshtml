@@ -1,0 +1,81 @@
+﻿@using IReadyonlineexam.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+    Layout = "~/Views/Account/Shared/_AccountLayoutPage.cshtml";
+}
+
+<!-- BEGIN login -->
+<div class="login">
+    <!-- BEGIN login-cover -->
+    <div class="login-cover"></div>
+    <!-- END login-cover -->
+    <!-- BEGIN login-content -->
+
+    <div class="login-content">
+        <!-- BEGIN login-brand -->
+
+        <div class="login-brand">
+            <a href="#"><span class="logo"><i class="ti-infinite"></i></span> IReadyToday</a>
+        </div>
+        <!-- END login-brand -->
+
+        <!-- BEGIN login-desc -->
+        @*<div class="login-desc">
+            For your protection, please verify your identity.
+        </div>*@
+        <!-- END login-desc -->
+
+        <!-- BEGIN login-form -->
+        <section id="loginForm" name="login_form">
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="form-group">
+                    <label class="control-label">Email</label>
+
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label ">Password</label>
+
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+
+                </div>
+
+                @*<div class="m-b-10">
+                    <div class="checkbox-inline">
+                        <div class="checkbox">
+                            @Html.CheckBoxFor(m => m.RememberMe)
+                            <label for="login-remember-me">Remember me</label>
+                        </div>
+                    </div>
+                </div>*@
+
+                @*<a href="#" class="pull-right">Forgot your ID or password?</a>*@
+
+                <input type="submit" value="Log in" class="btn btn-primary" />
+
+                <div class="m-t-20">
+                    @Html.ActionLink(" Not a member yet?", "Register")
+                </div>
+                
+            }
+        </section>
+
+        <!-- END login-form -->
+
+    </div>
+    <!-- END login-content -->
+</div>
+<!-- END login -->
+<!-- BEGIN btn-scroll-top -->
+<a href="#" data-click="scroll-top" class="btn-scroll-top fade"><i class="ti-arrow-up"></i></a>

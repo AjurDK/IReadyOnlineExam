@@ -1,0 +1,233 @@
+﻿@model IReadyonlineexam.Classes.UserData
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Contributor/Shared/_ContributorLayoutPage.cshtml";
+}
+
+
+<style>
+    .u-floatLeft {
+        display: none;
+    }
+
+    #container {
+        min-width: 320px;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    #container1 {
+        width: 400px !important;
+        height: 250px !important;
+        overflow: scroll;
+    }
+
+    .Layout {
+        display: block,
+    }
+
+    .DrpDown {
+        margin-top: 20px;
+        width: 100%;
+        font-size: 10px;
+    }
+
+    .btn {
+        margin-top: 50px;
+        margin-left: 254px;
+    }
+
+    #twitter {
+        height: 350px;
+        overflow: scroll;
+    }
+
+    .centered {
+        color: black;
+        font-size: 52px;
+        position: absolute;
+        top: 28%;
+        left: 45%;
+        transform: translate(-50%, -50%);
+    }
+</style>
+@*<h1 class="page-header">
+    Analytics <small>statistics</small>
+</h1>*@
+<!-- END page-header -->
+<!-- BEGIN row -->
+<div class="row">
+    <!-- BEGIN col-3 -->
+    <div class="col-lg-3 col-sm-6">
+        <!-- BEGIN widget -->
+        <a href="#" class="widget widget-stats bg-gradient-blue-dark">
+            <div class="widget-stats-info">
+                <div class="widget-stats-title">Total Queries</div>
+                <div class="widget-stats-value">
+                    @ViewBag.Queriescount
+                </div>
+                @*<div class="widget-desc">Today, 1:50PM</div>*@
+            </div>
+            <div class="widget-stats-icon">
+                <i class="ti-eye -full text-inverse"></i>
+            </div>
+        </a>
+        <!-- END widget -->
+    </div>
+    <!-- END col-3 -->
+    <!-- BEGIN col-3 -->
+    <div class="col-lg-3 col-sm-6">
+        <!-- BEGIN widget -->
+        <a href="#" class="widget widget-stats bg-gradient-purple-dark">
+            <div class="widget-stats-info">
+                <div class="widget-stats-title">Total Students</div>
+                <div class="widget-stats-value">
+                    @ViewBag.StudentsCount
+                </div>
+                @*<div class="widget-desc">Today, 11:25AM</div>*@
+            </div>
+            <div class="widget-stats-icon text-inverse">
+                <i class="ti-user"></i>
+            </div>
+        </a>
+        <!-- END widget -->
+    </div>
+    <!-- END col-3 -->
+    <!-- BEGIN col-3 -->
+    <div class="col-lg-3 col-sm-6">
+        <!-- BEGIN widget -->
+        <a href="#" class="widget widget-stats bg-gradient-pink">
+            <div class="widget-stats-info">
+                <div class="widget-stats-title">Total Contributors</div>
+                <div class="widget-stats-value">
+                    @ViewBag.ContributorCount
+                </div>
+                @*<div class="widget-desc">Today, 8:20AM</div>*@
+            </div>
+            <div class="widget-stats-icon text-inverse">
+                <i class="ti-user"></i>
+            </div>
+        </a>
+    </div>
+    <!-- END col-3 -->
+    <!-- BEGIN col-3 -->
+    <div class="col-lg-3 col-sm-6">
+        <!-- BEGIN widget -->
+        <a href="#" class="widget widget-stats bg-gradient-orange-dark">
+            <div class="widget-stats-info">
+                <div class="widget-stats-title">New Registered</div>
+                <div class="widget-stats-value">
+                    @ViewBag.NewRegistered
+                </div>
+                @*<div class="widget-desc">Yesterday, 10:23PM</div>*@
+            </div>
+            <div class="widget-stats-icon text-inverse">
+                <i class="ti-files"></i>
+            </div>
+        </a>
+        <!-- END widget -->
+    </div>
+    <!-- END col-3 -->
+</div>
+
+
+
+
+
+<div class="row">
+    <!-- BEGIN col-3 -->
+    <div class="col-lg-4 col-sm-6">
+        <!-- BEGIN section-title -->
+        @*<div class="section-title m-t-10">Notification</div>*@
+        <!-- END section-title -->
+        <div class="widget-card-content">
+            <a href="@Url.Action("JobNotification","Student")" class="widget-title-link bg-primary">More +</a>
+            <h5 class="widget-title"><b>New Queries </b>  <i class="ti-help"></i></h5></h5>
+        </div>
+        <!-- BEGIN widget -->
+        <div class="panel panel-default with-rounded-corner with-shadow" style="height:320px">
+            @*<div class="widget-card-cover">
+                    <div class="cover-bg with-gradient"></div>
+                    <img class="img-portrait" src="~/Template/img/dashboard-cover-5.jpg" alt="" />
+                </div>*@
+
+            <div class="widget-card-content p-10 p-t-0">
+
+                <div class="modal fade" id="small-modal">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Small Modal title</h4>
+                                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>One fine body&hellip;</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <marquee behavior="scroll" direction="up" onmouseover="this.stop();" onmouseout="this.start();">
+                    <ul class="widget widget-list inverse-mode" style="background:white">
+                        @{int a = 0;}
+                        @foreach (var query in ViewBag.QueryN)
+                        {
+                            a++;
+                            <li style="padding:1px;border:5px solid white;">
+                                @*<a href="#small-modal" data-toggle="modal" class="widget-list-container">*@
+                                    <div class="widget-list-content" >
+                                        <h4 class="widget-title text-ellipsis"  style="color:black"><b>@a</b> &nbsp;&nbsp; @query.Description</h4>
+                                    </div>
+                                    @*<div class="widget-list-action">
+                                        <div class="text-muted"><i class="ti-angle-right"></i></div>
+
+                                    </div>*@
+                                @*</a>*@
+                            </li>
+                        }
+                    </ul>
+                </marquee>
+
+            </div>
+        </div>
+        <!-- END widget -->
+    </div>
+
+    <div class="col-lg-4 col-sm-6">
+        @*<div class="section-title m-t-10">Twitter</div>*@
+        <div class="widget-card-content">
+           
+            <h5 class="widget-title">
+                <b>Twitter </b>
+                <i class="ti-twitter-alt"></i>
+            </h5>
+        </div>
+        <div id="twitter" class="panel panel-default with-rounded-corner with-shadow" style="height:320px">
+            <a class="twitter-timeline" href="https://twitter.com/TwitterDev/timelines/539487832448843776?ref_src=twsrc%5Etfw"></a>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
+    </div>
+    <!-- END col-3 -->
+    <!-- BEGIN col-3 -->
+    <div class="col-lg-4 col-sm-6">
+        @*<div class="section-title m-t-10">Advertisement</div>*@
+        <div class="widget-card-content">
+          
+            <h5 class="widget-title"><b>Advertisement </b><i class="ti-info-alt"></i></h5>
+        </div>
+        <div class="panel panel-default with-rounded-corner with-shadow" style="height:320px">
+            <div style="height:345px">
+
+            </div>
+
+
+        </div>
+    </div>
+    <!-- END col-3 -->
+
+
+</div>

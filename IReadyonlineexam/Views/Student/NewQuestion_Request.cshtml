@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "NewQuestion_Request";
+    Layout = "~/Views/Student/Shared/_StudentLayoutPage.cshtml";
+}
+
+<style>
+    .gap {
+        margin-left: 3%;
+        margin-top: 3%;
+    }
+
+    .drp {
+        margin-left: 3%;
+        max-width: 50%;
+    }
+
+    .textarea {
+        margin-left: 3%;
+        width: 333%;
+    }
+
+    .textarea1 {
+        margin-left: 3%;
+        width: 600%;
+    }
+    .button{
+        margin-left:3%;
+    }
+</style>
+
+<h4>New Question Request</h4>
+
+@using (Html.BeginForm("NewQuestion_Request", "Student",  FormMethod.Post, new { Sub = "Sub", Unit = "Unit", Q_heading ="Q_heading", Q_desc="Q_desc" }))
+{
+
+
+<div class="panel panel-default m-b-0">
+    <div class="row">
+        <div class="col-md-12">
+            @Html.Label("Subject", "Select Subject", new { @class = "gap" })
+            @Html.DropDownList("Sub", (IEnumerable<SelectListItem>)ViewBag.Subjects, new { @class = "form-control drp", @name = "Sub" })
+        </div>
+        <div class="col-md-12">
+            @Html.Label("Unit", "Select Unit", new { @class = "gap" })
+            @Html.DropDownList("Unit", (IEnumerable<SelectListItem>)ViewBag.Units, new { @class = "form-control  drp", @name = "Unit" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="panel panel-default gap">
+            <h4 class="panel-title gap">Question Heading</h4>
+
+            @Html.TextArea("Q_heading", "", new { @class = "summernote form-control textarea", @name = "Q_heading", required= "required" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="panel panel-default gap">
+            <h4 class="panel-title gap">Question Description</h4>
+
+            @Html.TextArea("Q_desc", "", new { @class = "summernote form-control textarea1", @name = "Q_desc",required= "required" })
+        </div>
+    </div>
+
+    <input type="submit" value="Submit Question" class="btn btn-primary button" />
+
+</div>
+
+}

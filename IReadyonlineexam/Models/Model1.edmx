@@ -1,0 +1,2230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ireadytodayModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Answers">
+          <Key>
+            <PropertyRef Name="AnswerID" />
+          </Key>
+          <Property Name="AnswerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AnswerText" Type="varchar(max)" />
+          <Property Name="QuestionID" Type="int" />
+          <Property Name="IsAnwer" Type="bit" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Isactive" Type="bit" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ContributorProfile">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="DOB" Type="datetime" />
+          <Property Name="PhoneNo" Type="varchar" MaxLength="20" />
+          <Property Name="Skills" Type="nvarchar(max)" />
+          <Property Name="Website" Type="nvarchar(max)" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="Status" Type="bit" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="Image" Type="nvarchar(max)" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="10" />
+          <Property Name="CourseID" Type="int" />
+          <Property Name="Institution_Name" Type="varchar(max)" />
+          <Property Name="Experience" Type="varchar(max)" />
+          <Property Name="Current_Position" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Course_master">
+          <Key>
+            <PropertyRef Name="Course_ID" />
+          </Key>
+          <Property Name="Course_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifedDate" Type="datetime" />
+          <Property Name="Imageurl" Type="nvarchar(max)" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="Price" Type="int" />
+          <Property Name="Rating" Type="int" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContactName" Type="nvarchar" MaxLength="50" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="Country" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Job_Master">
+          <Key>
+            <PropertyRef Name="JobID" />
+          </Key>
+          <Property Name="JobID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="year" Type="int" />
+          <Property Name="Course" Type="int" />
+          <Property Name="Designation" Type="varchar" MaxLength="100" />
+          <Property Name="Company_Name" Type="varchar" MaxLength="100" />
+          <Property Name="Description" Type="varchar" MaxLength="100" />
+          <Property Name="ScheduledDate" Type="datetime" />
+          <Property Name="Location" Type="varchar" MaxLength="100" />
+          <Property Name="CraetedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="Semester" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="MailTemplateMaster">
+          <Key>
+            <PropertyRef Name="MailID" />
+          </Key>
+          <Property Name="MailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MailTitle" Type="varchar(max)" />
+          <Property Name="MailDescription" Type="varchar(max)" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Movie">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="1" />
+          <Property Name="Genre" Type="varchar" MaxLength="1" />
+          <Property Name="Description" Type="varchar" MaxLength="1" />
+          <Property Name="Rating" Type="varchar" MaxLength="1" />
+          <Property Name="RateCount" Type="int" />
+          <Property Name="RateTotal" Type="int" />
+        </EntityType>
+        <EntityType Name="PriceMaster">
+          <Key>
+            <PropertyRef Name="PriceID" />
+          </Key>
+          <Property Name="PriceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Price" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Question_details">
+          <Key>
+            <PropertyRef Name="quizid" />
+          </Key>
+          <Property Name="quizid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Course_ID" Type="int" />
+          <Property Name="SubjectID" Type="int" />
+          <Property Name="Uid" Type="int" />
+          <Property Name="Q_no" Type="int" />
+          <Property Name="Question_Name" Type="varchar(max)" />
+          <Property Name="Q_op1" Type="varchar(max)" />
+          <Property Name="Q_op2" Type="varchar(max)" />
+          <Property Name="Q_op3" Type="varchar(max)" />
+          <Property Name="Q_op4" Type="varchar(max)" />
+          <Property Name="Q_Ans" Type="varchar(max)" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Questions">
+          <Key>
+            <PropertyRef Name="QuestionID" />
+          </Key>
+          <Property Name="QuestionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QuestionText" Type="varchar(max)" />
+          <Property Name="QuizID" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="CourseID" Type="int" />
+          <Property Name="SubjectID" Type="int" />
+          <Property Name="UnitID" Type="int" />
+        </EntityType>
+        <EntityType Name="Quiz">
+          <Key>
+            <PropertyRef Name="QuizID" />
+          </Key>
+          <Property Name="QuizID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QuizName" Type="nvarchar(max)" />
+          <Property Name="CourseID" Type="int" />
+          <Property Name="SemesterID" Type="int" />
+          <Property Name="SubjectID" Type="int" />
+          <Property Name="UnitID" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Semester">
+          <Key>
+            <PropertyRef Name="SemID" />
+          </Key>
+          <Property Name="SemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="CourseID" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Semester_master">
+          <Key>
+            <PropertyRef Name="SemID" />
+          </Key>
+          <Property Name="SemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="CraetedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Smstemplate_master">
+          <Key>
+            <PropertyRef Name="SmstemplateID" />
+          </Key>
+          <Property Name="SmstemplateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="smstemp_title" Type="varchar" MaxLength="255" />
+          <Property Name="smstemp_description" Type="varchar" MaxLength="255" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="StarRating">
+          <Key>
+            <PropertyRef Name="RateID" />
+          </Key>
+          <Property Name="RateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Rate" Type="int" />
+          <Property Name="IpAddress" Type="varchar" MaxLength="1" />
+          <Property Name="MovieId" Type="int" />
+        </EntityType>
+        <EntityType Name="Stu_Additionalquestionrequest">
+          <Key>
+            <PropertyRef Name="ADQID" />
+          </Key>
+          <Property Name="ADQID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Year" Type="int" />
+          <Property Name="Course" Type="int" />
+          <Property Name="Semester" Type="int" />
+          <Property Name="Subject" Type="int" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="QuestionReplay" Type="varchar(max)" />
+          <Property Name="ProfileId" Type="int" />
+          <Property Name="Updated" Type="bit" />
+        </EntityType>
+        <EntityType Name="Stu_AddQuestionReq">
+          <Key>
+            <PropertyRef Name="QuestionID" />
+          </Key>
+          <Property Name="QuestionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentID" Type="int" />
+          <Property Name="CourseID" Type="int" />
+          <Property Name="Sem" Type="int" />
+          <Property Name="SubjectID" Type="int" />
+          <Property Name="Unit" Type="int" />
+          <Property Name="Qestion_Heading" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Question_Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Answer" Type="nvarchar(max)" />
+          <Property Name="IsAnswered" Type="bit" />
+          <Property Name="Question_Date" Type="datetime" />
+          <Property Name="Anwered_Date" Type="datetime" />
+          <Property Name="ContributerID" Type="int" />
+        </EntityType>
+        <EntityType Name="Stu_Result">
+          <Key>
+            <PropertyRef Name="RID" />
+          </Key>
+          <Property Name="RID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="CourseID" Type="int" />
+          <Property Name="SemID" Type="int" />
+          <Property Name="SubjectID" Type="int" />
+          <Property Name="UnitID" Type="int" />
+          <Property Name="ScoredMarks" Type="int" />
+          <Property Name="TotalMarks" Type="int" />
+          <Property Name="No_Attempts" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="Ratings" Type="decimal" Precision="2" Scale="1" />
+          <Property Name="Rating" Type="int" />
+        </EntityType>
+        <EntityType Name="StudentCourseRating">
+          <Key>
+            <PropertyRef Name="RateID" />
+          </Key>
+          <Property Name="RateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentID" Type="int" />
+          <Property Name="CourseID" Type="int" />
+          <Property Name="Rating" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="StudentProfile">
+          <Key>
+            <PropertyRef Name="Student_ID" />
+          </Key>
+          <Property Name="Student_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Gender" Type="varchar" MaxLength="50" />
+          <Property Name="DOB" Type="date" />
+          <Property Name="MobileNumber" Type="varchar" MaxLength="100" />
+          <Property Name="EmailID" Type="varchar" MaxLength="100" />
+          <Property Name="Course" Type="int" />
+          <Property Name="Semester" Type="int" />
+          <Property Name="Address" Type="varchar(max)" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="CollegeName" Type="varchar(max)" />
+          <Property Name="Image" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="StudentReview">
+          <Key>
+            <PropertyRef Name="SrID" />
+          </Key>
+          <Property Name="SrID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentUserID" Type="varchar(max)" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="Status" Type="bit" />
+          <Property Name="course" Type="int" />
+          <Property Name="ReviewDescription" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="studentsyllabus">
+          <Key>
+            <PropertyRef Name="ssid" />
+          </Key>
+          <Property Name="ssid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SubjectID" Type="int" />
+          <Property Name="Uid" Type="int" />
+          <Property Name="Name" Type="varchar(max)" />
+          <Property Name="UnitDescription" Type="varchar(max)" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="StudyMaterial">
+          <Key>
+            <PropertyRef Name="SMID" />
+          </Key>
+          <Property Name="SMID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CourseID" Type="int" />
+          <Property Name="SemID" Type="int" />
+          <Property Name="SM_Name" Type="varchar" MaxLength="100" />
+          <Property Name="SM_Description" Type="varchar(max)" />
+          <Property Name="Attachments" Type="varchar(max)" />
+          <Property Name="UploadBy" Type="varchar" MaxLength="100" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="CmtID" Type="int" />
+        </EntityType>
+        <EntityType Name="Subject_Master">
+          <Key>
+            <PropertyRef Name="SubjectID" />
+          </Key>
+          <Property Name="SubjectID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Course" Type="int" />
+          <Property Name="Semester" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="Imageurl" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ireadytoday.dbo.tblCity' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tblCity">
+          <Key>
+            <PropertyRef Name="Cityid" />
+            <PropertyRef Name="stateid" />
+          </Key>
+          <Property Name="Cityid" Type="int" Nullable="false" />
+          <Property Name="CityName" Type="nvarchar" MaxLength="50" />
+          <Property Name="stateid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblState">
+          <Key>
+            <PropertyRef Name="stateid" />
+          </Key>
+          <Property Name="stateid" Type="int" Nullable="false" />
+          <Property Name="statename" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ireadytoday.dbo.TechCourses' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="TechCourses">
+          <Key>
+            <PropertyRef Name="Course_ID" />
+          </Key>
+          <Property Name="Course_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="imageurl" Type="varchar" MaxLength="100" />
+          <Property Name="courseprize" Type="varchar" MaxLength="100" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="UnitMaster">
+          <Key>
+            <PropertyRef Name="Uid" />
+          </Key>
+          <Property Name="Uid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UnitName" Type="varchar" MaxLength="100" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="YearMaster">
+          <Key>
+            <PropertyRef Name="YearID" />
+          </Key>
+          <Property Name="YearID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Year" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <Association Name="FK__Job_Maste__Cours__69FBBC1F">
+          <End Role="Course_master" Type="Self.Course_master" Multiplicity="0..1" />
+          <End Role="Job_Master" Type="Self.Job_Master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course_master">
+              <PropertyRef Name="Course_ID" />
+            </Principal>
+            <Dependent Role="Job_Master">
+              <PropertyRef Name="Course" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Question___Categ__2645B050">
+          <End Role="Course_master" Type="Self.Course_master" Multiplicity="0..1" />
+          <End Role="Question_details" Type="Self.Question_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course_master">
+              <PropertyRef Name="Course_ID" />
+            </Principal>
+            <Dependent Role="Question_details">
+              <PropertyRef Name="Course_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Question___Subje__2739D489">
+          <End Role="Subject_Master" Type="Self.Subject_Master" Multiplicity="0..1" />
+          <End Role="Question_details" Type="Self.Question_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject_Master">
+              <PropertyRef Name="SubjectID" />
+            </Principal>
+            <Dependent Role="Question_details">
+              <PropertyRef Name="SubjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Question___UnitI__282DF8C2">
+          <End Role="UnitMaster" Type="Self.UnitMaster" Multiplicity="0..1" />
+          <End Role="Question_details" Type="Self.Question_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnitMaster">
+              <PropertyRef Name="Uid" />
+            </Principal>
+            <Dependent Role="Question_details">
+              <PropertyRef Name="Uid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Quiz__CourseID__793DFFAF">
+          <End Role="Course_master" Type="Self.Course_master" Multiplicity="0..1" />
+          <End Role="Quiz" Type="Self.Quiz" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course_master">
+              <PropertyRef Name="Course_ID" />
+            </Principal>
+            <Dependent Role="Quiz">
+              <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Quiz__SemesterID__7A3223E8">
+          <End Role="Semester" Type="Self.Semester" Multiplicity="0..1" />
+          <End Role="Quiz" Type="Self.Quiz" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Semester">
+              <PropertyRef Name="SemID" />
+            </Principal>
+            <Dependent Role="Quiz">
+              <PropertyRef Name="SemesterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Quiz__SubjectID__7C1A6C5A">
+          <End Role="Subject_Master" Type="Self.Subject_Master" Multiplicity="0..1" />
+          <End Role="Quiz" Type="Self.Quiz" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject_Master">
+              <PropertyRef Name="SubjectID" />
+            </Principal>
+            <Dependent Role="Quiz">
+              <PropertyRef Name="SubjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Quiz__UnitID__7B264821">
+          <End Role="UnitMaster" Type="Self.UnitMaster" Multiplicity="0..1" />
+          <End Role="Quiz" Type="Self.Quiz" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnitMaster">
+              <PropertyRef Name="Uid" />
+            </Principal>
+            <Dependent Role="Quiz">
+              <PropertyRef Name="UnitID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Semester__Course__634EBE90">
+          <End Role="Course_master" Type="Self.Course_master" Multiplicity="0..1" />
+          <End Role="Semester" Type="Self.Semester" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course_master">
+              <PropertyRef Name="Course_ID" />
+            </Principal>
+            <Dependent Role="Semester">
+              <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StarRatin__Movie__1209AD79">
+          <End Role="Movie" Type="Self.Movie" Multiplicity="0..1" />
+          <End Role="StarRating" Type="Self.StarRating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movie">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="StarRating">
+              <PropertyRef Name="MovieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Stu_Addit__Cours__6EF57B66">
+          <End Role="Course_master" Type="Self.Course_master" Multiplicity="0..1" />
+          <End Role="Stu_Additionalquestionrequest" Type="Self.Stu_Additionalquestionrequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course_master">
+              <PropertyRef Name="Course_ID" />
+            </Principal>
+            <Dependent Role="Stu_Additionalquestionrequest">
+              <PropertyRef Name="Course" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Stu_Addit__Semes__6FE99F9F">
+          <End Role="Semester_master" Type="Self.Semester_master" Multiplicity="0..1" />
+          <End Role="Stu_Additionalquestionrequest" Type="Self.Stu_Additionalquestionrequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Semester_master">
+              <PropertyRef Name="SemID" />
+            </Principal>
+            <Dependent Role="Stu_Additionalquestionrequest">
+              <PropertyRef Name="Semester" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Stu_Additi__Year__6E01572D">
+          <End Role="YearMaster" Type="Self.YearMaster" Multiplicity="0..1" />
+          <End Role="Stu_Additionalquestionrequest" Type="Self.Stu_Additionalquestionrequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="YearMaster">
+              <PropertyRef Name="YearID" />
+            </Principal>
+            <Dependent Role="Stu_Additionalquestionrequest">
+              <PropertyRef Name="Year" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StudentPr__Cours__6CD828CA">
+          <End Role="Course_master" Type="Self.Course_master" Multiplicity="0..1" />
+          <End Role="StudentProfile" Type="Self.StudentProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course_master">
+              <PropertyRef Name="Course_ID" />
+            </Principal>
+            <Dependent Role="StudentProfile">
+              <PropertyRef Name="Course" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__studentsy__Subje__00200768">
+          <End Role="Subject_Master" Type="Self.Subject_Master" Multiplicity="0..1" />
+          <End Role="studentsyllabus" Type="Self.studentsyllabus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject_Master">
+              <PropertyRef Name="SubjectID" />
+            </Principal>
+            <Dependent Role="studentsyllabus">
+              <PropertyRef Name="SubjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__studentsyll__Uid__01142BA1">
+          <End Role="UnitMaster" Type="Self.UnitMaster" Multiplicity="0..1" />
+          <End Role="studentsyllabus" Type="Self.studentsyllabus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnitMaster">
+              <PropertyRef Name="Uid" />
+            </Principal>
+            <Dependent Role="studentsyllabus">
+              <PropertyRef Name="Uid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Subject_M__Cours__787EE5A0">
+          <End Role="Course_master" Type="Self.Course_master" Multiplicity="0..1" />
+          <End Role="Subject_Master" Type="Self.Subject_Master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course_master">
+              <PropertyRef Name="Course_ID" />
+            </Principal>
+            <Dependent Role="Subject_Master">
+              <PropertyRef Name="Course" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblCity__stateid__671F4F74">
+          <End Role="tblState" Type="Self.tblState" Multiplicity="1" />
+          <End Role="tblCity" Type="Self.tblCity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblState">
+              <PropertyRef Name="stateid" />
+            </Principal>
+            <Dependent Role="tblCity">
+              <PropertyRef Name="stateid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Answers_Questions">
+          <End Role="Questions" Type="Self.Questions" Multiplicity="0..1" />
+          <End Role="Answers" Type="Self.Answers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questions">
+              <PropertyRef Name="QuestionID" />
+            </Principal>
+            <Dependent Role="Answers">
+              <PropertyRef Name="QuestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Questions_Quiz">
+          <End Role="Quiz" Type="Self.Quiz" Multiplicity="0..1" />
+          <End Role="Questions" Type="Self.Questions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Quiz">
+              <PropertyRef Name="QuizID" />
+            </Principal>
+            <Dependent Role="Questions">
+              <PropertyRef Name="QuizID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ireadytodayModelStoreContainer">
+          <EntitySet Name="Answers" EntityType="Self.Answers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ContributorProfile" EntityType="Self.ContributorProfile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Course_master" EntityType="Self.Course_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Job_Master" EntityType="Self.Job_Master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MailTemplateMaster" EntityType="Self.MailTemplateMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Movie" EntityType="Self.Movie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PriceMaster" EntityType="Self.PriceMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Question_details" EntityType="Self.Question_details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Questions" EntityType="Self.Questions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Quiz" EntityType="Self.Quiz" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Semester" EntityType="Self.Semester" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Semester_master" EntityType="Self.Semester_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Smstemplate_master" EntityType="Self.Smstemplate_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StarRating" EntityType="Self.StarRating" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stu_Additionalquestionrequest" EntityType="Self.Stu_Additionalquestionrequest" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stu_AddQuestionReq" EntityType="Self.Stu_AddQuestionReq" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stu_Result" EntityType="Self.Stu_Result" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentCourseRating" EntityType="Self.StudentCourseRating" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentProfile" EntityType="Self.StudentProfile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentReview" EntityType="Self.StudentReview" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="studentsyllabus" EntityType="Self.studentsyllabus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudyMaterial" EntityType="Self.StudyMaterial" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subject_Master" EntityType="Self.Subject_Master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblState" EntityType="Self.tblState" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UnitMaster" EntityType="Self.UnitMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="YearMaster" EntityType="Self.YearMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCity" EntityType="Self.tblCity" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tblCity].[Cityid] AS [Cityid], 
+    [tblCity].[CityName] AS [CityName], 
+    [tblCity].[stateid] AS [stateid]
+    FROM [dbo].[tblCity] AS [tblCity]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="TechCourses" EntityType="Self.TechCourses" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TechCourses].[Course_ID] AS [Course_ID], 
+    [TechCourses].[Name] AS [Name], 
+    [TechCourses].[imageurl] AS [imageurl], 
+    [TechCourses].[courseprize] AS [courseprize], 
+    [TechCourses].[CreatedDate] AS [CreatedDate], 
+    [TechCourses].[ModifedDate] AS [ModifedDate]
+    FROM [dbo].[TechCourses] AS [TechCourses]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__Job_Maste__Cours__69FBBC1F" Association="Self.FK__Job_Maste__Cours__69FBBC1F">
+            <End Role="Course_master" EntitySet="Course_master" />
+            <End Role="Job_Master" EntitySet="Job_Master" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Question___Categ__2645B050" Association="Self.FK__Question___Categ__2645B050">
+            <End Role="Course_master" EntitySet="Course_master" />
+            <End Role="Question_details" EntitySet="Question_details" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Question___Subje__2739D489" Association="Self.FK__Question___Subje__2739D489">
+            <End Role="Subject_Master" EntitySet="Subject_Master" />
+            <End Role="Question_details" EntitySet="Question_details" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Question___UnitI__282DF8C2" Association="Self.FK__Question___UnitI__282DF8C2">
+            <End Role="UnitMaster" EntitySet="UnitMaster" />
+            <End Role="Question_details" EntitySet="Question_details" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Quiz__CourseID__793DFFAF" Association="Self.FK__Quiz__CourseID__793DFFAF">
+            <End Role="Course_master" EntitySet="Course_master" />
+            <End Role="Quiz" EntitySet="Quiz" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Quiz__SemesterID__7A3223E8" Association="Self.FK__Quiz__SemesterID__7A3223E8">
+            <End Role="Semester" EntitySet="Semester" />
+            <End Role="Quiz" EntitySet="Quiz" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Quiz__SubjectID__7C1A6C5A" Association="Self.FK__Quiz__SubjectID__7C1A6C5A">
+            <End Role="Subject_Master" EntitySet="Subject_Master" />
+            <End Role="Quiz" EntitySet="Quiz" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Quiz__UnitID__7B264821" Association="Self.FK__Quiz__UnitID__7B264821">
+            <End Role="UnitMaster" EntitySet="UnitMaster" />
+            <End Role="Quiz" EntitySet="Quiz" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Semester__Course__634EBE90" Association="Self.FK__Semester__Course__634EBE90">
+            <End Role="Course_master" EntitySet="Course_master" />
+            <End Role="Semester" EntitySet="Semester" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StarRatin__Movie__1209AD79" Association="Self.FK__StarRatin__Movie__1209AD79">
+            <End Role="Movie" EntitySet="Movie" />
+            <End Role="StarRating" EntitySet="StarRating" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Stu_Addit__Cours__6EF57B66" Association="Self.FK__Stu_Addit__Cours__6EF57B66">
+            <End Role="Course_master" EntitySet="Course_master" />
+            <End Role="Stu_Additionalquestionrequest" EntitySet="Stu_Additionalquestionrequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Stu_Addit__Semes__6FE99F9F" Association="Self.FK__Stu_Addit__Semes__6FE99F9F">
+            <End Role="Semester_master" EntitySet="Semester_master" />
+            <End Role="Stu_Additionalquestionrequest" EntitySet="Stu_Additionalquestionrequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Stu_Additi__Year__6E01572D" Association="Self.FK__Stu_Additi__Year__6E01572D">
+            <End Role="YearMaster" EntitySet="YearMaster" />
+            <End Role="Stu_Additionalquestionrequest" EntitySet="Stu_Additionalquestionrequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StudentPr__Cours__6CD828CA" Association="Self.FK__StudentPr__Cours__6CD828CA">
+            <End Role="Course_master" EntitySet="Course_master" />
+            <End Role="StudentProfile" EntitySet="StudentProfile" />
+          </AssociationSet>
+          <AssociationSet Name="FK__studentsy__Subje__00200768" Association="Self.FK__studentsy__Subje__00200768">
+            <End Role="Subject_Master" EntitySet="Subject_Master" />
+            <End Role="studentsyllabus" EntitySet="studentsyllabus" />
+          </AssociationSet>
+          <AssociationSet Name="FK__studentsyll__Uid__01142BA1" Association="Self.FK__studentsyll__Uid__01142BA1">
+            <End Role="UnitMaster" EntitySet="UnitMaster" />
+            <End Role="studentsyllabus" EntitySet="studentsyllabus" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Subject_M__Cours__787EE5A0" Association="Self.FK__Subject_M__Cours__787EE5A0">
+            <End Role="Course_master" EntitySet="Course_master" />
+            <End Role="Subject_Master" EntitySet="Subject_Master" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblCity__stateid__671F4F74" Association="Self.FK__tblCity__stateid__671F4F74">
+            <End Role="tblState" EntitySet="tblState" />
+            <End Role="tblCity" EntitySet="tblCity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Answers_Questions" Association="Self.FK_Answers_Questions">
+            <End Role="Questions" EntitySet="Questions" />
+            <End Role="Answers" EntitySet="Answers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Questions_Quiz" Association="Self.FK_Questions_Quiz">
+            <End Role="Quiz" EntitySet="Quiz" />
+            <End Role="Questions" EntitySet="Questions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ireadytodayModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Answer">
+          <Key>
+            <PropertyRef Name="AnswerID" />
+          </Key>
+          <Property Name="AnswerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AnswerText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="QuestionID" Type="Int32" />
+          <Property Name="IsAnwer" Type="Boolean" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Question" Relationship="Self.FK_Answers_Questions" FromRole="Answers" ToRole="Questions" />
+        </EntityType>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Isactive" Type="Boolean" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <EntityType Name="ContributorProfile">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DOB" Type="DateTime" Precision="3" />
+          <Property Name="PhoneNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Skills" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Website" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Boolean" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="CourseID" Type="Int32" />
+          <Property Name="Institution_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Experience" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Current_Position" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Course_master">
+          <Key>
+            <PropertyRef Name="Course_ID" />
+          </Key>
+          <Property Name="Course_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifedDate" Type="DateTime" Precision="3" />
+          <Property Name="Imageurl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Int32" />
+          <Property Name="Rating" Type="Int32" />
+          <NavigationProperty Name="Job_Master" Relationship="Self.FK__Job_Maste__Cours__69FBBC1F" FromRole="Course_master" ToRole="Job_Master" />
+          <NavigationProperty Name="Question_details" Relationship="Self.FK__Question___Categ__2645B050" FromRole="Course_master" ToRole="Question_details" />
+          <NavigationProperty Name="Quizs" Relationship="Self.FK__Quiz__CourseID__793DFFAF" FromRole="Course_master" ToRole="Quiz" />
+          <NavigationProperty Name="Semesters" Relationship="Self.FK__Semester__Course__634EBE90" FromRole="Course_master" ToRole="Semester" />
+          <NavigationProperty Name="Stu_Additionalquestionrequest" Relationship="Self.FK__Stu_Addit__Cours__6EF57B66" FromRole="Course_master" ToRole="Stu_Additionalquestionrequest" />
+          <NavigationProperty Name="Subject_Master" Relationship="Self.FK__Subject_M__Cours__787EE5A0" FromRole="Course_master" ToRole="Subject_Master" />
+          <NavigationProperty Name="StudentProfiles" Relationship="ireadytodayModel.FK__StudentPr__Cours__6CD828CA" FromRole="Course_master" ToRole="StudentProfile" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContactName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Job_Master">
+          <Key>
+            <PropertyRef Name="JobID" />
+          </Key>
+          <Property Name="JobID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="year" Type="Int32" />
+          <Property Name="Course" Type="Int32" />
+          <Property Name="Designation" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Company_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ScheduledDate" Type="DateTime" Precision="3" />
+          <Property Name="Location" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CraetedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="Semester" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Course_master" Relationship="Self.FK__Job_Maste__Cours__69FBBC1F" FromRole="Job_Master" ToRole="Course_master" />
+        </EntityType>
+        <EntityType Name="MailTemplateMaster">
+          <Key>
+            <PropertyRef Name="MailID" />
+          </Key>
+          <Property Name="MailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MailTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="MailDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="PriceMaster">
+          <Key>
+            <PropertyRef Name="PriceID" />
+          </Key>
+          <Property Name="PriceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Price" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Question_details">
+          <Key>
+            <PropertyRef Name="quizid" />
+          </Key>
+          <Property Name="quizid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Course_ID" Type="Int32" />
+          <Property Name="SubjectID" Type="Int32" />
+          <Property Name="Uid" Type="Int32" />
+          <Property Name="Q_no" Type="Int32" />
+          <Property Name="Question_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Q_op1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Q_op2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Q_op3" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Q_op4" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Q_Ans" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Course_master" Relationship="Self.FK__Question___Categ__2645B050" FromRole="Question_details" ToRole="Course_master" />
+          <NavigationProperty Name="Subject_Master" Relationship="Self.FK__Question___Subje__2739D489" FromRole="Question_details" ToRole="Subject_Master" />
+          <NavigationProperty Name="UnitMaster" Relationship="Self.FK__Question___UnitI__282DF8C2" FromRole="Question_details" ToRole="UnitMaster" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="QuestionID" />
+          </Key>
+          <Property Name="QuestionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="QuizID" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="CourseID" Type="Int32" />
+          <Property Name="SubjectID" Type="Int32" />
+          <Property Name="UnitID" Type="Int32" />
+          <NavigationProperty Name="Answers" Relationship="Self.FK_Answers_Questions" FromRole="Questions" ToRole="Answers" />
+          <NavigationProperty Name="Quiz" Relationship="Self.FK_Questions_Quiz" FromRole="Questions" ToRole="Quiz" />
+        </EntityType>
+        <EntityType Name="Quiz">
+          <Key>
+            <PropertyRef Name="QuizID" />
+          </Key>
+          <Property Name="QuizID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuizName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CourseID" Type="Int32" />
+          <Property Name="SemesterID" Type="Int32" />
+          <Property Name="SubjectID" Type="Int32" />
+          <Property Name="UnitID" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Course_master" Relationship="Self.FK__Quiz__CourseID__793DFFAF" FromRole="Quiz" ToRole="Course_master" />
+          <NavigationProperty Name="Questions" Relationship="Self.FK_Questions_Quiz" FromRole="Quiz" ToRole="Questions" />
+          <NavigationProperty Name="Semester" Relationship="Self.FK__Quiz__SemesterID__7A3223E8" FromRole="Quiz" ToRole="Semester" />
+          <NavigationProperty Name="Subject_Master" Relationship="Self.FK__Quiz__SubjectID__7C1A6C5A" FromRole="Quiz" ToRole="Subject_Master" />
+          <NavigationProperty Name="UnitMaster" Relationship="Self.FK__Quiz__UnitID__7B264821" FromRole="Quiz" ToRole="UnitMaster" />
+        </EntityType>
+        <EntityType Name="Semester">
+          <Key>
+            <PropertyRef Name="SemID" />
+          </Key>
+          <Property Name="SemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CourseID" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Course_master" Relationship="Self.FK__Semester__Course__634EBE90" FromRole="Semester" ToRole="Course_master" />
+          <NavigationProperty Name="Quizs" Relationship="Self.FK__Quiz__SemesterID__7A3223E8" FromRole="Semester" ToRole="Quiz" />
+        </EntityType>
+        <EntityType Name="Semester_master">
+          <Key>
+            <PropertyRef Name="SemID" />
+          </Key>
+          <Property Name="SemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CraetedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Stu_Additionalquestionrequest" Relationship="Self.FK__Stu_Addit__Semes__6FE99F9F" FromRole="Semester_master" ToRole="Stu_Additionalquestionrequest" />
+        </EntityType>
+        <EntityType Name="Smstemplate_master">
+          <Key>
+            <PropertyRef Name="SmstemplateID" />
+          </Key>
+          <Property Name="SmstemplateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="smstemp_title" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="smstemp_description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Stu_Additionalquestionrequest">
+          <Key>
+            <PropertyRef Name="ADQID" />
+          </Key>
+          <Property Name="ADQID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Year" Type="Int32" />
+          <Property Name="Course" Type="Int32" />
+          <Property Name="Semester" Type="Int32" />
+          <Property Name="Subject" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="QuestionReplay" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ProfileId" Type="Int32" />
+          <Property Name="Updated" Type="Boolean" />
+          <NavigationProperty Name="Course_master" Relationship="Self.FK__Stu_Addit__Cours__6EF57B66" FromRole="Stu_Additionalquestionrequest" ToRole="Course_master" />
+          <NavigationProperty Name="Semester_master" Relationship="Self.FK__Stu_Addit__Semes__6FE99F9F" FromRole="Stu_Additionalquestionrequest" ToRole="Semester_master" />
+          <NavigationProperty Name="YearMaster" Relationship="Self.FK__Stu_Additi__Year__6E01572D" FromRole="Stu_Additionalquestionrequest" ToRole="YearMaster" />
+        </EntityType>
+        <EntityType Name="Stu_AddQuestionReq">
+          <Key>
+            <PropertyRef Name="QuestionID" />
+          </Key>
+          <Property Name="QuestionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentID" Type="Int32" />
+          <Property Name="CourseID" Type="Int32" />
+          <Property Name="Sem" Type="Int32" />
+          <Property Name="SubjectID" Type="Int32" />
+          <Property Name="Unit" Type="Int32" />
+          <Property Name="Qestion_Heading" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Question_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Answer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsAnswered" Type="Boolean" />
+          <Property Name="Question_Date" Type="DateTime" Precision="3" />
+          <Property Name="Anwered_Date" Type="DateTime" Precision="3" />
+          <Property Name="ContributerID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="StudentReview">
+          <Key>
+            <PropertyRef Name="SrID" />
+          </Key>
+          <Property Name="SrID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentUserID" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="Boolean" />
+          <Property Name="course" Type="Int32" />
+          <Property Name="ReviewDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="studentsyllabu">
+          <Key>
+            <PropertyRef Name="ssid" />
+          </Key>
+          <Property Name="ssid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubjectID" Type="Int32" />
+          <Property Name="Uid" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="UnitDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Subject_Master" Relationship="Self.FK__studentsy__Subje__00200768" FromRole="studentsyllabus" ToRole="Subject_Master" />
+          <NavigationProperty Name="UnitMaster" Relationship="Self.FK__studentsyll__Uid__01142BA1" FromRole="studentsyllabus" ToRole="UnitMaster" />
+        </EntityType>
+        <EntityType Name="StudyMaterial">
+          <Key>
+            <PropertyRef Name="SMID" />
+          </Key>
+          <Property Name="SMID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CourseID" Type="Int32" />
+          <Property Name="SemID" Type="Int32" />
+          <Property Name="SM_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SM_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Attachments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="UploadBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="CmtID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Subject_Master">
+          <Key>
+            <PropertyRef Name="SubjectID" />
+          </Key>
+          <Property Name="SubjectID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Course" Type="Int32" />
+          <Property Name="Semester" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="Imageurl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Course_master" Relationship="Self.FK__Subject_M__Cours__787EE5A0" FromRole="Subject_Master" ToRole="Course_master" />
+          <NavigationProperty Name="Question_details" Relationship="Self.FK__Question___Subje__2739D489" FromRole="Subject_Master" ToRole="Question_details" />
+          <NavigationProperty Name="Quizs" Relationship="Self.FK__Quiz__SubjectID__7C1A6C5A" FromRole="Subject_Master" ToRole="Quiz" />
+          <NavigationProperty Name="studentsyllabus" Relationship="Self.FK__studentsy__Subje__00200768" FromRole="Subject_Master" ToRole="studentsyllabus" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tblState">
+          <Key>
+            <PropertyRef Name="stateid" />
+          </Key>
+          <Property Name="stateid" Type="Int32" Nullable="false" />
+          <Property Name="statename" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblCities" Relationship="Self.FK__tblCity__stateid__671F4F74" FromRole="tblState" ToRole="tblCity" />
+        </EntityType>
+        <EntityType Name="UnitMaster">
+          <Key>
+            <PropertyRef Name="Uid" />
+          </Key>
+          <Property Name="Uid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UnitName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Question_details" Relationship="Self.FK__Question___UnitI__282DF8C2" FromRole="UnitMaster" ToRole="Question_details" />
+          <NavigationProperty Name="Quizs" Relationship="Self.FK__Quiz__UnitID__7B264821" FromRole="UnitMaster" ToRole="Quiz" />
+          <NavigationProperty Name="studentsyllabus" Relationship="Self.FK__studentsyll__Uid__01142BA1" FromRole="UnitMaster" ToRole="studentsyllabus" />
+        </EntityType>
+        <EntityType Name="YearMaster">
+          <Key>
+            <PropertyRef Name="YearID" />
+          </Key>
+          <Property Name="YearID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Year" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Stu_Additionalquestionrequest" Relationship="Self.FK__Stu_Additi__Year__6E01572D" FromRole="YearMaster" ToRole="Stu_Additionalquestionrequest" />
+        </EntityType>
+        <EntityType Name="tblCity">
+          <Key>
+            <PropertyRef Name="Cityid" />
+            <PropertyRef Name="stateid" />
+          </Key>
+          <Property Name="Cityid" Type="Int32" Nullable="false" />
+          <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="stateid" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblState" Relationship="Self.FK__tblCity__stateid__671F4F74" FromRole="tblCity" ToRole="tblState" />
+        </EntityType>
+        <EntityType Name="TechCours">
+          <Key>
+            <PropertyRef Name="Course_ID" />
+          </Key>
+          <Property Name="Course_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="imageurl" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="courseprize" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <Association Name="FK_Answers_Questions">
+          <End Role="Questions" Type="Self.Question" Multiplicity="0..1" />
+          <End Role="Answers" Type="Self.Answer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questions">
+              <PropertyRef Name="QuestionID" />
+            </Principal>
+            <Dependent Role="Answers">
+              <PropertyRef Name="QuestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Job_Maste__Cours__69FBBC1F">
+          <End Role="Course_master" Type="Self.Course_master" Multiplicity="0..1" />
+          <End Role="Job_Master" Type="Self.Job_Master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course_master">
+              <PropertyRef Name="Course_ID" />
+            </Principal>
+            <Dependent Role="Job_Master">
+              <PropertyRef Name="Course" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Question___Categ__2645B050">
+          <End Role="Course_master" Type="Self.Course_master" Multiplicity="0..1" />
+          <End Role="Question_details" Type="Self.Question_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course_master">
+              <PropertyRef Name="Course_ID" />
+            </Principal>
+            <Dependent Role="Question_details">
+              <PropertyRef Name="Course_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Quiz__CourseID__793DFFAF">
+          <End Role="Course_master" Type="Self.Course_master" Multiplicity="0..1" />
+          <End Role="Quiz" Type="Self.Quiz" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course_master">
+              <PropertyRef Name="Course_ID" />
+            </Principal>
+            <Dependent Role="Quiz">
+              <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Semester__Course__634EBE90">
+          <End Role="Course_master" Type="Self.Course_master" Multiplicity="0..1" />
+          <End Role="Semester" Type="Self.Semester" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course_master">
+              <PropertyRef Name="Course_ID" />
+            </Principal>
+            <Dependent Role="Semester">
+              <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Stu_Addit__Cours__6EF57B66">
+          <End Role="Course_master" Type="Self.Course_master" Multiplicity="0..1" />
+          <End Role="Stu_Additionalquestionrequest" Type="Self.Stu_Additionalquestionrequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course_master">
+              <PropertyRef Name="Course_ID" />
+            </Principal>
+            <Dependent Role="Stu_Additionalquestionrequest">
+              <PropertyRef Name="Course" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Subject_M__Cours__787EE5A0">
+          <End Role="Course_master" Type="Self.Course_master" Multiplicity="0..1" />
+          <End Role="Subject_Master" Type="Self.Subject_Master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course_master">
+              <PropertyRef Name="Course_ID" />
+            </Principal>
+            <Dependent Role="Subject_Master">
+              <PropertyRef Name="Course" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Question___Subje__2739D489">
+          <End Role="Subject_Master" Type="Self.Subject_Master" Multiplicity="0..1" />
+          <End Role="Question_details" Type="Self.Question_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject_Master">
+              <PropertyRef Name="SubjectID" />
+            </Principal>
+            <Dependent Role="Question_details">
+              <PropertyRef Name="SubjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Question___UnitI__282DF8C2">
+          <End Role="UnitMaster" Type="Self.UnitMaster" Multiplicity="0..1" />
+          <End Role="Question_details" Type="Self.Question_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnitMaster">
+              <PropertyRef Name="Uid" />
+            </Principal>
+            <Dependent Role="Question_details">
+              <PropertyRef Name="Uid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Questions_Quiz">
+          <End Role="Quiz" Type="Self.Quiz" Multiplicity="0..1" />
+          <End Role="Questions" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Quiz">
+              <PropertyRef Name="QuizID" />
+            </Principal>
+            <Dependent Role="Questions">
+              <PropertyRef Name="QuizID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Quiz__SemesterID__7A3223E8">
+          <End Role="Semester" Type="Self.Semester" Multiplicity="0..1" />
+          <End Role="Quiz" Type="Self.Quiz" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Semester">
+              <PropertyRef Name="SemID" />
+            </Principal>
+            <Dependent Role="Quiz">
+              <PropertyRef Name="SemesterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Quiz__SubjectID__7C1A6C5A">
+          <End Role="Subject_Master" Type="Self.Subject_Master" Multiplicity="0..1" />
+          <End Role="Quiz" Type="Self.Quiz" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject_Master">
+              <PropertyRef Name="SubjectID" />
+            </Principal>
+            <Dependent Role="Quiz">
+              <PropertyRef Name="SubjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Quiz__UnitID__7B264821">
+          <End Role="UnitMaster" Type="Self.UnitMaster" Multiplicity="0..1" />
+          <End Role="Quiz" Type="Self.Quiz" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnitMaster">
+              <PropertyRef Name="Uid" />
+            </Principal>
+            <Dependent Role="Quiz">
+              <PropertyRef Name="UnitID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Stu_Addit__Semes__6FE99F9F">
+          <End Role="Semester_master" Type="Self.Semester_master" Multiplicity="0..1" />
+          <End Role="Stu_Additionalquestionrequest" Type="Self.Stu_Additionalquestionrequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Semester_master">
+              <PropertyRef Name="SemID" />
+            </Principal>
+            <Dependent Role="Stu_Additionalquestionrequest">
+              <PropertyRef Name="Semester" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Stu_Additi__Year__6E01572D">
+          <End Role="YearMaster" Type="Self.YearMaster" Multiplicity="0..1" />
+          <End Role="Stu_Additionalquestionrequest" Type="Self.Stu_Additionalquestionrequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="YearMaster">
+              <PropertyRef Name="YearID" />
+            </Principal>
+            <Dependent Role="Stu_Additionalquestionrequest">
+              <PropertyRef Name="Year" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__studentsy__Subje__00200768">
+          <End Role="Subject_Master" Type="Self.Subject_Master" Multiplicity="0..1" />
+          <End Role="studentsyllabus" Type="Self.studentsyllabu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject_Master">
+              <PropertyRef Name="SubjectID" />
+            </Principal>
+            <Dependent Role="studentsyllabus">
+              <PropertyRef Name="SubjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__studentsyll__Uid__01142BA1">
+          <End Role="UnitMaster" Type="Self.UnitMaster" Multiplicity="0..1" />
+          <End Role="studentsyllabus" Type="Self.studentsyllabu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnitMaster">
+              <PropertyRef Name="Uid" />
+            </Principal>
+            <Dependent Role="studentsyllabus">
+              <PropertyRef Name="Uid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblCity__stateid__671F4F74">
+          <End Role="tblState" Type="Self.tblState" Multiplicity="1" />
+          <End Role="tblCity" Type="Self.tblCity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblState">
+              <PropertyRef Name="stateid" />
+            </Principal>
+            <Dependent Role="tblCity">
+              <PropertyRef Name="stateid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="ireadytodayEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Answers" EntityType="Self.Answer" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+          <EntitySet Name="ContributorProfiles" EntityType="Self.ContributorProfile" />
+          <EntitySet Name="Course_master" EntityType="Self.Course_master" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="Job_Master" EntityType="Self.Job_Master" />
+          <EntitySet Name="MailTemplateMasters" EntityType="Self.MailTemplateMaster" />
+          <EntitySet Name="PriceMasters" EntityType="Self.PriceMaster" />
+          <EntitySet Name="Question_details" EntityType="Self.Question_details" />
+          <EntitySet Name="Questions" EntityType="Self.Question" />
+          <EntitySet Name="Quizs" EntityType="Self.Quiz" />
+          <EntitySet Name="Semesters" EntityType="Self.Semester" />
+          <EntitySet Name="Semester_master" EntityType="Self.Semester_master" />
+          <EntitySet Name="Smstemplate_master" EntityType="Self.Smstemplate_master" />
+          <EntitySet Name="Stu_Additionalquestionrequest" EntityType="Self.Stu_Additionalquestionrequest" />
+          <EntitySet Name="Stu_AddQuestionReq" EntityType="Self.Stu_AddQuestionReq" />
+          <EntitySet Name="StudentReviews" EntityType="Self.StudentReview" />
+          <EntitySet Name="studentsyllabus" EntityType="Self.studentsyllabu" />
+          <EntitySet Name="StudyMaterials" EntityType="Self.StudyMaterial" />
+          <EntitySet Name="Subject_Master" EntityType="Self.Subject_Master" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="tblStates" EntityType="Self.tblState" />
+          <EntitySet Name="UnitMasters" EntityType="Self.UnitMaster" />
+          <EntitySet Name="YearMasters" EntityType="Self.YearMaster" />
+          <EntitySet Name="tblCities" EntityType="Self.tblCity" />
+          <EntitySet Name="TechCourses" EntityType="Self.TechCours" />
+          <AssociationSet Name="FK_Answers_Questions" Association="Self.FK_Answers_Questions">
+            <End Role="Questions" EntitySet="Questions" />
+            <End Role="Answers" EntitySet="Answers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Job_Maste__Cours__69FBBC1F" Association="Self.FK__Job_Maste__Cours__69FBBC1F">
+            <End Role="Course_master" EntitySet="Course_master" />
+            <End Role="Job_Master" EntitySet="Job_Master" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Question___Categ__2645B050" Association="Self.FK__Question___Categ__2645B050">
+            <End Role="Course_master" EntitySet="Course_master" />
+            <End Role="Question_details" EntitySet="Question_details" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Quiz__CourseID__793DFFAF" Association="Self.FK__Quiz__CourseID__793DFFAF">
+            <End Role="Course_master" EntitySet="Course_master" />
+            <End Role="Quiz" EntitySet="Quizs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Semester__Course__634EBE90" Association="Self.FK__Semester__Course__634EBE90">
+            <End Role="Course_master" EntitySet="Course_master" />
+            <End Role="Semester" EntitySet="Semesters" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Stu_Addit__Cours__6EF57B66" Association="Self.FK__Stu_Addit__Cours__6EF57B66">
+            <End Role="Course_master" EntitySet="Course_master" />
+            <End Role="Stu_Additionalquestionrequest" EntitySet="Stu_Additionalquestionrequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Subject_M__Cours__787EE5A0" Association="Self.FK__Subject_M__Cours__787EE5A0">
+            <End Role="Course_master" EntitySet="Course_master" />
+            <End Role="Subject_Master" EntitySet="Subject_Master" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Question___Subje__2739D489" Association="Self.FK__Question___Subje__2739D489">
+            <End Role="Subject_Master" EntitySet="Subject_Master" />
+            <End Role="Question_details" EntitySet="Question_details" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Question___UnitI__282DF8C2" Association="Self.FK__Question___UnitI__282DF8C2">
+            <End Role="UnitMaster" EntitySet="UnitMasters" />
+            <End Role="Question_details" EntitySet="Question_details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Questions_Quiz" Association="Self.FK_Questions_Quiz">
+            <End Role="Quiz" EntitySet="Quizs" />
+            <End Role="Questions" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Quiz__SemesterID__7A3223E8" Association="Self.FK__Quiz__SemesterID__7A3223E8">
+            <End Role="Semester" EntitySet="Semesters" />
+            <End Role="Quiz" EntitySet="Quizs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Quiz__SubjectID__7C1A6C5A" Association="Self.FK__Quiz__SubjectID__7C1A6C5A">
+            <End Role="Subject_Master" EntitySet="Subject_Master" />
+            <End Role="Quiz" EntitySet="Quizs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Quiz__UnitID__7B264821" Association="Self.FK__Quiz__UnitID__7B264821">
+            <End Role="UnitMaster" EntitySet="UnitMasters" />
+            <End Role="Quiz" EntitySet="Quizs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Stu_Addit__Semes__6FE99F9F" Association="Self.FK__Stu_Addit__Semes__6FE99F9F">
+            <End Role="Semester_master" EntitySet="Semester_master" />
+            <End Role="Stu_Additionalquestionrequest" EntitySet="Stu_Additionalquestionrequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Stu_Additi__Year__6E01572D" Association="Self.FK__Stu_Additi__Year__6E01572D">
+            <End Role="YearMaster" EntitySet="YearMasters" />
+            <End Role="Stu_Additionalquestionrequest" EntitySet="Stu_Additionalquestionrequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK__studentsy__Subje__00200768" Association="Self.FK__studentsy__Subje__00200768">
+            <End Role="Subject_Master" EntitySet="Subject_Master" />
+            <End Role="studentsyllabus" EntitySet="studentsyllabus" />
+          </AssociationSet>
+          <AssociationSet Name="FK__studentsyll__Uid__01142BA1" Association="Self.FK__studentsyll__Uid__01142BA1">
+            <End Role="UnitMaster" EntitySet="UnitMasters" />
+            <End Role="studentsyllabus" EntitySet="studentsyllabus" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblCity__stateid__671F4F74" Association="Self.FK__tblCity__stateid__671F4F74">
+            <End Role="tblState" EntitySet="tblStates" />
+            <End Role="tblCity" EntitySet="tblCities" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <EntitySet Name="Movies" EntityType="ireadytodayModel.Movie" />
+          <EntitySet Name="StarRatings" EntityType="ireadytodayModel.StarRating" />
+          <AssociationSet Name="FK__StarRatin__Movie__1209AD79" Association="ireadytodayModel.FK__StarRatin__Movie__1209AD79">
+            <End Role="Movie" EntitySet="Movies" />
+            <End Role="StarRating" EntitySet="StarRatings" />
+          </AssociationSet>
+          <EntitySet Name="Stu_Result" EntityType="ireadytodayModel.Stu_Result" />
+          <EntitySet Name="StudentCourseRatings" EntityType="ireadytodayModel.StudentCourseRating" />
+          <EntitySet Name="StudentProfiles" EntityType="ireadytodayModel.StudentProfile" />
+          <AssociationSet Name="FK__StudentPr__Cours__6CD828CA" Association="ireadytodayModel.FK__StudentPr__Cours__6CD828CA">
+            <End Role="Course_master" EntitySet="Course_master" />
+            <End Role="StudentProfile" EntitySet="StudentProfiles" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Movie">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="Genre" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="Rating" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="RateCount" Type="Int32" />
+          <Property Name="RateTotal" Type="Int32" />
+          <NavigationProperty Name="StarRatings" Relationship="ireadytodayModel.FK__StarRatin__Movie__1209AD79" FromRole="Movie" ToRole="StarRating" />
+        </EntityType>
+        <EntityType Name="StarRating">
+          <Key>
+            <PropertyRef Name="RateID" />
+          </Key>
+          <Property Name="RateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Rate" Type="Int32" />
+          <Property Name="IpAddress" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="MovieId" Type="Int32" />
+          <NavigationProperty Name="Movie" Relationship="ireadytodayModel.FK__StarRatin__Movie__1209AD79" FromRole="StarRating" ToRole="Movie" />
+        </EntityType>
+        <Association Name="FK__StarRatin__Movie__1209AD79">
+          <End Type="ireadytodayModel.Movie" Role="Movie" Multiplicity="0..1" />
+          <End Type="ireadytodayModel.StarRating" Role="StarRating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movie">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="StarRating">
+              <PropertyRef Name="MovieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Stu_Result">
+          <Key>
+            <PropertyRef Name="RID" />
+          </Key>
+          <Property Name="RID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="CourseID" Type="Int32" />
+          <Property Name="SemID" Type="Int32" />
+          <Property Name="SubjectID" Type="Int32" />
+          <Property Name="UnitID" Type="Int32" />
+          <Property Name="ScoredMarks" Type="Int32" />
+          <Property Name="TotalMarks" Type="Int32" />
+          <Property Name="No_Attempts" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="Ratings" Type="Decimal" Precision="2" Scale="1" />
+          <Property Name="Rating" Type="Int32" />
+        </EntityType>
+        <EntityType Name="StudentCourseRating">
+          <Key>
+            <PropertyRef Name="RateID" />
+          </Key>
+          <Property Name="RateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentID" Type="Int32" />
+          <Property Name="CourseID" Type="Int32" />
+          <Property Name="Rating" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="StudentProfile">
+          <Key>
+            <PropertyRef Name="Student_ID" />
+          </Key>
+          <Property Name="Student_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DOB" Type="DateTime" Precision="0" />
+          <Property Name="MobileNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EmailID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Course" Type="Int32" />
+          <Property Name="Semester" Type="Int32" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="CollegeName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Image" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Course_master" Relationship="ireadytodayModel.FK__StudentPr__Cours__6CD828CA" FromRole="StudentProfile" ToRole="Course_master" />
+        </EntityType>
+        <Association Name="FK__StudentPr__Cours__6CD828CA">
+          <End Type="ireadytodayModel.Course_master" Role="Course_master" Multiplicity="0..1" />
+          <End Type="ireadytodayModel.StudentProfile" Role="StudentProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course_master">
+              <PropertyRef Name="Course_ID" />
+            </Principal>
+            <Dependent Role="StudentProfile">
+              <PropertyRef Name="Course" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ireadytodayModelStoreContainer" CdmEntityContainer="ireadytodayEntities2">
+          <EntitySetMapping Name="Answers">
+            <EntityTypeMapping TypeName="ireadytodayModel.Answer">
+              <MappingFragment StoreEntitySet="Answers">
+                <ScalarProperty Name="AnswerID" ColumnName="AnswerID" />
+                <ScalarProperty Name="AnswerText" ColumnName="AnswerText" />
+                <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+                <ScalarProperty Name="IsAnwer" ColumnName="IsAnwer" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="ireadytodayModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="ireadytodayModel.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="ireadytodayModel.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="ireadytodayModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Isactive" ColumnName="Isactive" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContributorProfiles">
+            <EntityTypeMapping TypeName="ireadytodayModel.ContributorProfile">
+              <MappingFragment StoreEntitySet="ContributorProfile">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+                <ScalarProperty Name="Skills" ColumnName="Skills" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+                <ScalarProperty Name="Institution_Name" ColumnName="Institution_Name" />
+                <ScalarProperty Name="Experience" ColumnName="Experience" />
+                <ScalarProperty Name="Current_Position" ColumnName="Current_Position" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Course_master">
+            <EntityTypeMapping TypeName="ireadytodayModel.Course_master">
+              <MappingFragment StoreEntitySet="Course_master">
+                <ScalarProperty Name="Course_ID" ColumnName="Course_ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifedDate" ColumnName="ModifedDate" />
+                <ScalarProperty Name="Imageurl" ColumnName="Imageurl" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="ireadytodayModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="ContactName" ColumnName="ContactName" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Job_Master">
+            <EntityTypeMapping TypeName="ireadytodayModel.Job_Master">
+              <MappingFragment StoreEntitySet="Job_Master">
+                <ScalarProperty Name="JobID" ColumnName="JobID" />
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="Course" ColumnName="Course" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="Company_Name" ColumnName="Company_Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ScheduledDate" ColumnName="ScheduledDate" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="CraetedDate" ColumnName="CraetedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="Semester" ColumnName="Semester" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MailTemplateMasters">
+            <EntityTypeMapping TypeName="ireadytodayModel.MailTemplateMaster">
+              <MappingFragment StoreEntitySet="MailTemplateMaster">
+                <ScalarProperty Name="MailID" ColumnName="MailID" />
+                <ScalarProperty Name="MailTitle" ColumnName="MailTitle" />
+                <ScalarProperty Name="MailDescription" ColumnName="MailDescription" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifedDate" ColumnName="ModifedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PriceMasters">
+            <EntityTypeMapping TypeName="ireadytodayModel.PriceMaster">
+              <MappingFragment StoreEntitySet="PriceMaster">
+                <ScalarProperty Name="PriceID" ColumnName="PriceID" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Question_details">
+            <EntityTypeMapping TypeName="ireadytodayModel.Question_details">
+              <MappingFragment StoreEntitySet="Question_details">
+                <ScalarProperty Name="quizid" ColumnName="quizid" />
+                <ScalarProperty Name="Course_ID" ColumnName="Course_ID" />
+                <ScalarProperty Name="SubjectID" ColumnName="SubjectID" />
+                <ScalarProperty Name="Uid" ColumnName="Uid" />
+                <ScalarProperty Name="Q_no" ColumnName="Q_no" />
+                <ScalarProperty Name="Question_Name" ColumnName="Question_Name" />
+                <ScalarProperty Name="Q_op1" ColumnName="Q_op1" />
+                <ScalarProperty Name="Q_op2" ColumnName="Q_op2" />
+                <ScalarProperty Name="Q_op3" ColumnName="Q_op3" />
+                <ScalarProperty Name="Q_op4" ColumnName="Q_op4" />
+                <ScalarProperty Name="Q_Ans" ColumnName="Q_Ans" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Questions">
+            <EntityTypeMapping TypeName="ireadytodayModel.Question">
+              <MappingFragment StoreEntitySet="Questions">
+                <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+                <ScalarProperty Name="QuestionText" ColumnName="QuestionText" />
+                <ScalarProperty Name="QuizID" ColumnName="QuizID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+                <ScalarProperty Name="SubjectID" ColumnName="SubjectID" />
+                <ScalarProperty Name="UnitID" ColumnName="UnitID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Quizs">
+            <EntityTypeMapping TypeName="ireadytodayModel.Quiz">
+              <MappingFragment StoreEntitySet="Quiz">
+                <ScalarProperty Name="QuizID" ColumnName="QuizID" />
+                <ScalarProperty Name="QuizName" ColumnName="QuizName" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+                <ScalarProperty Name="SemesterID" ColumnName="SemesterID" />
+                <ScalarProperty Name="SubjectID" ColumnName="SubjectID" />
+                <ScalarProperty Name="UnitID" ColumnName="UnitID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Semesters">
+            <EntityTypeMapping TypeName="ireadytodayModel.Semester">
+              <MappingFragment StoreEntitySet="Semester">
+                <ScalarProperty Name="SemID" ColumnName="SemID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Semester_master">
+            <EntityTypeMapping TypeName="ireadytodayModel.Semester_master">
+              <MappingFragment StoreEntitySet="Semester_master">
+                <ScalarProperty Name="SemID" ColumnName="SemID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CraetedDate" ColumnName="CraetedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Smstemplate_master">
+            <EntityTypeMapping TypeName="ireadytodayModel.Smstemplate_master">
+              <MappingFragment StoreEntitySet="Smstemplate_master">
+                <ScalarProperty Name="SmstemplateID" ColumnName="SmstemplateID" />
+                <ScalarProperty Name="smstemp_title" ColumnName="smstemp_title" />
+                <ScalarProperty Name="smstemp_description" ColumnName="smstemp_description" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stu_Additionalquestionrequest">
+            <EntityTypeMapping TypeName="ireadytodayModel.Stu_Additionalquestionrequest">
+              <MappingFragment StoreEntitySet="Stu_Additionalquestionrequest">
+                <ScalarProperty Name="ADQID" ColumnName="ADQID" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Course" ColumnName="Course" />
+                <ScalarProperty Name="Semester" ColumnName="Semester" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="QuestionReplay" ColumnName="QuestionReplay" />
+                <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
+                <ScalarProperty Name="Updated" ColumnName="Updated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stu_AddQuestionReq">
+            <EntityTypeMapping TypeName="ireadytodayModel.Stu_AddQuestionReq">
+              <MappingFragment StoreEntitySet="Stu_AddQuestionReq">
+                <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+                <ScalarProperty Name="Sem" ColumnName="Sem" />
+                <ScalarProperty Name="SubjectID" ColumnName="SubjectID" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="Qestion_Heading" ColumnName="Qestion_Heading" />
+                <ScalarProperty Name="Question_Description" ColumnName="Question_Description" />
+                <ScalarProperty Name="Answer" ColumnName="Answer" />
+                <ScalarProperty Name="IsAnswered" ColumnName="IsAnswered" />
+                <ScalarProperty Name="Question_Date" ColumnName="Question_Date" />
+                <ScalarProperty Name="Anwered_Date" ColumnName="Anwered_Date" />
+                <ScalarProperty Name="ContributerID" ColumnName="ContributerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentReviews">
+            <EntityTypeMapping TypeName="ireadytodayModel.StudentReview">
+              <MappingFragment StoreEntitySet="StudentReview">
+                <ScalarProperty Name="SrID" ColumnName="SrID" />
+                <ScalarProperty Name="StudentUserID" ColumnName="StudentUserID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="course" ColumnName="course" />
+                <ScalarProperty Name="ReviewDescription" ColumnName="ReviewDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="studentsyllabus">
+            <EntityTypeMapping TypeName="ireadytodayModel.studentsyllabu">
+              <MappingFragment StoreEntitySet="studentsyllabus">
+                <ScalarProperty Name="ssid" ColumnName="ssid" />
+                <ScalarProperty Name="SubjectID" ColumnName="SubjectID" />
+                <ScalarProperty Name="Uid" ColumnName="Uid" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UnitDescription" ColumnName="UnitDescription" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudyMaterials">
+            <EntityTypeMapping TypeName="ireadytodayModel.StudyMaterial">
+              <MappingFragment StoreEntitySet="StudyMaterial">
+                <ScalarProperty Name="SMID" ColumnName="SMID" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+                <ScalarProperty Name="SemID" ColumnName="SemID" />
+                <ScalarProperty Name="SM_Name" ColumnName="SM_Name" />
+                <ScalarProperty Name="SM_Description" ColumnName="SM_Description" />
+                <ScalarProperty Name="Attachments" ColumnName="Attachments" />
+                <ScalarProperty Name="UploadBy" ColumnName="UploadBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CmtID" ColumnName="CmtID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subject_Master">
+            <EntityTypeMapping TypeName="ireadytodayModel.Subject_Master">
+              <MappingFragment StoreEntitySet="Subject_Master">
+                <ScalarProperty Name="SubjectID" ColumnName="SubjectID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Course" ColumnName="Course" />
+                <ScalarProperty Name="Semester" ColumnName="Semester" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="Imageurl" ColumnName="Imageurl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ireadytodayModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblStates">
+            <EntityTypeMapping TypeName="ireadytodayModel.tblState">
+              <MappingFragment StoreEntitySet="tblState">
+                <ScalarProperty Name="stateid" ColumnName="stateid" />
+                <ScalarProperty Name="statename" ColumnName="statename" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UnitMasters">
+            <EntityTypeMapping TypeName="ireadytodayModel.UnitMaster">
+              <MappingFragment StoreEntitySet="UnitMaster">
+                <ScalarProperty Name="Uid" ColumnName="Uid" />
+                <ScalarProperty Name="UnitName" ColumnName="UnitName" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="YearMasters">
+            <EntityTypeMapping TypeName="ireadytodayModel.YearMaster">
+              <MappingFragment StoreEntitySet="YearMaster">
+                <ScalarProperty Name="YearID" ColumnName="YearID" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCities">
+            <EntityTypeMapping TypeName="ireadytodayModel.tblCity">
+              <MappingFragment StoreEntitySet="tblCity">
+                <ScalarProperty Name="Cityid" ColumnName="Cityid" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="stateid" ColumnName="stateid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TechCourses">
+            <EntityTypeMapping TypeName="ireadytodayModel.TechCours">
+              <MappingFragment StoreEntitySet="TechCourses">
+                <ScalarProperty Name="Course_ID" ColumnName="Course_ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="imageurl" ColumnName="imageurl" />
+                <ScalarProperty Name="courseprize" ColumnName="courseprize" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifedDate" ColumnName="ModifedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="ireadytodayModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="Movies">
+            <EntityTypeMapping TypeName="ireadytodayModel.Movie">
+              <MappingFragment StoreEntitySet="Movie">
+                <ScalarProperty Name="RateTotal" ColumnName="RateTotal" />
+                <ScalarProperty Name="RateCount" ColumnName="RateCount" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Genre" ColumnName="Genre" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StarRatings">
+            <EntityTypeMapping TypeName="ireadytodayModel.StarRating">
+              <MappingFragment StoreEntitySet="StarRating">
+                <ScalarProperty Name="MovieId" ColumnName="MovieId" />
+                <ScalarProperty Name="IpAddress" ColumnName="IpAddress" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="RateID" ColumnName="RateID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stu_Result">
+            <EntityTypeMapping TypeName="ireadytodayModel.Stu_Result">
+              <MappingFragment StoreEntitySet="Stu_Result">
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="Ratings" ColumnName="Ratings" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="No_Attempts" ColumnName="No_Attempts" />
+                <ScalarProperty Name="TotalMarks" ColumnName="TotalMarks" />
+                <ScalarProperty Name="ScoredMarks" ColumnName="ScoredMarks" />
+                <ScalarProperty Name="UnitID" ColumnName="UnitID" />
+                <ScalarProperty Name="SubjectID" ColumnName="SubjectID" />
+                <ScalarProperty Name="SemID" ColumnName="SemID" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="RID" ColumnName="RID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentCourseRatings">
+            <EntityTypeMapping TypeName="ireadytodayModel.StudentCourseRating">
+              <MappingFragment StoreEntitySet="StudentCourseRating">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="RateID" ColumnName="RateID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentProfiles">
+            <EntityTypeMapping TypeName="ireadytodayModel.StudentProfile">
+              <MappingFragment StoreEntitySet="StudentProfile">
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="CollegeName" ColumnName="CollegeName" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Semester" ColumnName="Semester" />
+                <ScalarProperty Name="Course" ColumnName="Course" />
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Student_ID" ColumnName="Student_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
